@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b8mpbrhkqb1po"]
+
+[ext_resource type="Script" uid="uid://3lur45rc8pfi" path="res://Scripts/mainnight.gd" id="1_31vtv"]
+
+[node name="MAINNIGHT" type="Node3D" unique_id=1618557773]
+script = ExtResource("1_31vtv")
+
+[node name="nealTimer" type="Timer" parent="." unique_id=1138284135]
+wait_time = 4.0
+
+[node name="toadTimer" type="Timer" parent="." unique_id=1547031533]
+wait_time = 4.0
+
+[node name="eagleTimer" type="Timer" parent="." unique_id=127020364]
+wait_time = 5.0
+
+[node name="kangarooTimer" type="Timer" parent="." unique_id=1399693565]
+wait_time = 5.0

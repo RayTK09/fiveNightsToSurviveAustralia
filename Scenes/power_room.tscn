@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b24cw00q8n4yx"]
+
+[ext_resource type="Script" uid="uid://dg111ot7m8s5" path="res://Scenes/power_room.gd" id="1_cu0sn"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
+size = Vector3(1, 1.015625, 0.2265625)
+
+[node name="powerRoom" type="Node3D" unique_id=112248275]
+script = ExtResource("1_cu0sn")
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=330171380]
+transform = Transform3D(2.2276907, 0, 0, 0, 1, 0, 0, 0, 2.3000002, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="ceiling" type="MeshInstance3D" parent="." unique_id=979806716]
+transform = Transform3D(2.2276907, 0, 0, 0, -1, -2.010724e-07, 0, 8.742278e-08, -2.3000002, 0, 2.6168706, 0)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall" type="MeshInstance3D" parent="." unique_id=943543398]
+transform = Transform3D(-6.556708e-08, 1, 0, -1.5, -4.371139e-08, 0, 0, 0, 2.3000002, -1.781129, 1.2555139, 0)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall2" type="MeshInstance3D" parent="." unique_id=1662288628]
+transform = Transform3D(-6.556708e-08, -1, 0, 1.5, -4.371139e-08, 0, 0, 0, 2.3000002, 2.0429776, 1.2555139, 0)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall3" type="MeshInstance3D" parent="." unique_id=1929221906]
+transform = Transform3D(2.866028e-15, 4.371139e-08, 2.3000002, 1.5, -4.371139e-08, 0, 6.556708e-08, 1, -1.005362e-07, 0.3898027, 1.2555139, -2.1180017)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall4" type="MeshInstance3D" parent="." unique_id=1059681481]
+transform = Transform3D(2.866028e-15, 4.371139e-08, -2.3000002, 1.5, -4.371139e-08, 0, -6.556708e-08, -1, -1.005362e-07, 0.3898027, 1.2555139, 2.2131472)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1793699816]
+transform = Transform3D(-0.8746311, -0.218214, 0.43290067, -0.009846815, 0.90077937, 0.4341652, -0.48468894, 0.37547168, -0.78999835, 1.6143223, 1.903095, -1.9924449)
+fov = 50.827446
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1495590981]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.9902929, 3.446212, 1.4896064)
+spot_range = 4.114645
+spot_attenuation = 2.48
+spot_angle = 35.52347
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1274901340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.99851763, 1.4746783, 2.196411)
+mesh = SubResource("BoxMesh_2qw5g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=164983463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.491373, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.4

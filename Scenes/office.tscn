@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dl4yntk8btl51"]
+
+[ext_resource type="Script" uid="uid://cli1saqjn3yku" path="res://Scripts/office.gd" id="1_a0wae"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sh1en"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.09054789, 0.08586055, 0.080585375, 1)
+ground_bottom_color = Color(0.09611703, 0.0773677, 0.056266993, 1)
+ground_horizon_color = Color(0.09054789, 0.08586055, 0.080585375, 1)
+
+[sub_resource type="Sky" id="Sky_a0wae"]
+sky_material = SubResource("ProceduralSkyMaterial_sh1en")
+
+[sub_resource type="Environment" id="Environment_llmbb"]
+background_mode = 2
+sky = SubResource("Sky_a0wae")
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
+
+[node name="OFFICE" type="Node3D" unique_id=1742765653]
+script = ExtResource("1_a0wae")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1543268416]
+environment = SubResource("Environment_llmbb")
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=439215230]
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="ceiling" type="MeshInstance3D" parent="." unique_id=261437439]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 1.4555131, 0)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall" type="MeshInstance3D" parent="." unique_id=1055448907]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, -1)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall2" type="MeshInstance3D" parent="." unique_id=1459560513]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0.5, 0.9500158)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall3" type="MeshInstance3D" parent="." unique_id=881503428]
+transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 0.993189, 0.5, -0.049984217)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall4" type="MeshInstance3D" parent="." unique_id=61004197]
+transform = Transform3D(-2.1855693e-07, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -2.1855693e-07, 9.553427e-15, -0.94247663, 0.5, -0.021234155)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2060791822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457033, 1.2372115)
+fov = 27.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=641099784]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.3455267, 0.13888085)
+spot_attenuation = 7.86
+spot_angle = 71.65
