@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b24cw00q8n4yx"]
 
-[ext_resource type="Script" uid="uid://dg111ot7m8s5" path="res://Scenes/power_room.gd" id="1_cu0sn"]
+[ext_resource type="Script" uid="uid://dg111ot7m8s5" path="res://Scripts/power_room.gd" id="1_cu0sn"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
 
@@ -51,4 +51,4 @@ mesh = SubResource("BoxMesh_2qw5g")
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=164983463]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.491373, 0)
 light_color = Color(1, 0, 0, 1)
-light_energy = 0.4
+light_energy = 0.0

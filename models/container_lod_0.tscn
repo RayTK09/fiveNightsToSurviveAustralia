@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cdgfwutm3kssy"]
+
+[ext_resource type="PackedScene" uid="uid://do74yjsvvrbbc" path="res://models/cargo-container/source/Container_LOD_0.fbx" id="1_7i6fs"]
+[ext_resource type="Texture2D" uid="uid://djf7dh7yogqbi" path="res://models/cargo-container/textures/Container_basecolor.jpeg" id="2_u8hgv"]
+[ext_resource type="Texture2D" uid="uid://bgsmaa3cv4sgt" path="res://models/cargo-container/textures/Container_AO.jpeg" id="3_ppxik"]
+[ext_resource type="Texture2D" uid="uid://w3xb0fi531bn" path="res://models/cargo-container/textures/Container_metallic.jpeg" id="4_arqvf"]
+[ext_resource type="Texture2D" uid="uid://doqnwhdjes7f2" path="res://models/cargo-container/textures/Container_roughness.jpeg" id="5_8ord0"]
+[ext_resource type="Texture2D" uid="uid://ccoxbvxs45u0i" path="res://models/cargo-container/textures/Container_normal.jpeg" id="6_u8hgv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htjiv"]
+albedo_texture = ExtResource("2_u8hgv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qw5g"]
+albedo_texture = ExtResource("3_ppxik")
+metallic = 1.0
+metallic_texture = ExtResource("4_arqvf")
+roughness_texture = ExtResource("5_8ord0")
+normal_enabled = true
+normal_texture = ExtResource("6_u8hgv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppxik"]
+albedo_texture = ExtResource("2_u8hgv")
+metallic = 1.0
+metallic_texture = ExtResource("4_arqvf")
+roughness_texture = ExtResource("5_8ord0")
+normal_enabled = true
+normal_texture = ExtResource("6_u8hgv")
+
+[node name="Container_LOD_0" unique_id=1457151334 instance=ExtResource("1_7i6fs")]
+
+[node name="Container" parent="." index="0" unique_id=2140430064]
+material_override = SubResource("StandardMaterial3D_htjiv")
+surface_material_override/0 = SubResource("StandardMaterial3D_2qw5g")
+
+[node name="ContainerDoor" parent="." index="1" unique_id=1902220974]
+surface_material_override/0 = SubResource("StandardMaterial3D_ppxik")
+
+[node name="ContainerDoor2" parent="." index="2" unique_id=1507600406]
+surface_material_override/0 = SubResource("StandardMaterial3D_ppxik")

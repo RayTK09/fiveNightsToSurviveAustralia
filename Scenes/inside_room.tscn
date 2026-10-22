@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://k61lpxusk4ii"]
+
+[ext_resource type="Script" uid="uid://b24gtymg4dfuv" path="res://Scripts/inside_room.gd" id="1_ckrbn"]
+[ext_resource type="PackedScene" uid="uid://cdgfwutm3kssy" path="res://models/container_lod_0.tscn" id="1_unlwq"]
+[ext_resource type="PackedScene" uid="uid://b51u82ktb31le" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Catwalk_200.gltf" id="3_d3shc"]
+[ext_resource type="PackedScene" uid="uid://bej4g4mgcphbu" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Railing_200.gltf" id="4_sgii2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgii2"]
+
+[node name="insideRoom" type="Node3D" unique_id=869201874]
+script = ExtResource("1_ckrbn")
+
+[node name="walls and floor" type="Node3D" parent="." unique_id=1121732328]
+
+[node name="floor" type="MeshInstance3D" parent="walls and floor" unique_id=1590550538]
+transform = Transform3D(14.657342, 0, 0, 0, 1, 0, 0, 0, 16.820328, 7.7627425, 0, 0)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall" type="MeshInstance3D" parent="walls and floor" unique_id=1668327307]
+transform = Transform3D(-2.6202864e-07, 1, 0, -5.9945164, -4.371139e-08, 0, 0, 0, 8.747044, -5.840124, 5.7868915, -0.000300169)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall2" type="MeshInstance3D" parent="walls and floor" unique_id=121739351]
+transform = Transform3D(2.620286e-07, -1, 4.5881453e-07, -5.994517, -4.371139e-08, 0, 2.2907269e-14, -8.742278e-08, -5.248226, 5.745619, 5.793659, 9.585269)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall5" type="MeshInstance3D" parent="walls and floor" unique_id=2047108191]
+transform = Transform3D(1.5721719e-07, -1, -2.7528867e-07, 7.860859e-08, -4.371138e-08, 6.2978716, -1.7983551, -8.742277e-08, 2.752887e-07, 5.7456193, 5.4539933, -7.230878)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall6" type="MeshInstance3D" parent="walls and floor" unique_id=638844828]
+transform = Transform3D(7.8608586e-08, -1, 4.5881453e-07, -1.7983551, -4.371139e-08, 0, 6.872181e-15, -8.742278e-08, -5.248226, 5.7456193, 9.9826765, -0.87546635)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall3" type="MeshInstance3D" parent="walls and floor" unique_id=1253013341]
+transform = Transform3D(-1.3064103e-14, 1.3113416e-07, 6.2089157, -5.994517, -4.3711385e-08, -4.5579934e-21, 2.6202858e-07, -1, 8.14201e-07, -0.43318462, 5.7936587, 8.582314)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall4" type="MeshInstance3D" parent="walls and floor" unique_id=92756231]
+transform = Transform3D(3.5971368e-14, -2.1855693e-07, -8.747044, -5.994517, -4.3711385e-08, -9.1379725e-21, -2.6202855e-07, 1, -1.911727e-06, -0.43318462, 5.7936587, -8.655407)
+mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = SubResource("StandardMaterial3D_sgii2")
+
+[node name="Containers" type="Node3D" parent="." unique_id=1501985338]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.071711, 0, -4.0817366)
+
+[node name="Container_LOD_0" parent="Containers" unique_id=1457151334 instance=ExtResource("1_unlwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.056016, 0, 15.999999)
+
+[node name="Container_LOD_1" parent="Containers" unique_id=2108886451 instance=ExtResource("1_unlwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.056015, 0, 13.38623)
+
+[node name="Container_LOD_2" parent="Containers" unique_id=51044206 instance=ExtResource("1_unlwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16853285, 0, 10.645564)
+
+[node name="Container_LOD_3" parent="Containers" unique_id=2068918038 instance=ExtResource("1_unlwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16853285, 0, 13.265929)
+
+[node name="Container_LOD_4" parent="Containers" unique_id=940473060 instance=ExtResource("1_unlwq")]
+
+[node name="Container_LOD_5" parent="Containers" unique_id=1341293750 instance=ExtResource("1_unlwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6137695)
+
+[node name="Container_LOD_6" parent="Containers" unique_id=1707407515 instance=ExtResource("1_unlwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5346866, -1.7444544)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1497995186]
+transform = Transform3D(-0.79099107, -0.33506897, 0.51191974, 0.0017642677, 0.8354532, 0.5495587, -0.6118252, 0.4355991, -0.66024494, 5.033616, 3.496521, -8.328743)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D" unique_id=1444561843]
+transform = Transform3D(0.82609385, -0.5618934, 0.042948216, 0.5308956, 0.8015471, 0.27508527, -0.18899362, -0.20444527, 0.96045995, -0.049120665, -0.123636246, -0.4890728)
+shadow_enabled = true
+spot_range = 7.5
+spot_attenuation = 10.0
+spot_angle = 53.562096
+
+[node name="Camera3D2" type="Camera3D" parent="." unique_id=50288860]
+transform = Transform3D(0.71233904, 0.38464984, -0.58704144, 0.0017642077, 0.83545333, 0.5495586, 0.70183337, -0.3925076, 0.5944474, -5.14804, 3.496521, 7.6732664)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D2" unique_id=1445534277]
+transform = Transform3D(0.82609385, -0.5618934, 0.042948216, 0.5308956, 0.8015471, 0.27508527, -0.18899362, -0.20444527, 0.96045995, -0.049120665, -0.123636246, -0.4890728)
+shadow_enabled = true
+spot_range = 7.5
+spot_attenuation = 10.0
+spot_angle = 53.562096
+
+[node name="TOOMUCHCATWALK" type="Node3D" parent="." unique_id=1943008716]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -1.6675444, 0, 0)
+
+[node name="SM_IK_Catwalk_2002" parent="TOOMUCHCATWALK" unique_id=1227535955 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.284676, 0.52416134, -5.6804953)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2002" unique_id=1149975253 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2003" parent="TOOMUCHCATWALK" unique_id=655373247 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.284676, 1.5241613, -3.948444)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2003" unique_id=2101161108 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2004" parent="TOOMUCHCATWALK" unique_id=1135029578 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.284676, 2.0241613, -3.0824192)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2004" unique_id=227159486 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2005" parent="TOOMUCHCATWALK" unique_id=2077060210 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.284676, 3.0241613, -1.3503678)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2005" unique_id=916918602 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2006" parent="TOOMUCHCATWALK" unique_id=1104912903 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.284676, 2.0241613, -3.0824192)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2006" unique_id=1358131424 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2007" parent="TOOMUCHCATWALK" unique_id=1901955376 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.284676, 3.0241613, -1.3503678)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2007" unique_id=2101377816 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2008" parent="TOOMUCHCATWALK" unique_id=1328073891 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.2846756, 4.0241613, 0.3816824)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2008" unique_id=221301028 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2009" parent="TOOMUCHCATWALK" unique_id=1171328325 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.2846756, 5.0241613, 2.1137338)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2009" unique_id=582509999 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2010" parent="TOOMUCHCATWALK" unique_id=1849740281 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.2846756, 5.5241613, 2.9797585)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2010" unique_id=1258545486 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2011" parent="TOOMUCHCATWALK" unique_id=2046524578 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.2846756, 6.5241613, 4.71181)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2011" unique_id=9534025 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2012" parent="TOOMUCHCATWALK" unique_id=1552733544 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.2846756, 5.5241613, 2.9797585)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2012" unique_id=647845161 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SM_IK_Catwalk_2013" parent="TOOMUCHCATWALK" unique_id=681208583 instance=ExtResource("3_d3shc")]
+transform = Transform3D(-3.7855173e-08, -2.1855694e-08, 1.3718964, -0.5, 0.8660254, 0, -0.8660254, -0.5, -5.99675e-08, -5.2846756, 6.5241613, 4.71181)
+
+[node name="SM_IK_Railing_2002" parent="TOOMUCHCATWALK/SM_IK_Catwalk_2013" unique_id=122688967 instance=ExtResource("4_sgii2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)

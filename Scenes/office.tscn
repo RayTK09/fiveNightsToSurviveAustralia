@@ -1,57 +1,135 @@
 [gd_scene format=3 uid="uid://dl4yntk8btl51"]
 
 [ext_resource type="Script" uid="uid://cli1saqjn3yku" path="res://Scripts/office.gd" id="1_a0wae"]
+[ext_resource type="PackedScene" uid="uid://b51u82ktb31le" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Catwalk_200.gltf" id="2_vggx3"]
+[ext_resource type="PackedScene" uid="uid://bej4g4mgcphbu" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Railing_200.gltf" id="3_cumm5"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sh1en"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0.09054789, 0.08586055, 0.080585375, 1)
-ground_bottom_color = Color(0.09611703, 0.0773677, 0.056266993, 1)
-ground_horizon_color = Color(0.09054789, 0.08586055, 0.080585375, 1)
-
-[sub_resource type="Sky" id="Sky_a0wae"]
-sky_material = SubResource("ProceduralSkyMaterial_sh1en")
-
-[sub_resource type="Environment" id="Environment_llmbb"]
-background_mode = 2
-sky = SubResource("Sky_a0wae")
-glow_enabled = true
+[sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
+size = Vector3(0.45828247, 0.38787842, 0.041137695)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
+
+[sub_resource type="Animation" id="Animation_vggx3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cumm5"]
+resource_name = "flipCamera"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Node3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.1415927, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2jlrf"]
+_data = {
+&"RESET": SubResource("Animation_vggx3"),
+&"flipCamera": SubResource("Animation_cumm5")
+}
 
 [node name="OFFICE" type="Node3D" unique_id=1742765653]
 script = ExtResource("1_a0wae")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1543268416]
-environment = SubResource("Environment_llmbb")
-
-[node name="floor" type="MeshInstance3D" parent="." unique_id=439215230]
-mesh = SubResource("PlaneMesh_2qw5g")
-
-[node name="ceiling" type="MeshInstance3D" parent="." unique_id=261437439]
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 1.4555131, 0)
-mesh = SubResource("PlaneMesh_2qw5g")
-
-[node name="wall" type="MeshInstance3D" parent="." unique_id=1055448907]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, -1)
-mesh = SubResource("PlaneMesh_2qw5g")
-
-[node name="wall2" type="MeshInstance3D" parent="." unique_id=1459560513]
-transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0.5, 0.9500158)
-mesh = SubResource("PlaneMesh_2qw5g")
-
-[node name="wall3" type="MeshInstance3D" parent="." unique_id=881503428]
-transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 0.993189, 0.5, -0.049984217)
-mesh = SubResource("PlaneMesh_2qw5g")
-
-[node name="wall4" type="MeshInstance3D" parent="." unique_id=61004197]
-transform = Transform3D(-2.1855693e-07, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -2.1855693e-07, 9.553427e-15, -0.94247663, 0.5, -0.021234155)
-mesh = SubResource("PlaneMesh_2qw5g")
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2060791822]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457033, 1.2372115)
+current = true
 fov = 27.0
+
+[node name="Node3D" type="Node3D" parent="Camera3D" unique_id=447539496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18659872, -0.75924116)
+
+[node name="cameraFlip" type="MeshInstance3D" parent="Camera3D/Node3D" unique_id=48418770]
+transform = Transform3D(1.4521585, 0, 0, 0, 1, 0, 0, 0, 1, 0.001449585, -0.1987032, 0.0014608204)
+mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=641099784]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.3455267, 0.13888085)
 spot_attenuation = 7.86
 spot_angle = 71.65
+
+[node name="catwalks" type="Node3D" parent="." unique_id=1383276632]
+
+[node name="SM_IK_Catwalk_2002" parent="catwalks" unique_id=1227535955 instance=ExtResource("2_vggx3")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -1.2779098, 0, 0.5795772)
+
+[node name="SM_IK_Railing_2002" parent="catwalks/SM_IK_Catwalk_2002" unique_id=1149975253 instance=ExtResource("3_cumm5")]
+
+[node name="SM_IK_Catwalk_2003" parent="catwalks" unique_id=1182288569 instance=ExtResource("2_vggx3")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -1.2779098, 0, -0.4204228)
+
+[node name="SM_IK_Railing_2002" parent="catwalks/SM_IK_Catwalk_2003" unique_id=678888361 instance=ExtResource("3_cumm5")]
+
+[node name="SM_IK_Catwalk_2004" parent="catwalks" unique_id=2135084787 instance=ExtResource("2_vggx3")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -1.2779098, 0, -1.4204228)
+
+[node name="SM_IK_Railing_2002" parent="catwalks/SM_IK_Catwalk_2004" unique_id=1080392797 instance=ExtResource("3_cumm5")]
+
+[node name="walls" type="Node3D" parent="." unique_id=98372496]
+
+[node name="floor" type="MeshInstance3D" parent="walls" unique_id=439215230]
+transform = Transform3D(1.0566105, 0, 0, 0, 1, 0, 0, 0, 1.25439, -0.013302565, 0, 0.039619327)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="ceiling" type="MeshInstance3D" parent="walls" unique_id=261437439]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 1.4555131, 0)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall" type="MeshInstance3D" parent="walls" unique_id=1055448907]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, -1)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall2" type="MeshInstance3D" parent="walls" unique_id=1459560513]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0.5, 0.9500158)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall3" type="MeshInstance3D" parent="walls" unique_id=881503428]
+transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 0.993189, 0.5, -0.049984217)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall4" type="MeshInstance3D" parent="walls" unique_id=61004197]
+transform = Transform3D(-1.0927847e-07, 0.9999999, -4.371139e-08, 0, -4.3711385e-08, -1, -0.5, -2.185569e-07, 9.553427e-15, -0.94247663, 0.5, 0.497728)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall5" type="MeshInstance3D" parent="walls" unique_id=1783693753]
+transform = Transform3D(-1.0927847e-07, 0.9999999, -4.371139e-08, 0, -4.3711385e-08, -1, -0.5, -2.185569e-07, 9.553427e-15, -0.94247663, 0.5, -1.143295)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall6" type="MeshInstance3D" parent="walls" unique_id=184643633]
+transform = Transform3D(-1.0927847e-07, 0.9999998, -8.141055e-09, 0, -4.371138e-08, -0.18624562, -0.5, -2.1855689e-07, 1.779284e-15, -0.94247663, 1.3857265, -0.30304384)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall7" type="MeshInstance3D" parent="walls" unique_id=1331725239]
+transform = Transform3D(-7.798623e-07, 1.0000011, -1.5020143e-07, 0, -4.3711438e-08, -3.4362085, -3.5682342, -2.1855719e-07, 3.282757e-14, -5.91264, 0.5, -4.3714643)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="wall8" type="MeshInstance3D" parent="walls" unique_id=899736166]
+transform = Transform3D(3.5682342, 1.7484572e-07, -2.6262057e-14, -2.517842e-22, -4.371144e-08, -3.4362085, -6.2388983e-07, 1.000001, -1.5020143e-07, -5.91264, 0.5, -7.5609584)
+mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1059498932]
+libraries/ = SubResource("AnimationLibrary_2jlrf")
+
+[node name="Control" type="Control" parent="." unique_id=1615613650]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
