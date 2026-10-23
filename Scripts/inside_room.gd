@@ -16,9 +16,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if (cam1Active):
 		cam1Light.spot_attenuation = 1
+		$Camera3D.current = true
 	else:
 		cam1Light.spot_angle_attenuation = 10
+		$Camera3D.current = false
 	if (cam2Active):
 		cam2Light.spot_attenuation = 1
+		$Camera3D2.current = true
 	else:
 		cam2Light.spot_angle_attenuation = 10
+		$Camera3D.current = false

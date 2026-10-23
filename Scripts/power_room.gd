@@ -17,3 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if (camActive):
 		canActivateAlarm = true
+		$Camera3D.current = true
+	else:
+		canActivateAlarm = false
+		$Camera3D.current = false

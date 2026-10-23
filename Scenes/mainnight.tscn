@@ -26,7 +26,10 @@ script = ExtResource("1_31vtv")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=187454186]
 environment = SubResource("Environment_yy6r3")
 
-[node name="OFFICE" parent="." unique_id=1742765653 instance=ExtResource("2_wiscd")]
+[node name="OFFICE" parent="." unique_id=1742765653 node_paths=PackedStringArray("outside", "inside", "power") instance=ExtResource("2_wiscd")]
+outside = NodePath("../outside")
+inside = NodePath("../insideRoom")
+power = NodePath("../powerRoom")
 
 [node name="powerRoom" parent="." unique_id=112248275 instance=ExtResource("3_1e0qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.907451, 0, 0)

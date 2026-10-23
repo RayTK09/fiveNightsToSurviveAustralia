@@ -3,6 +3,12 @@
 [ext_resource type="Script" uid="uid://cli1saqjn3yku" path="res://Scripts/office.gd" id="1_a0wae"]
 [ext_resource type="PackedScene" uid="uid://b51u82ktb31le" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Catwalk_200.gltf" id="2_vggx3"]
 [ext_resource type="PackedScene" uid="uid://bej4g4mgcphbu" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Railing_200.gltf" id="3_cumm5"]
+[ext_resource type="Texture2D" uid="uid://dy0arpil50yxs" path="res://sprites/map.png" id="4_2jlrf"]
+[ext_resource type="Texture2D" uid="uid://ci1vh7p43gnpr" path="res://sprites/Camera1.png" id="5_7xo7e"]
+[ext_resource type="Texture2D" uid="uid://b2uwxssroj3rj" path="res://sprites/camera2.png" id="6_2vylc"]
+[ext_resource type="Texture2D" uid="uid://tfwo1kymnldl" path="res://sprites/camera3.png" id="7_4luf0"]
+[ext_resource type="Texture2D" uid="uid://b4hd0v6micq1j" path="res://sprites/camera4.png" id="8_q644x"]
+[ext_resource type="Texture2D" uid="uid://bn7s1be8wp0q5" path="res://sprites/camera5.png" id="9_rs1ao"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
 size = Vector3(0.45828247, 0.38787842, 0.041137695)
@@ -24,6 +30,22 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_2jlrf"]
+resource_name = "flipCamDown"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Node3D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.1415927, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_cumm5"]
 resource_name = "flipCamera"
 length = 0.15
@@ -43,6 +65,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2jlrf"]
 _data = {
 &"RESET": SubResource("Animation_vggx3"),
+&"flipCamDown": SubResource("Animation_2jlrf"),
 &"flipCamera": SubResource("Animation_cumm5")
 }
 
@@ -131,5 +154,65 @@ libraries/ = SubResource("AnimationLibrary_2jlrf")
 [node name="Control" type="Control" parent="." unique_id=1615613650]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=131302353]
+layout_mode = 0
+offset_left = 1500.0
+offset_top = 240.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_2jlrf")
+
+[node name="cam1" type="TextureButton" parent="Control" unique_id=68171800]
+layout_mode = 0
+offset_left = 1683.0
+offset_top = 948.0
+offset_right = 1939.0
+offset_bottom = 1076.0
+scale = Vector2(0.30189088, 0.30189088)
+texture_normal = ExtResource("5_7xo7e")
+
+[node name="cam2" type="TextureButton" parent="Control" unique_id=1890830075]
+layout_mode = 0
+offset_left = 1796.9999
+offset_top = 663.99994
+offset_right = 2053.0
+offset_bottom = 791.99994
+scale = Vector2(0.30189088, 0.30189088)
+texture_normal = ExtResource("6_2vylc")
+
+[node name="cam3" type="TextureButton" parent="Control" unique_id=1390631234]
+layout_mode = 0
+offset_left = 1676.9999
+offset_top = 637.99994
+offset_right = 1932.9999
+offset_bottom = 765.99994
+scale = Vector2(0.30189088, 0.30189088)
+texture_normal = ExtResource("7_4luf0")
+
+[node name="cam4" type="TextureButton" parent="Control" unique_id=2047496460]
+layout_mode = 0
+offset_left = 1797.9999
+offset_top = 448.99997
+offset_right = 2054.0
+offset_bottom = 577.0
+scale = Vector2(0.30189088, 0.30189088)
+texture_normal = ExtResource("8_q644x")
+
+[node name="cam5" type="TextureButton" parent="Control" unique_id=1178665522]
+layout_mode = 0
+offset_left = 1690.9999
+offset_top = 406.0
+offset_right = 1946.9999
+offset_bottom = 534.0
+scale = Vector2(0.30189088, 0.30189088)
+texture_normal = ExtResource("9_rs1ao")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="Control/cam1" to="." method="_on_cam_1_pressed"]
+[connection signal="pressed" from="Control/cam2" to="." method="_on_cam_2_pressed"]
+[connection signal="pressed" from="Control/cam3" to="." method="_on_cam_3_pressed"]
+[connection signal="pressed" from="Control/cam4" to="." method="_on_cam_4_pressed"]
+[connection signal="pressed" from="Control/cam5" to="." method="_on_cam_5_pressed"]
