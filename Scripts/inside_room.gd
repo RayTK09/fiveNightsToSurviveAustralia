@@ -6,6 +6,10 @@ extends Node3D
 #Im gonna do a funny
 @export var cam1Active : bool = false
 @export var cam2Active : bool = false
+@export var isNealCam2 : bool = false
+@export var isKangarooCam1 : bool = false
+@export var isKangarooCam2 : bool = false
+@export var alarmActiveInside : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,11 +22,11 @@ func _process(delta: float) -> void:
 		cam1Light.spot_attenuation = 1
 		$Camera3D.current = true
 	else:
-		cam1Light.spot_angle_attenuation = 10
+		cam1Light.spot_attenuation = 10
 		$Camera3D.current = false
 	if (cam2Active):
 		cam2Light.spot_attenuation = 1
 		$Camera3D2.current = true
 	else:
-		cam2Light.spot_angle_attenuation = 10
-		$Camera3D.current = false
+		cam2Light.spot_attenuation = 10
+		$Camera3D2.current = false

@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://skqgalyfj03j"]
 
 [ext_resource type="Script" uid="uid://c76w28d8ib1qe" path="res://Scripts/outside.gd" id="1_hne82"]
+[ext_resource type="Material" path="res://assets/Concrete032_1K-JPG/Concrete032_1K-JPG.tres" id="2_hhqqv"]
 [ext_resource type="PackedScene" uid="uid://cdgfwutm3kssy" path="res://models/container_lod_0.tscn" id="2_n6vtj"]
+[ext_resource type="Material" uid="uid://bcmvnwd4s5yli" path="res://assets/CorrugatedSteel007C_1K-JPG/CorrugatedSteel007C_1K-JPG.tres" id="4_mf7ev"]
+[ext_resource type="PackedScene" uid="uid://d2sncpke1iul1" path="res://models/chainlinkFence.tscn" id="5_8c3xh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pyvco"]
+material = ExtResource("2_hhqqv")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2qw5g"]
 height = 10.342255
@@ -12,9 +16,95 @@ height = 10.342255
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i7vbf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ku5i6"]
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
+
+[sub_resource type="Animation" id="Animation_hhqqv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:spot_attenuation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpotLight3D2:spot_attenuation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpotLight3D3:spot_attenuation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+
+[sub_resource type="Animation" id="Animation_mf7ev"]
+resource_name = "blinkingLights"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:spot_attenuation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, -0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpotLight3D2:spot_attenuation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, -0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpotLight3D3:spot_attenuation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, -0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8c3xh"]
+_data = {
+&"RESET": SubResource("Animation_hhqqv"),
+&"blinkingLights": SubResource("Animation_mf7ev")
+}
 
 [node name="outside" type="Node3D" unique_id=1915874124]
 script = ExtResource("1_hne82")
@@ -94,12 +184,101 @@ spot_angle = 44.46022
 [node name="wall5" type="MeshInstance3D" parent="." unique_id=805960205]
 transform = Transform3D(3.597137e-14, 1.3113416e-07, 8.747044, -5.994517, 4.3711356e-08, -2.8725774e-14, -2.6202855e-07, -1, 1.1470361e-06, -0.43318462, 5.7936587, -8.655407)
 mesh = SubResource("PlaneMesh_i7vbf")
-surface_material_override/0 = SubResource("StandardMaterial3D_ku5i6")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=198458753]
-transform = Transform3D(-6.9938224e-08, 1, 0, -1.6, -4.371139e-08, 0, 0, 0, 32.917713, -9.0811615, 0.2695086, -9.293007)
-mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("4_mf7ev")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=726375281]
 transform = Transform3D(3.057097e-15, -4.371139e-08, -19.186455, -1.6, -4.371139e-08, 0, -6.993822e-08, 0.99999994, -8.3866655e-07, 4.0374403, 0.2695086, -38.614998)
 mesh = SubResource("PlaneMesh_2qw5g")
+
+[node name="nealCam3" type="MeshInstance3D" parent="." unique_id=351265694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8405957, 0.5, -24.870283)
+mesh = SubResource("BoxMesh_2qw5g")
+
+[node name="kangarooCam3" type="MeshInstance3D" parent="." unique_id=1239373221]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 5.8405957, 1, -24.870283)
+mesh = SubResource("BoxMesh_2qw5g")
+
+[node name="nealCam4" type="MeshInstance3D" parent="." unique_id=1414540076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1604419, 0.5, -10.671224)
+mesh = SubResource("BoxMesh_2qw5g")
+
+[node name="kangarooCam4" type="MeshInstance3D" parent="." unique_id=1977879315]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -6.0966396, 1, -10.671224)
+mesh = SubResource("BoxMesh_2qw5g")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1623168547]
+
+[node name="Sketchfab_Scene" parent="Node3D" unique_id=1989211055 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -9.587759)
+
+[node name="Sketchfab_Scene2" parent="Node3D" unique_id=1273381662 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -11.543138)
+
+[node name="Sketchfab_Scene3" parent="Node3D" unique_id=96446456 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -13.543138)
+
+[node name="Sketchfab_Scene4" parent="Node3D" unique_id=294255529 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -15.543138)
+
+[node name="Sketchfab_Scene5" parent="Node3D" unique_id=1059992279 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -17.543137)
+
+[node name="Sketchfab_Scene6" parent="Node3D" unique_id=476347791 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -19.476734)
+
+[node name="Sketchfab_Scene7" parent="Node3D" unique_id=1909925927 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -21.432112)
+
+[node name="Sketchfab_Scene8" parent="Node3D" unique_id=2134755925 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -23.432112)
+
+[node name="Sketchfab_Scene9" parent="Node3D" unique_id=2097820563 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -25.432112)
+
+[node name="Sketchfab_Scene10" parent="Node3D" unique_id=90737174 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -27.432112)
+
+[node name="Sketchfab_Scene11" parent="Node3D" unique_id=1499066180 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -29.404797)
+
+[node name="Sketchfab_Scene12" parent="Node3D" unique_id=408154458 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -31.360174)
+
+[node name="Sketchfab_Scene13" parent="Node3D" unique_id=1449909377 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -33.360176)
+
+[node name="Sketchfab_Scene14" parent="Node3D" unique_id=2121099315 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -35.360176)
+
+[node name="Sketchfab_Scene15" parent="Node3D" unique_id=90825678 instance=ExtResource("5_8c3xh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -37.360176)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=860271523]
+transform = Transform3D(0.9658143, -0.09577896, 0.24089244, -0.17315684, 0.45319557, 0.87443167, -0.19292349, -0.88625056, 0.42111784, 0, 11.111379, -8.835545)
+light_color = Color(1, 0, 0, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 24.644882
+spot_attenuation = 3.0
+spot_angle = 26.009985
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=1177068840]
+transform = Transform3D(0.86369884, -0.35704535, -0.3557289, 0.4656232, 0.29509062, 0.83433604, -0.19292353, -0.8862507, 0.421118, 0, 11.111379, -8.835545)
+light_color = Color(1, 0, 0, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 24.644882
+spot_attenuation = 3.0
+spot_angle = 26.009985
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="." unique_id=240471210]
+transform = Transform3D(-0.73712134, 0.6510391, 0.18110837, 0.46562314, 0.29509068, 0.83433604, 0.48974192, 0.6993352, -0.52065647, 7.8577065, 7.7392035, -31.172659)
+light_color = Color(1, 0, 0, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 24.644882
+spot_attenuation = 3.0
+spot_angle = 26.009985
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=351330795]
+libraries/ = SubResource("AnimationLibrary_8c3xh")

@@ -27,18 +27,19 @@ script = ExtResource("1_31vtv")
 environment = SubResource("Environment_yy6r3")
 
 [node name="OFFICE" parent="." unique_id=1742765653 node_paths=PackedStringArray("outside", "inside", "power") instance=ExtResource("2_wiscd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.487196)
 outside = NodePath("../outside")
 inside = NodePath("../insideRoom")
 power = NodePath("../powerRoom")
 
 [node name="powerRoom" parent="." unique_id=112248275 instance=ExtResource("3_1e0qi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.907451, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.907451, 0, 16.487196)
 
 [node name="insideRoom" parent="." unique_id=869201874 instance=ExtResource("4_yy6r3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.230312, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.325962, 0, 0)
 
 [node name="outside" parent="." unique_id=1915874124 instance=ExtResource("5_7vaj3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.10611, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.535095, 0, 0)
 
 [node name="nealTimer" type="Timer" parent="." unique_id=1138284135]
 wait_time = 4.0
@@ -51,3 +52,8 @@ wait_time = 5.0
 
 [node name="kangarooTimer" type="Timer" parent="." unique_id=1399693565]
 wait_time = 5.0
+
+[connection signal="timeout" from="nealTimer" to="." method="_on_neal_timer_timeout"]
+[connection signal="timeout" from="toadTimer" to="." method="_on_toad_timer_timeout"]
+[connection signal="timeout" from="eagleTimer" to="." method="_on_eagle_timer_timeout"]
+[connection signal="timeout" from="kangarooTimer" to="." method="_on_kangaroo_timer_timeout"]

@@ -4,11 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://b51u82ktb31le" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Catwalk_200.gltf" id="2_vggx3"]
 [ext_resource type="PackedScene" uid="uid://bej4g4mgcphbu" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Railing_200.gltf" id="3_cumm5"]
 [ext_resource type="Texture2D" uid="uid://dy0arpil50yxs" path="res://sprites/map.png" id="4_2jlrf"]
-[ext_resource type="Texture2D" uid="uid://ci1vh7p43gnpr" path="res://sprites/Camera1.png" id="5_7xo7e"]
+[ext_resource type="Material" path="res://assets/Concrete032_1K-JPG/Concrete032_1K-JPG.tres" id="4_q644x"]
+[ext_resource type="Texture2D" uid="uid://dlrmd7qgyhjpm" path="res://sprites/cam1Selected.png" id="5_2vylc"]
+[ext_resource type="Material" uid="uid://bcmvnwd4s5yli" path="res://assets/CorrugatedSteel007C_1K-JPG/CorrugatedSteel007C_1K-JPG.tres" id="5_rs1ao"]
 [ext_resource type="Texture2D" uid="uid://b2uwxssroj3rj" path="res://sprites/camera2.png" id="6_2vylc"]
 [ext_resource type="Texture2D" uid="uid://tfwo1kymnldl" path="res://sprites/camera3.png" id="7_4luf0"]
 [ext_resource type="Texture2D" uid="uid://b4hd0v6micq1j" path="res://sprites/camera4.png" id="8_q644x"]
 [ext_resource type="Texture2D" uid="uid://bn7s1be8wp0q5" path="res://sprites/camera5.png" id="9_rs1ao"]
+[ext_resource type="Texture2D" uid="uid://dk2hjnckgk54g" path="res://sprites/alarmInactive.png" id="12_o2cca"]
+[ext_resource type="Texture2D" uid="uid://cdupfd68m6fsq" path="res://sprites/alarmActive.png" id="13_v47wj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
 size = Vector3(0.45828247, 0.38787842, 0.041137695)
@@ -111,6 +115,7 @@ transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-
 [node name="floor" type="MeshInstance3D" parent="walls" unique_id=439215230]
 transform = Transform3D(1.0566105, 0, 0, 0, 1, 0, 0, 0, 1.25439, -0.013302565, 0, 0.039619327)
 mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("4_q644x")
 
 [node name="ceiling" type="MeshInstance3D" parent="walls" unique_id=261437439]
 transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 1.4555131, 0)
@@ -119,34 +124,37 @@ mesh = SubResource("PlaneMesh_2qw5g")
 [node name="wall" type="MeshInstance3D" parent="walls" unique_id=1055448907]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, -1)
 mesh = SubResource("PlaneMesh_2qw5g")
-
-[node name="wall2" type="MeshInstance3D" parent="walls" unique_id=1459560513]
-transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0.5, 0.9500158)
-mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
 
 [node name="wall3" type="MeshInstance3D" parent="walls" unique_id=881503428]
 transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 0.993189, 0.5, -0.049984217)
 mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
 
 [node name="wall4" type="MeshInstance3D" parent="walls" unique_id=61004197]
 transform = Transform3D(-1.0927847e-07, 0.9999999, -4.371139e-08, 0, -4.3711385e-08, -1, -0.5, -2.185569e-07, 9.553427e-15, -0.94247663, 0.5, 0.497728)
 mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
 
 [node name="wall5" type="MeshInstance3D" parent="walls" unique_id=1783693753]
 transform = Transform3D(-1.0927847e-07, 0.9999999, -4.371139e-08, 0, -4.3711385e-08, -1, -0.5, -2.185569e-07, 9.553427e-15, -0.94247663, 0.5, -1.143295)
 mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
 
 [node name="wall6" type="MeshInstance3D" parent="walls" unique_id=184643633]
 transform = Transform3D(-1.0927847e-07, 0.9999998, -8.141055e-09, 0, -4.371138e-08, -0.18624562, -0.5, -2.1855689e-07, 1.779284e-15, -0.94247663, 1.3857265, -0.30304384)
 mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
 
 [node name="wall7" type="MeshInstance3D" parent="walls" unique_id=1331725239]
 transform = Transform3D(-7.798623e-07, 1.0000011, -1.5020143e-07, 0, -4.3711438e-08, -3.4362085, -3.5682342, -2.1855719e-07, 3.282757e-14, -5.91264, 0.5, -4.3714643)
 mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
 
 [node name="wall8" type="MeshInstance3D" parent="walls" unique_id=899736166]
 transform = Transform3D(3.5682342, 1.7484572e-07, -2.6262057e-14, -2.517842e-22, -4.371144e-08, -3.4362085, -6.2388983e-07, 1.000001, -1.5020143e-07, -5.91264, 0.5, -7.5609584)
 mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1059498932]
 libraries/ = SubResource("AnimationLibrary_2jlrf")
@@ -157,7 +165,13 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="TextureRect" type="TextureRect" parent="Control" unique_id=131302353]
+[node name="CamUI" type="Control" parent="Control" unique_id=107325324]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/CamUI" unique_id=131302353]
 layout_mode = 0
 offset_left = 1500.0
 offset_top = 240.0
@@ -165,16 +179,16 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("4_2jlrf")
 
-[node name="cam1" type="TextureButton" parent="Control" unique_id=68171800]
+[node name="cam1" type="TextureButton" parent="Control/CamUI" unique_id=68171800]
 layout_mode = 0
 offset_left = 1683.0
 offset_top = 948.0
 offset_right = 1939.0
 offset_bottom = 1076.0
 scale = Vector2(0.30189088, 0.30189088)
-texture_normal = ExtResource("5_7xo7e")
+texture_normal = ExtResource("5_2vylc")
 
-[node name="cam2" type="TextureButton" parent="Control" unique_id=1890830075]
+[node name="cam2" type="TextureButton" parent="Control/CamUI" unique_id=1890830075]
 layout_mode = 0
 offset_left = 1796.9999
 offset_top = 663.99994
@@ -183,7 +197,7 @@ offset_bottom = 791.99994
 scale = Vector2(0.30189088, 0.30189088)
 texture_normal = ExtResource("6_2vylc")
 
-[node name="cam3" type="TextureButton" parent="Control" unique_id=1390631234]
+[node name="cam3" type="TextureButton" parent="Control/CamUI" unique_id=1390631234]
 layout_mode = 0
 offset_left = 1676.9999
 offset_top = 637.99994
@@ -192,7 +206,7 @@ offset_bottom = 765.99994
 scale = Vector2(0.30189088, 0.30189088)
 texture_normal = ExtResource("7_4luf0")
 
-[node name="cam4" type="TextureButton" parent="Control" unique_id=2047496460]
+[node name="cam4" type="TextureButton" parent="Control/CamUI" unique_id=2047496460]
 layout_mode = 0
 offset_left = 1797.9999
 offset_top = 448.99997
@@ -201,7 +215,7 @@ offset_bottom = 577.0
 scale = Vector2(0.30189088, 0.30189088)
 texture_normal = ExtResource("8_q644x")
 
-[node name="cam5" type="TextureButton" parent="Control" unique_id=1178665522]
+[node name="cam5" type="TextureButton" parent="Control/CamUI" unique_id=1178665522]
 layout_mode = 0
 offset_left = 1690.9999
 offset_top = 406.0
@@ -210,9 +224,20 @@ offset_bottom = 534.0
 scale = Vector2(0.30189088, 0.30189088)
 texture_normal = ExtResource("9_rs1ao")
 
+[node name="Alarm" type="TextureButton" parent="Control/CamUI" unique_id=1943026652]
+layout_mode = 0
+offset_left = 1382.0
+offset_top = 925.0
+offset_right = 1510.0
+offset_bottom = 1053.0
+texture_normal = ExtResource("12_o2cca")
+texture_pressed = ExtResource("13_v47wj")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="pressed" from="Control/cam1" to="." method="_on_cam_1_pressed"]
-[connection signal="pressed" from="Control/cam2" to="." method="_on_cam_2_pressed"]
-[connection signal="pressed" from="Control/cam3" to="." method="_on_cam_3_pressed"]
-[connection signal="pressed" from="Control/cam4" to="." method="_on_cam_4_pressed"]
-[connection signal="pressed" from="Control/cam5" to="." method="_on_cam_5_pressed"]
+[connection signal="pressed" from="Control/CamUI/cam1" to="." method="_on_cam_1_pressed"]
+[connection signal="pressed" from="Control/CamUI/cam2" to="." method="_on_cam_2_pressed"]
+[connection signal="pressed" from="Control/CamUI/cam3" to="." method="_on_cam_3_pressed"]
+[connection signal="pressed" from="Control/CamUI/cam4" to="." method="_on_cam_4_pressed"]
+[connection signal="pressed" from="Control/CamUI/cam5" to="." method="_on_cam_5_pressed"]
+[connection signal="button_down" from="Control/CamUI/Alarm" to="." method="_on_alarm_button_down"]
+[connection signal="button_up" from="Control/CamUI/Alarm" to="." method="_on_alarm_button_up"]
