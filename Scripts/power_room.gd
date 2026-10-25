@@ -4,9 +4,11 @@ extends Node3D
 
 @export var warningOn : bool = false
 @export var camActive : bool = false
+@export var kangarooInRoom : bool = false
+@export var main : Node3D
 
-var kangarooInRoom : bool = false
 var canActivateAlarm : bool = false
+var startTimer : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,3 +23,29 @@ func _process(delta: float) -> void:
 	else:
 		canActivateAlarm = false
 		$Camera3D.current = false
+	
+	if (warningOn):
+		$AnimationPlayer.play("blinkingLight")
+	elif (!warningOn):
+		$AnimationPlayer.stop()
+	#kangaroos
+	if (kangarooInRoom):
+		$kangarooCam4.visible = true
+	
+	if (warningOn):
+		if startTimer:
+			startTimer = false
+			$Timer.start()
+		main.kangarooDeath.paused = true
+	if (!warningOn):
+		$Timer.stop()
+		main.kangarooDeath.paused = false
+
+
+func _on_timer_timeout() -> void:
+	if (kangarooInRoom and camActive):
+		#print("deactivated")
+		main.kangarooActive = false
+		kangarooInRoom = false
+		$kangarooCam4.visible = false
+		main.kangarooDeath.stop()

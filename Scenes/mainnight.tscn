@@ -20,8 +20,13 @@ background_mode = 2
 sky = SubResource("Sky_1e0qi")
 glow_enabled = true
 
-[node name="MAINNIGHT" type="Node3D" unique_id=1618557773]
+[node name="MAINNIGHT" type="Node3D" unique_id=1618557773 node_paths=PackedStringArray("office", "inside", "outside", "powerRoom")]
 script = ExtResource("1_31vtv")
+night = 5
+office = NodePath("OFFICE")
+inside = NodePath("insideRoom")
+outside = NodePath("outside")
+powerRoom = NodePath("powerRoom")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=187454186]
 environment = SubResource("Environment_yy6r3")
@@ -32,14 +37,17 @@ outside = NodePath("../outside")
 inside = NodePath("../insideRoom")
 power = NodePath("../powerRoom")
 
-[node name="powerRoom" parent="." unique_id=112248275 instance=ExtResource("3_1e0qi")]
+[node name="powerRoom" parent="." unique_id=112248275 node_paths=PackedStringArray("main") instance=ExtResource("3_1e0qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.907451, 0, 16.487196)
+main = NodePath("..")
 
-[node name="insideRoom" parent="." unique_id=869201874 instance=ExtResource("4_yy6r3")]
+[node name="insideRoom" parent="." unique_id=869201874 node_paths=PackedStringArray("main") instance=ExtResource("4_yy6r3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.325962, 0, 0)
+main = NodePath("..")
 
-[node name="outside" parent="." unique_id=1915874124 instance=ExtResource("5_7vaj3")]
+[node name="outside" parent="." unique_id=1915874124 node_paths=PackedStringArray("main") instance=ExtResource("5_7vaj3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.535095, 0, 0)
+main = NodePath("..")
 
 [node name="nealTimer" type="Timer" parent="." unique_id=1138284135]
 wait_time = 4.0
@@ -53,7 +61,23 @@ wait_time = 5.0
 [node name="kangarooTimer" type="Timer" parent="." unique_id=1399693565]
 wait_time = 5.0
 
+[node name="nealDeath" type="Timer" parent="." unique_id=1237441778]
+wait_time = 10.0
+one_shot = true
+
+[node name="toadDeath" type="Timer" parent="." unique_id=888686372]
+one_shot = true
+
+[node name="eagleDeath" type="Timer" parent="." unique_id=1329711365]
+one_shot = true
+
+[node name="kangarooDeath" type="Timer" parent="." unique_id=1800968334]
+wait_time = 20.0
+one_shot = true
+
 [connection signal="timeout" from="nealTimer" to="." method="_on_neal_timer_timeout"]
 [connection signal="timeout" from="toadTimer" to="." method="_on_toad_timer_timeout"]
 [connection signal="timeout" from="eagleTimer" to="." method="_on_eagle_timer_timeout"]
 [connection signal="timeout" from="kangarooTimer" to="." method="_on_kangaroo_timer_timeout"]
+[connection signal="timeout" from="nealDeath" to="." method="_on_neal_death_timeout"]
+[connection signal="timeout" from="kangarooDeath" to="." method="_on_kangaroo_death_timeout"]

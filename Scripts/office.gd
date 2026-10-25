@@ -4,6 +4,7 @@ extends Node3D
 @onready var aniPlayer = $AnimationPlayer
 @onready var camUi = $Control/CamUI
 @onready var alarmButton = $Control/CamUI/Alarm
+@onready var coneTimer = $coneTimer
 
 @export var cam1 : TextureButton
 @export var cam2 : TextureButton
@@ -13,12 +14,14 @@ extends Node3D
 @export var outside : Node3D
 @export var inside : Node3D
 @export var power : Node3D
+@export var coneDeterantSystem : bool = false
+@export var nealInOffice : bool = false
+@export var caneToadInOffice : bool = false
 
-var nealInOffice : bool = false
-var caneToadInOffice : bool = false
 var isPowerOn : bool = true
 var turnAmount : float = 0
 var isInCams : bool = false
+#theres so many variables
 var cam1Normal
 var cam2Normal
 var cam3Normal
@@ -29,6 +32,9 @@ var cam2Active
 var cam3Active
 var cam4Active
 var cam5Active
+var cone
+var coneActive
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,9 +54,11 @@ func _ready() -> void:
 	cam4Active = load("res://sprites/cam4Selected.png")
 	cam5Active = load("res://sprites/cam5Selected.png")
 	#Omg I hate my naming schemes
+	cone = load("res://sprites/cone.png")
+	coneActive = load("res://sprites/coneActive.png")
 
 func _input(event: InputEvent) -> void:
-	if (Input.is_action_just_pressed("OpenCams") and !isInCams):
+	if (Input.is_action_just_pressed("OpenCams") and !isInCams and isPowerOn):
 		isInCams = true
 		aniPlayer.play("flipCamera")
 	elif (Input.is_action_just_pressed("OpenCams") and isInCams):
@@ -63,6 +71,12 @@ func _input(event: InputEvent) -> void:
 		inside.cam2Active = false
 		inside.cam1Active = false
 		power.camActive = false
+	#flashlight
+	if (Input.is_action_pressed("flashlightOn")):
+		$flashlight.visible = true
+	else:
+		$flashlight.visible = false
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -79,8 +93,15 @@ func _process(delta: float) -> void:
 			player.rotation_degrees = Vector3(0, 30, 0)
 		elif (player.rotation_degrees < Vector3(0, -30, 0)):
 			player.rotation_degrees = Vector3(0, -30, 0)
+			
+	if (nealInOffice):
+		$enemyPlayer.play("nealEnter")
+	else:
+		$enemyPlayer.stop()
+		$neal.position = Vector3(-1.306, 0.203, 0.613)
 	
-	
+	if ($Control/CamUI/cone.disabled):
+		coneDeterantSystem = false
 	#print(turnAmount)
 	#print(player.rotation_degrees)
 	#print(isInCams)
@@ -164,7 +185,25 @@ func _on_cam_5_pressed() -> void:
 func _on_alarm_button_down() -> void:
 	if (outside.cam3Active or outside.cam4Active):
 		outside.alarmActiveOutside = true
+		outside.startTimer = true
+	if (inside.cam2Active or inside.cam1Active):
+		inside.alarmActiveInside = true
+		inside.startTimer = true
+	if (power.camActive):
+		power.warningOn = true
+		power.startTimer = true
 
 
 func _on_alarm_button_up() -> void:
 	outside.alarmActiveOutside = false
+	inside.alarmActiveInside = false
+	power.warningOn = false
+
+
+func _on_cone_button_down() -> void:
+	coneTimer.start()
+	$Control/CamUI/cone.disabled = true
+	coneDeterantSystem = true
+
+func _on_cone_timer_timeout() -> void:
+	$Control/CamUI/cone.disabled = false

@@ -61,7 +61,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_mf7ev"]
 resource_name = "blinkingLights"
-length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -70,10 +69,10 @@ tracks/0/path = NodePath("SpotLight3D:spot_attenuation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [3.0, -0.5]
+"values": [3.0, -0.5, 3.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -82,10 +81,10 @@ tracks/1/path = NodePath("SpotLight3D2:spot_attenuation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [3.0, -0.5]
+"values": [3.0, -0.5, 3.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -94,10 +93,10 @@ tracks/2/path = NodePath("SpotLight3D3:spot_attenuation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [3.0, -0.5]
+"values": [3.0, -0.5, 3.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8c3xh"]
@@ -192,18 +191,22 @@ mesh = SubResource("PlaneMesh_2qw5g")
 
 [node name="nealCam3" type="MeshInstance3D" parent="." unique_id=351265694]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8405957, 0.5, -24.870283)
+visible = false
 mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="kangarooCam3" type="MeshInstance3D" parent="." unique_id=1239373221]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 5.8405957, 1, -24.870283)
+visible = false
 mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="nealCam4" type="MeshInstance3D" parent="." unique_id=1414540076]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1604419, 0.5, -10.671224)
+visible = false
 mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="kangarooCam4" type="MeshInstance3D" parent="." unique_id=1977879315]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -6.0966396, 1, -10.671224)
+visible = false
 mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1623168547]
@@ -282,3 +285,8 @@ spot_angle = 26.009985
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=351330795]
 libraries/ = SubResource("AnimationLibrary_8c3xh")
+
+[node name="Timer" type="Timer" parent="." unique_id=253829760]
+wait_time = 1.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bn7s1be8wp0q5" path="res://sprites/camera5.png" id="9_rs1ao"]
 [ext_resource type="Texture2D" uid="uid://dk2hjnckgk54g" path="res://sprites/alarmInactive.png" id="12_o2cca"]
 [ext_resource type="Texture2D" uid="uid://cdupfd68m6fsq" path="res://sprites/alarmActive.png" id="13_v47wj"]
+[ext_resource type="Texture2D" uid="uid://3jbte8r1onou" path="res://sprites/cone.png" id="14_s31ab"]
+[ext_resource type="Texture2D" uid="uid://cx60k6d6sr7k" path="res://sprites/coneActive.png" id="15_oaeid"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
 size = Vector3(0.45828247, 0.38787842, 0.041137695)
@@ -32,6 +34,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("neal:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.3063225, 0.20276839, 0.6132493)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("toad:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.7155519, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_2jlrf"]
@@ -73,6 +99,46 @@ _data = {
 &"flipCamera": SubResource("Animation_cumm5")
 }
 
+[sub_resource type="BoxMesh" id="BoxMesh_78ya6"]
+size = Vector3(0.8286133, 1, 1)
+
+[sub_resource type="Animation" id="Animation_s31ab"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.3063225, 0.20276839, 0.6132493)]
+}
+
+[sub_resource type="Animation" id="Animation_oaeid"]
+resource_name = "nealEnter"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.3063225, 0.20276839, 0.6132493), Vector3(-1.306, 0.203, -0.38)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kn5q7"]
+_data = {
+&"RESET": SubResource("Animation_s31ab"),
+&"nealEnter": SubResource("Animation_oaeid")
+}
+
 [node name="OFFICE" type="Node3D" unique_id=1742765653]
 script = ExtResource("1_a0wae")
 
@@ -90,8 +156,10 @@ mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=641099784]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.3455267, 0.13888085)
+light_energy = 5.0
 spot_attenuation = 7.86
-spot_angle = 71.65
+spot_angle = 54.179035
+spot_angle_attenuation = 4.7568197
 
 [node name="catwalks" type="Node3D" parent="." unique_id=1383276632]
 
@@ -233,6 +301,36 @@ offset_bottom = 1053.0
 texture_normal = ExtResource("12_o2cca")
 texture_pressed = ExtResource("13_v47wj")
 
+[node name="cone" type="TextureButton" parent="Control/CamUI" unique_id=1538000766]
+layout_mode = 0
+offset_left = 1382.0
+offset_top = 777.0
+offset_right = 1510.0
+offset_bottom = 905.0
+texture_normal = ExtResource("14_s31ab")
+texture_disabled = ExtResource("15_oaeid")
+
+[node name="neal" type="MeshInstance3D" parent="." unique_id=2124613458]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.3063225, 0.20276839, 0.6132493)
+mesh = SubResource("BoxMesh_78ya6")
+
+[node name="toad" type="MeshInstance3D" parent="." unique_id=254239497]
+transform = Transform3D(0.39000002, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.7155519, 0)
+mesh = SubResource("BoxMesh_78ya6")
+
+[node name="flashlight" type="SpotLight3D" parent="." unique_id=309112136]
+transform = Transform3D(0.84327054, 0, 0.5374893, 0, 1, 0, -0.5374893, 0, 0.84327054, 0, 0.457033, 1.2372115)
+visible = false
+shadow_enabled = true
+spot_range = 2.9042506
+spot_angle = 12.576308
+
+[node name="coneTimer" type="Timer" parent="." unique_id=939982524]
+wait_time = 15.0
+
+[node name="enemyPlayer" type="AnimationPlayer" parent="." unique_id=1954965167]
+libraries/ = SubResource("AnimationLibrary_kn5q7")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="Control/CamUI/cam1" to="." method="_on_cam_1_pressed"]
 [connection signal="pressed" from="Control/CamUI/cam2" to="." method="_on_cam_2_pressed"]
@@ -241,3 +339,5 @@ texture_pressed = ExtResource("13_v47wj")
 [connection signal="pressed" from="Control/CamUI/cam5" to="." method="_on_cam_5_pressed"]
 [connection signal="button_down" from="Control/CamUI/Alarm" to="." method="_on_alarm_button_down"]
 [connection signal="button_up" from="Control/CamUI/Alarm" to="." method="_on_alarm_button_up"]
+[connection signal="button_down" from="Control/CamUI/cone" to="." method="_on_cone_button_down"]
+[connection signal="timeout" from="coneTimer" to="." method="_on_cone_timer_timeout"]

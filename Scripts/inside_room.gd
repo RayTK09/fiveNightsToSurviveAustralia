@@ -10,10 +10,9 @@ extends Node3D
 @export var isKangarooCam1 : bool = false
 @export var isKangarooCam2 : bool = false
 @export var alarmActiveInside : bool = false
+@export var main : Node3D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var startTimer : bool = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,3 +29,41 @@ func _process(delta: float) -> void:
 	else:
 		cam2Light.spot_attenuation = 10
 		$Camera3D2.current = false
+	
+	if (alarmActiveInside):
+		$AnimationPlayer.play("blinkingLight")
+	elif (!alarmActiveInside):
+		$AnimationPlayer.stop()
+		
+	if (isNealCam2):
+		$nealCam2.visible = true
+	else:
+		$nealCam2.visible = false
+	#kangaroos
+	if (isKangarooCam1):
+		$kangarooCam1.visible = true
+	elif (isKangarooCam2):
+		$kangarooCam2.visible = true
+	
+	if (alarmActiveInside):
+		if startTimer:
+			startTimer = false
+			$Timer.start()
+	if (!alarmActiveInside):
+		$Timer.stop()
+		main.kangarooDeath.paused = false
+
+
+func _on_timer_timeout() -> void:
+	if (isKangarooCam1 and cam2Active):
+		#print("deactivated")
+		isKangarooCam1 = false
+		main.kangarooActive = false
+		$kangarooCam1.visible = false
+		main.kangarooDeath.stop()
+	elif (isKangarooCam2 and cam1Active):
+		#print("deactivated")
+		isKangarooCam2 = false
+		main.kangarooActive = false
+		$kangarooCam2.visible = false
+		main.kangarooDeath.stop()
