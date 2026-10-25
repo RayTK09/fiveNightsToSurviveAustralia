@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="fiveNightsToSurviveAustralia"
+config/description="SURVIVE"
+config/version="0.9"
 run/main_scene="uid://bmol5kexboqgo"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dcwi3kef142sv"
 
 [autoload]
 
