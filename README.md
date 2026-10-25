@@ -2,6 +2,13 @@
 He's a seal... and he's coming straight for you. 
 Don't ask what I did to piss him off okay? Just make it through the night and don't die.
 
+# How to play
+Cameras with space, control to use the flashlight in the office.
+Use the cone deterrent system to remove neal from the office. 
+The big red button is to get rid of the toad. 
+Use left mouse to close the window on the right.
+Alarm to get rid of the KANGAROOS.
+
 # Assets used
 
 Cargo container - https://sketchfab.com/3d-models/cargo-container-d58c9efa8eef4494bc3017c7685d6ebb<br>
