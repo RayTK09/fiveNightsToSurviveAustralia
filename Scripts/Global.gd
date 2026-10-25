@@ -1,3 +1,3 @@
 extends Node
 
-@export var currentNight : int = 5
+@export var currentNight : int = 1

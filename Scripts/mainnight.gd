@@ -131,6 +131,7 @@ func _on_toad_timer_timeout() -> void:
 		office.caneToadInOffice = true
 		office.latch = true
 		toadActive = true
+		$toadAlert.play()
 	elif (moveNum <= caneToadAI):
 		toadProgress += 1
 		#print("moved")
