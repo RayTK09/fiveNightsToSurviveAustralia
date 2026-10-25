@@ -42,21 +42,18 @@ func _ready() -> void:
 	$nightEnd.start()
 	match globals.currentNight:
 		1:
-			nealAI = 3
-			nealTime.start()
-		2:
-			nealAI = 4
-			caneToadAI = 2
+			nealAI = 5
+			caneToadAI = 3
 			nealTime.start()
 			toadTime.start()
-		3:
+		2:
 			nealAI = 6
 			caneToadAI = 5
 			evilAssEagleAI = 3
 			nealTime.start()
 			toadTime.start()
 			eagleTime.start()
-		4:
+		3:
 			nealAI = 8
 			caneToadAI = 7
 			evilAssEagleAI = 2
@@ -65,10 +62,19 @@ func _ready() -> void:
 			toadTime.start()
 			eagleTime.start()
 			kangarooTime.start()
+		4:
+			nealAI = 9
+			caneToadAI = 8
+			evilAssEagleAI = 5
+			kangarooMafiaAI = 4
+			nealTime.start()
+			toadTime.start()
+			eagleTime.start()
+			kangarooTime.start()
 		5:
 			nealAI = 10
 			caneToadAI = 9
-			evilAssEagleAI = 4
+			evilAssEagleAI = 6
 			kangarooMafiaAI = 5
 			nealTime.start()
 			toadTime.start()
@@ -223,6 +229,7 @@ func _on_eagle_death_timeout() -> void:
 	if (office.isDoorClosed):
 		eagleTime.start()
 		$eagleHit.play()
+		eagleProgress = 0
 	else:
 		dead = true
 		deathMessage.text = "You died."
