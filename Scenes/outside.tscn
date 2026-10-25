@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://cdgfwutm3kssy" path="res://models/container_lod_0.tscn" id="2_n6vtj"]
 [ext_resource type="Material" uid="uid://bcmvnwd4s5yli" path="res://assets/CorrugatedSteel007C_1K-JPG/CorrugatedSteel007C_1K-JPG.tres" id="4_mf7ev"]
 [ext_resource type="PackedScene" uid="uid://d2sncpke1iul1" path="res://models/chainlinkFence.tscn" id="5_8c3xh"]
+[ext_resource type="Texture2D" uid="uid://dcdin0ox35nat" path="res://assets/NEAL.jpg" id="5_wh1al"]
+[ext_resource type="AudioStream" uid="uid://dkfihw3hspesp" path="res://assets/574586__outlawsoftware__alarm-loop-4-v1.wav" id="6_mf7ev"]
+[ext_resource type="Texture2D" uid="uid://djhe1l5mwkstt" path="res://assets/kangaroo.jpg" id="6_wh1al"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pyvco"]
 material = ExtResource("2_hhqqv")
@@ -18,7 +21,23 @@ height = 10.342255
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uh4qc"]
+albedo_texture = ExtResource("5_wh1al")
+uv1_scale = Vector3(3, 1, 2)
+
 [sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3nrk"]
+albedo_texture = ExtResource("6_wh1al")
+uv1_scale = Vector3(3.1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56t50"]
+albedo_texture = ExtResource("5_wh1al")
+uv1_scale = Vector3(3, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omx0w"]
+albedo_texture = ExtResource("6_wh1al")
+uv1_scale = Vector3(3.1, 2, 1)
 
 [sub_resource type="Animation" id="Animation_hhqqv"]
 length = 0.001
@@ -58,9 +77,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [3.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_mf7ev"]
 resource_name = "blinkingLights"
+length = 1.3333334
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -97,6 +129,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [3.0, -0.5, 3.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8c3xh"]
@@ -192,21 +236,25 @@ mesh = SubResource("PlaneMesh_2qw5g")
 [node name="nealCam3" type="MeshInstance3D" parent="." unique_id=351265694]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8405957, 0.5, -24.870283)
 visible = false
+material_override = SubResource("StandardMaterial3D_uh4qc")
 mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="kangarooCam3" type="MeshInstance3D" parent="." unique_id=1239373221]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 5.8405957, 1, -24.870283)
 visible = false
+material_override = SubResource("StandardMaterial3D_g3nrk")
 mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="nealCam4" type="MeshInstance3D" parent="." unique_id=1414540076]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1604419, 0.5, -10.671224)
 visible = false
+material_override = SubResource("StandardMaterial3D_56t50")
 mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="kangarooCam4" type="MeshInstance3D" parent="." unique_id=1977879315]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -6.0966396, 1, -10.671224)
 visible = false
+material_override = SubResource("StandardMaterial3D_omx0w")
 mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1623168547]
@@ -288,5 +336,9 @@ libraries/ = SubResource("AnimationLibrary_8c3xh")
 
 [node name="Timer" type="Timer" parent="." unique_id=253829760]
 wait_time = 1.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1470997222]
+stream = ExtResource("6_mf7ev")
+volume_db = -20.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

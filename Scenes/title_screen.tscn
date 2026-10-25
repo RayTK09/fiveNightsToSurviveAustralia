@@ -1,3 +1,147 @@
 [gd_scene format=3 uid="uid://bmol5kexboqgo"]
 
+[ext_resource type="Script" uid="uid://cgaylodglc7qr" path="res://Scripts/title_screen.gd" id="1_4gxqj"]
+[ext_resource type="Material" path="res://assets/Concrete032_1K-JPG/Concrete032_1K-JPG.tres" id="1_p3fck"]
+[ext_resource type="Material" uid="uid://bcmvnwd4s5yli" path="res://assets/CorrugatedSteel007C_1K-JPG/CorrugatedSteel007C_1K-JPG.tres" id="2_4gxqj"]
+[ext_resource type="PackedScene" uid="uid://dogdbtxvr2lir" path="res://models/electrical_panel/scene.gltf" id="4_twnyg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4gxqj"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.043971933, 0.04063776, 0.037272632, 1)
+ground_bottom_color = Color(0.049417898, 0.036081217, 0.022620695, 1)
+ground_horizon_color = Color(0.043971933, 0.04063776, 0.037272632, 1)
+
+[sub_resource type="Sky" id="Sky_twnyg"]
+sky_material = SubResource("ProceduralSkyMaterial_4gxqj")
+
+[sub_resource type="Environment" id="Environment_55kwv"]
+background_mode = 2
+sky = SubResource("Sky_twnyg")
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_twnyg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2qw5g"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_78ya6"]
+font_size = 50
+
 [node name="TitleScreen" type="Node3D" unique_id=1244427142]
+script = ExtResource("1_4gxqj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1157893001]
+environment = SubResource("Environment_55kwv")
+
+[node name="floor" type="MeshInstance3D" parent="." unique_id=2013497365]
+transform = Transform3D(2.2276907, 0, 0, 0, 1, 0, 0, 0, 2.3000002, 0, 0, 0)
+mesh = SubResource("PlaneMesh_twnyg")
+surface_material_override/0 = ExtResource("1_p3fck")
+
+[node name="ceiling" type="MeshInstance3D" parent="." unique_id=1431776765]
+transform = Transform3D(2.2276907, 0, 0, 0, -1, -2.010724e-07, 0, 8.742278e-08, -2.3000002, 0, 2.6168706, 0)
+mesh = SubResource("PlaneMesh_twnyg")
+
+[node name="wall" type="MeshInstance3D" parent="." unique_id=1992859388]
+transform = Transform3D(-6.556708e-08, 1, 0, -1.5, -4.371139e-08, 0, 0, 0, 2.3000002, -1.781129, 1.2555139, 0)
+mesh = SubResource("PlaneMesh_twnyg")
+surface_material_override/0 = ExtResource("2_4gxqj")
+
+[node name="wall2" type="MeshInstance3D" parent="." unique_id=121624141]
+transform = Transform3D(-6.556708e-08, -1, 0, 1.5, -4.371139e-08, 0, 0, 0, 2.3000002, 2.0429776, 1.2555139, 0)
+mesh = SubResource("PlaneMesh_twnyg")
+surface_material_override/0 = ExtResource("2_4gxqj")
+
+[node name="wall3" type="MeshInstance3D" parent="." unique_id=2062062976]
+transform = Transform3D(2.866028e-15, 4.371139e-08, 2.3000002, 1.5, -4.371139e-08, 0, 6.556708e-08, 1, -1.005362e-07, 0.3898027, 1.2555139, -2.1180017)
+mesh = SubResource("PlaneMesh_twnyg")
+surface_material_override/0 = ExtResource("2_4gxqj")
+
+[node name="wall4" type="MeshInstance3D" parent="." unique_id=582605048]
+transform = Transform3D(2.866028e-15, 4.371139e-08, -2.3000002, 1.5, -4.371139e-08, 0, -6.556708e-08, -1, -1.005362e-07, 0.3898027, 1.2555139, 2.2131472)
+mesh = SubResource("PlaneMesh_twnyg")
+surface_material_override/0 = ExtResource("2_4gxqj")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=149444238]
+transform = Transform3D(-0.8846159, -0.09658539, 0.45620847, -0.02545891, 0.98685926, 0.15956482, -0.46562508, 0.12953898, -0.87545025, 1.6143223, 1.903095, -1.9924449)
+current = true
+fov = 33.85828
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1818210496]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.9902929, 3.446212, 1.4896064)
+spot_range = 4.114645
+spot_attenuation = 2.48
+spot_angle = 35.52347
+
+[node name="Control" type="Control" parent="." unique_id=1159623435]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Button" type="Button" parent="Control" unique_id=1163815021]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 422.0
+offset_right = 145.0
+offset_bottom = 453.0
+theme_override_font_sizes/font_size = 75
+text = "Play"
+
+[node name="Button2" type="Button" parent="Control" unique_id=1942148537]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 661.0
+offset_right = 263.0
+offset_bottom = 772.0
+theme_override_font_sizes/font_size = 75
+text = "Quit"
+
+[node name="Label" type="Label" parent="Control" unique_id=1602384932]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 91.0
+offset_right = 1209.0
+offset_bottom = 228.0
+text = "Five Night's in Australia"
+label_settings = SubResource("LabelSettings_2qw5g")
+
+[node name="night" type="Label" parent="Control" unique_id=925857511]
+visible = false
+layout_mode = 0
+offset_left = 104.0
+offset_top = 533.0
+offset_right = 236.0
+offset_bottom = 602.0
+text = "Night"
+label_settings = SubResource("LabelSettings_78ya6")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1605253557]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="currentNight" type="Label" parent="Control" unique_id=1904108745]
+visible = false
+layout_mode = 0
+offset_left = 750.0
+offset_top = 440.0
+offset_right = 1015.0
+offset_bottom = 577.0
+theme_override_font_sizes/font_size = 100
+text = "Night"
+
+[node name="Timer" type="Timer" parent="Control" unique_id=1727932312]
+wait_time = 3.0
+one_shot = true
+
+[node name="Sketchfab_Scene" parent="." unique_id=1190545317 instance=ExtResource("4_twnyg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.88047, 1.6538976, 2.2134657)
+
+[connection signal="mouse_entered" from="Control/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="timeout" from="Control/Timer" to="." method="_on_timer_timeout"]

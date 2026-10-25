@@ -5,6 +5,7 @@ extends Node3D
 @onready var camUi = $Control/CamUI
 @onready var alarmButton = $Control/CamUI/Alarm
 @onready var coneTimer = $coneTimer
+@onready var audio = $AudioStreamPlayer
 
 @export var cam1 : TextureButton
 @export var cam2 : TextureButton
@@ -14,6 +15,7 @@ extends Node3D
 @export var outside : Node3D
 @export var inside : Node3D
 @export var power : Node3D
+@export var main : Node3D
 @export var coneDeterantSystem : bool = false
 @export var nealInOffice : bool = false
 @export var caneToadInOffice : bool = false
@@ -34,6 +36,13 @@ var cam4Active
 var cam5Active
 var cone
 var coneActive
+var doorCanClose : bool = false
+var isDoorClosed : bool = false
+var latch : bool = false
+var canPressButton : bool = false
+
+#which was the last used camera?
+var whichCam : int = 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -76,6 +85,18 @@ func _input(event: InputEvent) -> void:
 		$flashlight.visible = true
 	else:
 		$flashlight.visible = false
+	#door window closing
+	if (Input.is_action_pressed("mouse") and doorCanClose):
+		$door2.play("door close")
+		isDoorClosed = true
+	elif (Input.is_action_just_released("mouse") and doorCanClose):
+		$door2.play_backwards("door close")
+		isDoorClosed = false
+	
+	if (Input.is_action_pressed('mouse') and caneToadInOffice):
+		#print("grabbed")
+		caneToadInOffice = false
+		$toadPlayer.play("toadGrabbed")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -99,21 +120,53 @@ func _process(delta: float) -> void:
 	else:
 		$enemyPlayer.stop()
 		$neal.position = Vector3(-1.306, 0.203, 0.613)
+		$AudioStreamPlayer2.stop()
 	
 	if ($Control/CamUI/cone.disabled):
 		coneDeterantSystem = false
-	#print(turnAmount)
-	#print(player.rotation_degrees)
-	#print(isInCams)
-	#print(get_viewport().get_visible_rect().size.x / 1.2)
-	#print(get_viewport().get_mouse_position())
+	
+	if (caneToadInOffice and latch):
+		latch = false
+		$toadPlayer.play("toadDrop")
+		
+	$Control/CamUI/Label.text = str(main.time) + " AM"
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "flipCamera"):
 		player.current = false
 		camUi.visible = true
-		outside.cam4Active = true
+		match whichCam:
+			1:
+				outside.cam4Active = true
+				outside.cam3Active = false
+				inside.cam2Active = false
+				inside.cam1Active = false
+				power.camActive = false
+			2:
+				outside.cam4Active = false
+				outside.cam3Active = true
+				inside.cam2Active = false
+				inside.cam1Active = false
+				power.camActive = false
+			3:
+				outside.cam4Active = false
+				outside.cam3Active = false
+				inside.cam2Active = true
+				inside.cam1Active = false
+				power.camActive = false
+			4:
+				outside.cam4Active = false
+				outside.cam3Active = false
+				inside.cam2Active = false
+				inside.cam1Active = true
+				power.camActive = false
+			5:
+				outside.cam4Active = false
+				outside.cam3Active = false
+				inside.cam2Active = false
+				inside.cam1Active = false
+				power.camActive = true
 
 
 #on second thought I have no idea why I did this the way I did
@@ -128,6 +181,8 @@ func _on_cam_1_pressed() -> void:
 	cam3.texture_normal = cam3Normal
 	cam4.texture_normal = cam4Normal
 	cam5.texture_normal = cam5Normal
+	audio.play()
+	whichCam = 1
 
 
 func _on_cam_2_pressed() -> void:
@@ -141,6 +196,8 @@ func _on_cam_2_pressed() -> void:
 	cam3.texture_normal = cam3Normal
 	cam4.texture_normal = cam4Normal
 	cam5.texture_normal = cam5Normal
+	audio.play()
+	whichCam = 2
 
 
 func _on_cam_3_pressed() -> void:
@@ -154,6 +211,8 @@ func _on_cam_3_pressed() -> void:
 	cam3.texture_normal = cam3Active
 	cam4.texture_normal = cam4Normal
 	cam5.texture_normal = cam5Normal
+	audio.play()
+	whichCam = 3
 
 
 func _on_cam_4_pressed() -> void:
@@ -167,6 +226,8 @@ func _on_cam_4_pressed() -> void:
 	cam3.texture_normal = cam3Normal
 	cam4.texture_normal = cam4Active
 	cam5.texture_normal = cam5Normal
+	audio.play()
+	whichCam = 4
 
 
 func _on_cam_5_pressed() -> void:
@@ -180,6 +241,8 @@ func _on_cam_5_pressed() -> void:
 	cam3.texture_normal = cam3Normal
 	cam4.texture_normal = cam4Normal
 	cam5.texture_normal = cam5Active
+	audio.play()
+	whichCam = 5
 
 
 func _on_alarm_button_down() -> void:
@@ -199,7 +262,6 @@ func _on_alarm_button_up() -> void:
 	inside.alarmActiveInside = false
 	power.warningOn = false
 
-
 func _on_cone_button_down() -> void:
 	coneTimer.start()
 	$Control/CamUI/cone.disabled = true
@@ -207,3 +269,18 @@ func _on_cone_button_down() -> void:
 
 func _on_cone_timer_timeout() -> void:
 	$Control/CamUI/cone.disabled = false
+
+func _on_button_mouse_entered() -> void:
+	canPressButton = true
+
+func _on_button_mouse_exited() -> void:
+	canPressButton = false
+	
+func _on_door_mouse_entered() -> void:
+	doorCanClose = true
+
+func _on_door_mouse_exited() -> void:
+	doorCanClose = false
+	if (isDoorClosed):
+		isDoorClosed = false
+		$door2.play_backwards("door close")

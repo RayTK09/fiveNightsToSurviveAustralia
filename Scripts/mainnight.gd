@@ -3,7 +3,6 @@ extends Node3D
 #I have made plenty of mistakes when writing these scripts.
 #am I going to fix them? probably not.
 #planning a game out for once instead of yoloing it?!!??! that's insane.
-@export var night : int = 1
 @export var nealAI : int = 0
 @export var caneToadAI : int = 0
 @export var kangarooMafiaAI : int = 0
@@ -15,6 +14,8 @@ extends Node3D
 @export var outside : Node3D
 @export var powerRoom : Node3D
 @export var kangarooActive : bool = false
+@onready var globals = get_node("/root/Global")
+@onready var nightEnd : Timer = $nightEnd
 
 #timers for moving
 @onready var nealTime = $nealTimer
@@ -22,22 +23,26 @@ extends Node3D
 @onready var eagleTime = $eagleTimer
 @onready var kangarooTime = $kangarooTimer
 #death timers when they are in your office
-@onready var nealDeath = $nealDeath
-@onready var toadDeath = $toadDeath
-@onready var eagleDeath = $eagleDeath
+@onready var nealDeath : Timer = $nealDeath
+@onready var toadDeath : Timer = $toadDeath
+@onready var eagleDeath : Timer = $eagleDeath
 #except for these guys they work differently
-@onready var kangarooDeath = $kangarooDeath
+@onready var kangarooDeath : Timer = $kangarooDeath
+@onready var deathMessage : Label = $Control/Label
 
 var nealProgress : int = 0
 var toadProgress : int = 0
 var eagleProgress : int = 0
 var dead : bool = false
+var toadActive : bool = false
+var time : int = 12
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	match night:
+	$nightEnd.start()
+	match globals.currentNight:
 		1:
-			nealAI = 2
+			nealAI = 3
 			nealTime.start()
 		2:
 			nealAI = 4
@@ -54,7 +59,7 @@ func _ready() -> void:
 		4:
 			nealAI = 8
 			caneToadAI = 7
-			evilAssEagleAI = 4
+			evilAssEagleAI = 2
 			kangarooMafiaAI = 3
 			nealTime.start()
 			toadTime.start()
@@ -63,7 +68,7 @@ func _ready() -> void:
 		5:
 			nealAI = 10
 			caneToadAI = 9
-			evilAssEagleAI = 5
+			evilAssEagleAI = 4
 			kangarooMafiaAI = 5
 			nealTime.start()
 			toadTime.start()
@@ -76,7 +81,10 @@ func _process(delta: float) -> void:
 		nealDeath.stop()
 		nealProgress = 0
 		nealTime.start()
-	print(int(kangarooDeath.time_left))
+	if (office.caneToadInOffice):
+		toadDeath.stop()
+		toadProgress = 0
+		toadTime.start()
 	match nealProgress:
 		0:
 			outside.isNealCam4 = false
@@ -113,16 +121,27 @@ func _on_neal_timer_timeout() -> void:
 		nealDeath.start()
 	elif (moveNum <= nealAI):
 		nealProgress += 1
-		print("moved!")
+		#print("moved!")
 
 func _on_toad_timer_timeout() -> void:
 	var moveNum : int = randi_range(1, 20)
-	if (moveNum <= caneToadAI):
+	if (toadProgress == 5):
+		toadTime.stop()
+		toadDeath.start()
+		office.caneToadInOffice = true
+		office.latch = true
+		toadActive = true
+	elif (moveNum <= caneToadAI):
 		toadProgress += 1
+		#print("moved")
 
 
 func _on_eagle_timer_timeout() -> void:
 	var moveNum : int = randi_range(1, 20)
+	if (eagleProgress == 3):
+		eagleTime.stop()
+		eagleDeath.start()
+		$eagleAlert.play()
 	if (moveNum <= evilAssEagleAI):
 		eagleProgress += 1
 
@@ -136,6 +155,7 @@ func _on_kangaroo_timer_timeout() -> void:
 				var chooseCam = randi_range(1, 4)
 				kangarooActive = true
 				kangarooDeath.start()
+				$motionAlert.play()
 				#so much...
 				match chooseCam:
 					1:
@@ -171,14 +191,57 @@ func _on_kangaroo_timer_timeout() -> void:
 
 func _on_neal_death_timeout() -> void:
 	dead = true
-	print("ded")
+	deathMessage.text = "You died."
+	$Control.visible = true
+	$youDed.start()
 
 func _on_kangaroo_death_timeout() -> void:
 	if (powerRoom.kangarooInRoom):
 		office.isPowerOn = false
+		powerRoom.kangarooInRoom = false
 	else:
 		kangarooDestruction += 1
 		print("destroyed")
 		kangarooActive = false
+		inside.isKangarooCam1 = false
+		inside.isKangarooCam2 = false
+		outside.isKangarooCam3 = false
+		outside.isKangarooCam4 = false
 		if (kangarooDestruction == 2):
-			print("ded")
+			deathMessage.text = "You died."
+			$Control.visible = true
+			$youDed.start()
+
+func _on_toad_death_timeout() -> void:
+	dead = true
+	deathMessage.text = "You died."
+	$Control.visible = true
+	$youDed.start()
+
+func _on_eagle_death_timeout() -> void:
+	if (office.isDoorClosed):
+		eagleTime.start()
+		$eagleHit.play()
+	else:
+		dead = true
+		deathMessage.text = "You died."
+		$Control.visible = true
+		$youDed.start()
+
+
+func _on_night_end_timeout() -> void:
+	if (time == 12):
+		time = 0
+	time += 1
+	if (time >= 6):
+		if (globals.currentNight == 5):
+			pass
+		else:
+			globals.currentNight += 1
+		deathMessage.text = "6 AM"
+		$Control.visible = true
+		$youDed.start()
+
+
+func _on_you_ded_timeout() -> void:
+	get_tree().change_scene_to_file("res://Scenes/title_screen.tscn")

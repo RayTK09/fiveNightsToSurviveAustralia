@@ -15,9 +15,30 @@
 [ext_resource type="Texture2D" uid="uid://cdupfd68m6fsq" path="res://sprites/alarmActive.png" id="13_v47wj"]
 [ext_resource type="Texture2D" uid="uid://3jbte8r1onou" path="res://sprites/cone.png" id="14_s31ab"]
 [ext_resource type="Texture2D" uid="uid://cx60k6d6sr7k" path="res://sprites/coneActive.png" id="15_oaeid"]
+[ext_resource type="Material" path="res://assets/Wood026_1K-JPG/Wood026_1K-JPG.tres" id="16_oaeid"]
+[ext_resource type="Texture2D" uid="uid://dcdin0ox35nat" path="res://assets/NEAL.jpg" id="17_ari0y"]
+[ext_resource type="Texture2D" uid="uid://bmo0dlthanqo7" path="res://assets/CaneToad.jpg" id="18_uc7l7"]
+[ext_resource type="Texture2D" uid="uid://b0aurwggs0qb5" path="res://assets/eagle.jpg" id="19_oqaoe"]
+[ext_resource type="AudioStream" uid="uid://cu4kjtbsba2dm" path="res://assets/emilianodleon-button-ui-sound-effect-395762.mp3" id="20_uc7l7"]
+[ext_resource type="AudioStream" uid="uid://d10ppcxkha224" path="res://assets/406493__anthousai__hit-metallic-deep-hollow-thunk.wav" id="21_oqaoe"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
 size = Vector3(0.45828247, 0.38787842, 0.041137695)
+
+[sub_resource type="BoxMesh" id="BoxMesh_natlx"]
+size = Vector3(1, 0.030395508, 0.46984863)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nilot"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oaeid"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kn5q7"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2qw5g"]
+size = Vector3(0.109228514, 0.1, 0.11347046)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
 
@@ -99,8 +120,26 @@ _data = {
 &"flipCamera": SubResource("Animation_cumm5")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_wiscd"]
+font_size = 60
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uc8b"]
+albedo_texture = ExtResource("17_ari0y")
+uv1_scale = Vector3(3, 1, 2)
+
 [sub_resource type="BoxMesh" id="BoxMesh_78ya6"]
 size = Vector3(0.8286133, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2btma"]
+albedo_texture = ExtResource("18_uc7l7")
+uv1_scale = Vector3(2.6, 2, 2.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yipd"]
+albedo_texture = ExtResource("19_oqaoe")
+uv1_scale = Vector3(2.6, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i2xd6"]
+size = Vector3(0.59277344, 0.4258423, 0.30517578)
 
 [sub_resource type="Animation" id="Animation_s31ab"]
 length = 0.001
@@ -115,6 +154,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-1.3063225, 0.20276839, 0.6132493)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_oaeid"]
@@ -132,12 +183,204 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(-1.3063225, 0.20276839, 0.6132493), Vector3(-1.306, 0.203, -0.38)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kn5q7"]
 _data = {
 &"RESET": SubResource("Animation_s31ab"),
 &"nealEnter": SubResource("Animation_oaeid")
 }
+
+[sub_resource type="Animation" id="Animation_kn5q7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("toad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.7155519, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("birb:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.9384203, 0.8824489, 0.05146885)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("birb:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.17659293)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("toad:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.34110227)]
+}
+
+[sub_resource type="Animation" id="Animation_lsk72"]
+resource_name = "toadDrop"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("toad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.7155519, 0), Vector3(0, 0.38, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("toad:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ari0y"]
+resource_name = "toadGrabbed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("toad:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 0.7),
+"transitions": PackedFloat32Array(4.141045, 0.36602113, 2.1292753),
+"update": 0,
+"values": [Vector3(0, 0.38, 0), Vector3(-0.73183, 0.4423145, -0.36124384), Vector3(-3.2307103, 0.4423145, -0.36124384)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("birb:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.13333334, 0.19999999, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.9384203, 0.8824489, 0.05146885), Vector3(1.033753, 0.81186247, 0.05146885), Vector3(0.042808115, 0.81186247, 0.05146885), Vector3(-0.7356923, 0.81186247, -0.15051556), Vector3(-3.2345726, 0.81186247, -0.15051556)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("birb:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.13333334, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.17659293), Vector3(2.6177844e-09, -0.25094515, 0.17659295), Vector3(5.235569e-09, -0.25094515, 0.17659295)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("toad:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(4.141045, 0.36602113),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.34110227)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ari0y"]
+_data = {
+&"RESET": SubResource("Animation_kn5q7"),
+&"toadDrop": SubResource("Animation_lsk72"),
+&"toadGrabbed": SubResource("Animation_ari0y")
+}
+
+[sub_resource type="Animation" id="Animation_uc7l7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door/door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.0167536, 0.76392436, 1.0928528)]
+}
+
+[sub_resource type="Animation" id="Animation_oqaoe"]
+resource_name = "door close"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door/door:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.0167536, 0.76392436, 1.0928528), Vector3(1.0167536, 0.76392436, 0.1863221)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2uc8b"]
+_data = {
+&"RESET": SubResource("Animation_uc7l7"),
+&"door close": SubResource("Animation_oqaoe")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_78ya6"]
+size = Vector3(0.14648438, 0.83251953, 0.94140625)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xpfex"]
+size = Vector3(0.027832031, 0.8399658, 1.2379761)
 
 [node name="OFFICE" type="Node3D" unique_id=1742765653]
 script = ExtResource("1_a0wae")
@@ -178,6 +421,30 @@ transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-
 
 [node name="SM_IK_Railing_2002" parent="catwalks/SM_IK_Catwalk_2004" unique_id=1080392797 instance=ExtResource("3_cumm5")]
 
+[node name="table" type="Node3D" parent="." unique_id=1577079763]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="table" unique_id=1486556584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2042622, 0.22252166)
+material_override = ExtResource("16_oaeid")
+mesh = SubResource("BoxMesh_natlx")
+
+[node name="button" type="Area3D" parent="table" unique_id=109378707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30258673, 0.27036124, 0.14993986)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="table/button" unique_id=1576014662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.115409344, -0.028964162, 0.08321035)
+mesh = SubResource("BoxMesh_nilot")
+surface_material_override/0 = SubResource("StandardMaterial3D_oaeid")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="table/button" unique_id=1384605691]
+transform = Transform3D(1.1710273, 0, 0, 0, 0.55161077, 0, 0, 0, 1.1337459, 0.115409344, -0.028964162, 0.08321035)
+mesh = SubResource("BoxMesh_nilot")
+surface_material_override/0 = SubResource("StandardMaterial3D_kn5q7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table/button" unique_id=952466965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11391845, -0.016823769, 0.080932215)
+shape = SubResource("BoxShape3D_2qw5g")
+
 [node name="walls" type="Node3D" parent="." unique_id=98372496]
 
 [node name="floor" type="MeshInstance3D" parent="walls" unique_id=439215230]
@@ -195,7 +462,22 @@ mesh = SubResource("PlaneMesh_2qw5g")
 surface_material_override/0 = ExtResource("5_rs1ao")
 
 [node name="wall3" type="MeshInstance3D" parent="walls" unique_id=881503428]
-transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 0.993189, 0.5, -0.049984217)
+transform = Transform3D(1.3113416e-07, -1, 1.4106945e-08, 0, -4.371139e-08, -0.3227293, 1, 1.3113416e-07, -1.8499026e-15, 0.993189, 0.14138556, -0.049984217)
+mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
+
+[node name="wall9" type="MeshInstance3D" parent="walls" unique_id=885562816]
+transform = Transform3D(1.3113416e-07, -1, 1.4106945e-08, 0, -4.371139e-08, -0.3227293, 1, 1.3113416e-07, -1.8499026e-15, 0.993189, 1.454351, -0.049984217)
+mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
+
+[node name="wall10" type="MeshInstance3D" parent="walls" unique_id=1804714319]
+transform = Transform3D(6.097336e-08, -1.0000001, 3.7303376e-08, 0, -4.3711392e-08, -0.85340184, 0.46496937, 1.3113417e-07, -4.891748e-15, 0.9849644, 0.83778155, -0.7095869)
+mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
+
+[node name="wall11" type="MeshInstance3D" parent="walls" unique_id=1600328244]
+transform = Transform3D(6.097336e-08, -1.0000001, 3.7303376e-08, 0, -4.3711392e-08, -0.85340184, 0.46496937, 1.3113417e-07, -4.891748e-15, 0.9849644, 0.83778155, 0.994376)
 mesh = SubResource("PlaneMesh_2qw5g")
 surface_material_override/0 = ExtResource("5_rs1ao")
 
@@ -219,6 +501,11 @@ transform = Transform3D(-7.798623e-07, 1.0000011, -1.5020143e-07, 0, -4.3711438e
 mesh = SubResource("PlaneMesh_2qw5g")
 surface_material_override/0 = ExtResource("5_rs1ao")
 
+[node name="wall12" type="MeshInstance3D" parent="walls" unique_id=797813105]
+transform = Transform3D(1.0762755e-06, -1.0000012, 1.5020144e-07, -5.7913947e-22, -4.3711445e-08, -3.4362085, 8.207439, 1.3113433e-07, -1.9696545e-14, 6.228347, 0.5, -4.3714643)
+mesh = SubResource("PlaneMesh_2qw5g")
+surface_material_override/0 = ExtResource("5_rs1ao")
+
 [node name="wall8" type="MeshInstance3D" parent="walls" unique_id=899736166]
 transform = Transform3D(3.5682342, 1.7484572e-07, -2.6262057e-14, -2.517842e-22, -4.371144e-08, -3.4362085, -6.2388983e-07, 1.000001, -1.5020143e-07, -5.91264, 0.5, -7.5609584)
 mesh = SubResource("PlaneMesh_2qw5g")
@@ -232,6 +519,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 1
 
 [node name="CamUI" type="Control" parent="Control" unique_id=107325324]
 visible = false
@@ -310,13 +598,27 @@ offset_bottom = 905.0
 texture_normal = ExtResource("14_s31ab")
 texture_disabled = ExtResource("15_oaeid")
 
+[node name="Label" type="Label" parent="Control/CamUI" unique_id=1764021792]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "6"
+label_settings = SubResource("LabelSettings_wiscd")
+
 [node name="neal" type="MeshInstance3D" parent="." unique_id=2124613458]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.3063225, 0.20276839, 0.6132493)
+material_override = SubResource("StandardMaterial3D_2uc8b")
 mesh = SubResource("BoxMesh_78ya6")
 
 [node name="toad" type="MeshInstance3D" parent="." unique_id=254239497]
-transform = Transform3D(0.39000002, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.7155519, 0)
+transform = Transform3D(0.3675308, -0.10035783, 0, 0.13046518, 0.282716, 0, 0, 0, 0.3, 0, 1.7155519, 0)
+material_override = SubResource("StandardMaterial3D_2btma")
 mesh = SubResource("BoxMesh_78ya6")
+
+[node name="birb" type="MeshInstance3D" parent="." unique_id=1128409814]
+transform = Transform3D(0.9844478, -0.17567652, 0, 0.1756765, 0.98444796, 0, 0, 0, 1, 1.9384203, 0.8824489, 0.05146885)
+material_override = SubResource("StandardMaterial3D_8yipd")
+mesh = SubResource("BoxMesh_i2xd6")
 
 [node name="flashlight" type="SpotLight3D" parent="." unique_id=309112136]
 transform = Transform3D(0.84327054, 0, 0.5374893, 0, 1, 0, -0.5374893, 0, 0.84327054, 0, 0.457033, 1.2372115)
@@ -331,6 +633,31 @@ wait_time = 15.0
 [node name="enemyPlayer" type="AnimationPlayer" parent="." unique_id=1954965167]
 libraries/ = SubResource("AnimationLibrary_kn5q7")
 
+[node name="toadPlayer" type="AnimationPlayer" parent="." unique_id=427876978]
+libraries/ = SubResource("AnimationLibrary_ari0y")
+
+[node name="door2" type="AnimationPlayer" parent="." unique_id=201651953]
+libraries/ = SubResource("AnimationLibrary_2uc8b")
+
+[node name="door" type="Area3D" parent="." unique_id=1648855001]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door" unique_id=1988377034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0203924, 0.77096856, 0.06738281)
+shape = SubResource("BoxShape3D_78ya6")
+
+[node name="door" type="MeshInstance3D" parent="door" unique_id=1706734636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0167536, 0.76392436, 1.0928528)
+mesh = SubResource("BoxMesh_xpfex")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1205740064]
+stream = ExtResource("20_uc7l7")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1803136786]
+stream = ExtResource("21_oqaoe")
+volume_db = -15.0
+
+[connection signal="mouse_entered" from="table/button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="table/button" to="." method="_on_button_mouse_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="Control/CamUI/cam1" to="." method="_on_cam_1_pressed"]
 [connection signal="pressed" from="Control/CamUI/cam2" to="." method="_on_cam_2_pressed"]
@@ -341,3 +668,5 @@ libraries/ = SubResource("AnimationLibrary_kn5q7")
 [connection signal="button_up" from="Control/CamUI/Alarm" to="." method="_on_alarm_button_up"]
 [connection signal="button_down" from="Control/CamUI/cone" to="." method="_on_cone_button_down"]
 [connection signal="timeout" from="coneTimer" to="." method="_on_cone_timer_timeout"]
+[connection signal="mouse_entered" from="door" to="." method="_on_door_mouse_entered"]
+[connection signal="mouse_exited" from="door" to="." method="_on_door_mouse_exited"]

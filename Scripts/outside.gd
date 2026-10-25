@@ -67,6 +67,7 @@ func _process(delta: float) -> void:
 		main.kangarooDeath.paused = true
 	if (!alarmActiveOutside):
 		$Timer.stop()
+		$AudioStreamPlayer.stop()
 		main.kangarooDeath.paused = false
 
 func _on_timer_timeout() -> void:

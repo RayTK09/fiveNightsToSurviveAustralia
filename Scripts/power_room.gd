@@ -40,6 +40,7 @@ func _process(delta: float) -> void:
 	if (!warningOn):
 		$Timer.stop()
 		main.kangarooDeath.paused = false
+		$AudioStreamPlayer.stop()
 
 
 func _on_timer_timeout() -> void:

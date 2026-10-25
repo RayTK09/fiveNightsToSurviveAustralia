@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://b24cw00q8n4yx" path="res://Scenes/power_room.tscn" id="3_1e0qi"]
 [ext_resource type="PackedScene" uid="uid://k61lpxusk4ii" path="res://Scenes/inside_room.tscn" id="4_yy6r3"]
 [ext_resource type="PackedScene" uid="uid://skqgalyfj03j" path="res://Scenes/outside.tscn" id="5_7vaj3"]
+[ext_resource type="AudioStream" uid="uid://c57i1nxi8wkna" path="res://assets/MOTION DETECTED.wav" id="6_yy6r3"]
+[ext_resource type="AudioStream" uid="uid://d10ppcxkha224" path="res://assets/406493__anthousai__hit-metallic-deep-hollow-thunk.wav" id="7_7vaj3"]
+[ext_resource type="AudioStream" uid="uid://cslgq42prjjfl" path="res://assets/583615__johnnie_holiday__eagle.mp3" id="8_7vaj3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wiscd"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -20,9 +23,11 @@ background_mode = 2
 sky = SubResource("Sky_1e0qi")
 glow_enabled = true
 
+[sub_resource type="LabelSettings" id="LabelSettings_2qw5g"]
+font_size = 150
+
 [node name="MAINNIGHT" type="Node3D" unique_id=1618557773 node_paths=PackedStringArray("office", "inside", "outside", "powerRoom")]
 script = ExtResource("1_31vtv")
-night = 5
 office = NodePath("OFFICE")
 inside = NodePath("insideRoom")
 outside = NodePath("outside")
@@ -31,11 +36,12 @@ powerRoom = NodePath("powerRoom")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=187454186]
 environment = SubResource("Environment_yy6r3")
 
-[node name="OFFICE" parent="." unique_id=1742765653 node_paths=PackedStringArray("outside", "inside", "power") instance=ExtResource("2_wiscd")]
+[node name="OFFICE" parent="." unique_id=1742765653 node_paths=PackedStringArray("outside", "inside", "power", "main") instance=ExtResource("2_wiscd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.487196)
 outside = NodePath("../outside")
 inside = NodePath("../insideRoom")
 power = NodePath("../powerRoom")
+main = NodePath("..")
 
 [node name="powerRoom" parent="." unique_id=112248275 node_paths=PackedStringArray("main") instance=ExtResource("3_1e0qi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.907451, 0, 16.487196)
@@ -66,18 +72,65 @@ wait_time = 10.0
 one_shot = true
 
 [node name="toadDeath" type="Timer" parent="." unique_id=888686372]
+wait_time = 10.0
 one_shot = true
 
 [node name="eagleDeath" type="Timer" parent="." unique_id=1329711365]
+wait_time = 5.0
 one_shot = true
 
 [node name="kangarooDeath" type="Timer" parent="." unique_id=1800968334]
 wait_time = 20.0
 one_shot = true
 
+[node name="Control" type="Control" parent="." unique_id=1804698150]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=95396824]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Control" unique_id=927020380]
+layout_mode = 0
+offset_left = 816.0
+offset_top = 405.99997
+offset_right = 1446.0
+offset_bottom = 611.0
+scale = Vector2(0.46045327, 0.46045327)
+text = "You died."
+label_settings = SubResource("LabelSettings_2qw5g")
+
+[node name="youDed" type="Timer" parent="." unique_id=212173570]
+wait_time = 3.0
+
+[node name="nightEnd" type="Timer" parent="." unique_id=128889819]
+wait_time = 60.0
+
+[node name="motionAlert" type="AudioStreamPlayer" parent="." unique_id=313087856]
+stream = ExtResource("6_yy6r3")
+volume_db = -10.0
+
+[node name="eagleHit" type="AudioStreamPlayer" parent="." unique_id=1822231122]
+stream = ExtResource("7_7vaj3")
+volume_db = -5.0
+
+[node name="eagleAlert" type="AudioStreamPlayer" parent="." unique_id=360204433]
+stream = ExtResource("8_7vaj3")
+volume_db = -5.0
+
 [connection signal="timeout" from="nealTimer" to="." method="_on_neal_timer_timeout"]
 [connection signal="timeout" from="toadTimer" to="." method="_on_toad_timer_timeout"]
 [connection signal="timeout" from="eagleTimer" to="." method="_on_eagle_timer_timeout"]
 [connection signal="timeout" from="kangarooTimer" to="." method="_on_kangaroo_timer_timeout"]
 [connection signal="timeout" from="nealDeath" to="." method="_on_neal_death_timeout"]
+[connection signal="timeout" from="toadDeath" to="." method="_on_toad_death_timeout"]
+[connection signal="timeout" from="eagleDeath" to="." method="_on_eagle_death_timeout"]
 [connection signal="timeout" from="kangarooDeath" to="." method="_on_kangaroo_death_timeout"]
+[connection signal="timeout" from="youDed" to="." method="_on_you_ded_timeout"]
+[connection signal="timeout" from="nightEnd" to="." method="_on_night_end_timeout"]

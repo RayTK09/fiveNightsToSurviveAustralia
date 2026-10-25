@@ -7,10 +7,25 @@
 [ext_resource type="PackedScene" uid="uid://b51u82ktb31le" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Catwalk_200.gltf" id="3_d3shc"]
 [ext_resource type="PackedScene" uid="uid://bej4g4mgcphbu" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Railing_200.gltf" id="4_sgii2"]
 [ext_resource type="PackedScene" uid="uid://d2sncpke1iul1" path="res://models/chainlinkFence.tscn" id="7_rhee5"]
+[ext_resource type="AudioStream" uid="uid://dkfihw3hspesp" path="res://assets/574586__outlawsoftware__alarm-loop-4-v1.wav" id="8_8cxj4"]
+[ext_resource type="Texture2D" uid="uid://dcdin0ox35nat" path="res://assets/NEAL.jpg" id="8_rhee5"]
+[ext_resource type="Texture2D" uid="uid://djhe1l5mwkstt" path="res://assets/kangaroo.jpg" id="9_k5qol"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5qol"]
+albedo_texture = ExtResource("8_rhee5")
+uv1_scale = Vector3(3, 1, 2)
+
 [sub_resource type="BoxMesh" id="BoxMesh_ep0fk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cgjq"]
+albedo_texture = ExtResource("9_k5qol")
+uv1_scale = Vector3(3.1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8gc3"]
+albedo_texture = ExtResource("9_k5qol")
+uv1_scale = Vector3(3.1, 2, 1)
 
 [sub_resource type="Animation" id="Animation_ep0fk"]
 length = 0.001
@@ -26,9 +41,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_8cxj4"]
 resource_name = "blinkingLight"
+length = 1.3333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -40,6 +68,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 4.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rhee5"]
@@ -315,16 +355,19 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 
 [node name="nealCam2" type="MeshInstance3D" parent="." unique_id=1917129987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9239032, 0.5, -7.627582)
 visible = false
+material_override = SubResource("StandardMaterial3D_k5qol")
 mesh = SubResource("BoxMesh_ep0fk")
 
 [node name="kangarooCam2" type="MeshInstance3D" parent="." unique_id=2131223254]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 2.6102505, 1, -7.804773)
 visible = false
+material_override = SubResource("StandardMaterial3D_3cgjq")
 mesh = SubResource("BoxMesh_ep0fk")
 
 [node name="kangarooCam1" type="MeshInstance3D" parent="." unique_id=868798821]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -2.4206195, 1, 7.5928397)
 visible = false
+material_override = SubResource("StandardMaterial3D_h8gc3")
 mesh = SubResource("BoxMesh_ep0fk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1948276491]
@@ -339,5 +382,9 @@ omni_attenuation = 0.5
 libraries/ = SubResource("AnimationLibrary_rhee5")
 
 [node name="Timer" type="Timer" parent="." unique_id=859550574]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=615155767]
+stream = ExtResource("8_8cxj4")
+volume_db = -20.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
