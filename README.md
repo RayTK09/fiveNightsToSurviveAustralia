@@ -11,3 +11,8 @@ Metal texture - https://ambientcg.com/view?id=CorrugatedSteel007C<br>
 Wood texture - https://ambientcg.com/view?id=Wood026<br>
 Concrete texture - https://ambientcg.com/view?id=Concrete032<br>
 Alarm SFX - https://freesound.org/people/OutlawSoftware/sounds/574586/<br>
+vent SFX - https://freesound.org/people/pagancow/sounds/15316/<br>
+powerDown SFX - https://freesound.org/people/Skylar1146/sounds/395378/<br>
+metalHit SFX - https://freesound.org/people/Anthousai/sounds/406493/<br>
+EAGLE SFX - https://freesound.org/people/Johnnie_Holiday/sounds/583615/
+camButton SFX - https://pixabay.com/sound-effects/film-special-effects-button-ui-sound-effect-395762/<br>
