@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcofnvxqspn3u"
 path.s3tc="res://.godot/imported/material_normal.jpeg-482a863c044b12215c57e0f04c25323a.s3tc.ctex"
+path.etc2="res://.godot/imported/material_normal.jpeg-482a863c044b12215c57e0f04c25323a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/electrical_panel/textures/material_normal.jpeg"
-dest_files=["res://.godot/imported/material_normal.jpeg-482a863c044b12215c57e0f04c25323a.s3tc.ctex"]
+dest_files=["res://.godot/imported/material_normal.jpeg-482a863c044b12215c57e0f04c25323a.s3tc.ctex", "res://.godot/imported/material_normal.jpeg-482a863c044b12215c57e0f04c25323a.etc2.ctex"]
 
 [params]
 

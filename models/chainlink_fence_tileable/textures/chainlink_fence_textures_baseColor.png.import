@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bevwnsi674vlu"
 path.s3tc="res://.godot/imported/chainlink_fence_textures_baseColor.png-706c92a54c9dcab217f941b584c768e7.s3tc.ctex"
+path.etc2="res://.godot/imported/chainlink_fence_textures_baseColor.png-706c92a54c9dcab217f941b584c768e7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/chainlink_fence_tileable/textures/chainlink_fence_textures_baseColor.png"
-dest_files=["res://.godot/imported/chainlink_fence_textures_baseColor.png-706c92a54c9dcab217f941b584c768e7.s3tc.ctex"]
+dest_files=["res://.godot/imported/chainlink_fence_textures_baseColor.png-706c92a54c9dcab217f941b584c768e7.s3tc.ctex", "res://.godot/imported/chainlink_fence_textures_baseColor.png-706c92a54c9dcab217f941b584c768e7.etc2.ctex"]
 
 [params]
 

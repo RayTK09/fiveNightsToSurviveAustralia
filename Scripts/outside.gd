@@ -1,3 +1,4 @@
+class_name outside
 extends Node3D
 
 @onready var cam3Light = $Camera3D/SpotLight3D
@@ -28,16 +29,16 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (cam3Active):
-		cam4Light.spot_attenuation = 1
+		cam4Light.light_energy = 1
 		$Camera3D2.current = true
 	else:
-		cam4Light.spot_attenuation = 10
+		cam4Light.light_energy = 0
 		$Camera3D2.current = false
 	if (cam4Active):
-		cam3Light.spot_attenuation = 1
+		cam3Light.light_energy = 1
 		$Camera3D.current = true
 	else:
-		cam3Light.spot_attenuation = 10
+		cam3Light.light_energy = 0
 		$Camera3D.current = false
 		
 	if (alarmActiveOutside):

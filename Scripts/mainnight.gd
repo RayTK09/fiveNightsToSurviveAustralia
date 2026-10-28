@@ -9,12 +9,12 @@ extends Node3D
 @export var evilAssEagleAI : int = 0
 @export var kangarooDestruction : int = 0
 #import all the rooms into this script
-@export var office : Node3D
-@export var inside : Node3D
-@export var outside : Node3D
-@export var powerRoom : Node3D
+@export var office : office
+@export var inside : insideRoom
+@export var outside : outside
+@export var powerRoom : powerRoom
 @export var kangarooActive : bool = false
-@onready var globals = get_node("/root/Global")
+@onready var globals : Global = get_node("/root/Global")
 @onready var nightEnd : Timer = $nightEnd
 
 #timers for moving
@@ -117,7 +117,6 @@ func _process(delta: float) -> void:
 			outside.isNealCam3 = false
 			inside.isNealCam2 = false
 			office.nealInOffice = true
-
 
 
 func _on_neal_timer_timeout() -> void:

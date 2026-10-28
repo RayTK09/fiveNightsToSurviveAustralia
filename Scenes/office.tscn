@@ -16,9 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://3jbte8r1onou" path="res://sprites/cone.png" id="14_s31ab"]
 [ext_resource type="Texture2D" uid="uid://cx60k6d6sr7k" path="res://sprites/coneActive.png" id="15_oaeid"]
 [ext_resource type="Material" path="res://assets/Wood026_1K-JPG/Wood026_1K-JPG.tres" id="16_oaeid"]
-[ext_resource type="Texture2D" uid="uid://dcdin0ox35nat" path="res://assets/NEAL.jpg" id="17_ari0y"]
-[ext_resource type="Texture2D" uid="uid://bmo0dlthanqo7" path="res://assets/CaneToad.jpg" id="18_uc7l7"]
-[ext_resource type="Texture2D" uid="uid://b0aurwggs0qb5" path="res://assets/eagle.jpg" id="19_oqaoe"]
+[ext_resource type="Texture2D" uid="uid://bmirl5oqmb08j" path="res://assets/NEALDOOR.png" id="17_oqaoe"]
+[ext_resource type="Texture2D" uid="uid://dkropg3ue8tva" path="res://assets/CaneToad.png" id="18_oqaoe"]
+[ext_resource type="Texture2D" uid="uid://cpwqmm5qss140" path="res://assets/eagle.png" id="19_2uc8b"]
 [ext_resource type="AudioStream" uid="uid://cu4kjtbsba2dm" path="res://assets/emilianodleon-button-ui-sound-effect-395762.mp3" id="20_uc7l7"]
 [ext_resource type="AudioStream" uid="uid://d10ppcxkha224" path="res://assets/406493__anthousai__hit-metallic-deep-hollow-thunk.wav" id="21_oqaoe"]
 
@@ -124,22 +124,23 @@ _data = {
 font_size = 60
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uc8b"]
-albedo_texture = ExtResource("17_ari0y")
-uv1_scale = Vector3(3, 1, 2)
+transparency = 1
+albedo_texture = ExtResource("17_oqaoe")
 
-[sub_resource type="BoxMesh" id="BoxMesh_78ya6"]
-size = Vector3(0.8286133, 1, 1)
+[sub_resource type="PlaneMesh" id="PlaneMesh_uh4qc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2btma"]
-albedo_texture = ExtResource("18_uc7l7")
-uv1_scale = Vector3(2.6, 2, 2.6)
+transparency = 1
+albedo_texture = ExtResource("18_oqaoe")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k5qol"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yipd"]
-albedo_texture = ExtResource("19_oqaoe")
-uv1_scale = Vector3(2.6, 2, 2)
+transparency = 1
+albedo_texture = ExtResource("19_2uc8b")
+uv1_scale = Vector3(-1, 1, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_i2xd6"]
-size = Vector3(0.59277344, 0.4258423, 0.30517578)
+[sub_resource type="PlaneMesh" id="PlaneMesh_3cgjq"]
 
 [sub_resource type="Animation" id="Animation_s31ab"]
 length = 0.001
@@ -175,13 +176,13 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("neal:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(1, 4.7568293),
 "update": 0,
-"values": [Vector3(-1.3063225, 0.20276839, 0.6132493), Vector3(-1.306, 0.203, -0.38)]
+"values": [Vector3(-1.306, 0.503, 0.613), Vector3(-1.306, 0.503, -0.48)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -278,7 +279,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(1.5707964, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ari0y"]
@@ -290,10 +291,10 @@ tracks/0/path = NodePath("toad:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.46666667, 0.7),
-"transitions": PackedFloat32Array(4.141045, 0.36602113, 2.1292753),
+"times": PackedFloat32Array(0.3, 0.6333333),
+"transitions": PackedFloat32Array(0.27739155, 0.008610792),
 "update": 0,
-"values": [Vector3(0, 0.38, 0), Vector3(-0.73183, 0.4423145, -0.36124384), Vector3(-3.2307103, 0.4423145, -0.36124384)]
+"values": [Vector3(0, 0.38, 0), Vector3(-3.2307103, 0.4423145, -0.36124384)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -302,10 +303,10 @@ tracks/1/path = NodePath("birb:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666668, 0.13333334, 0.19999999, 0.7),
+"times": PackedFloat32Array(0, 0.0067, 0.13333334, 0.19999999, 0.43333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1.9384203, 0.8824489, 0.05146885), Vector3(1.033753, 0.81186247, 0.05146885), Vector3(0.042808115, 0.81186247, 0.05146885), Vector3(-0.7356923, 0.81186247, -0.15051556), Vector3(-3.2345726, 0.81186247, -0.15051556)]
+"values": [Vector3(1.938, 0.6, 0.051), Vector3(1.938, 0.6, 0.051), Vector3(1.938, 0.6, 0.051), Vector3(1.938, 0.6, 0.051), Vector3(-3.2345726, 0.81186247, -0.15051556)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -317,7 +318,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.06666668, 0.13333334, 0.19999999),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.17659293), Vector3(2.6177844e-09, -0.25094515, 0.17659295), Vector3(5.235569e-09, -0.25094515, 0.17659295)]
+"values": [Vector3(1.5707964, 0, 0), Vector3(1.5707964, 0, 0), Vector3(1.5707964, 0, 0), Vector3(1.5707964, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -327,9 +328,9 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.46666667),
-"transitions": PackedFloat32Array(4.141045, 0.36602113),
+"transitions": PackedFloat32Array(4.141045, 0.069348134),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.34110227)]
+"values": [Vector3(1.5707964, 0, 0), Vector3(1.5707964, 0, 0.3403392)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ari0y"]
@@ -356,7 +357,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_oqaoe"]
 resource_name = "door close"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -399,7 +400,7 @@ mesh = SubResource("BoxMesh_2qw5g")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=641099784]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.3455267, 0.6550656)
-light_energy = 5.0
+light_energy = 8.0
 spot_attenuation = 7.86
 spot_angle = 54.179035
 spot_angle_attenuation = 4.7568197
@@ -606,19 +607,19 @@ text = "6"
 label_settings = SubResource("LabelSettings_wiscd")
 
 [node name="neal" type="MeshInstance3D" parent="." unique_id=2124613458]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.3063225, 0.20276839, 0.6132493)
+transform = Transform3D(-2.1855694e-08, 0.5, 0, 2.1855694e-08, 9.553427e-16, -0.5, -0.5, -2.1855694e-08, -2.1855694e-08, -1.3063225, 0.20276839, 0.6132493)
 material_override = SubResource("StandardMaterial3D_2uc8b")
-mesh = SubResource("BoxMesh_78ya6")
+mesh = SubResource("PlaneMesh_uh4qc")
 
 [node name="toad" type="MeshInstance3D" parent="." unique_id=254239497]
-transform = Transform3D(0.3675308, -0.10035783, 0, 0.13046518, 0.282716, 0, 0, 0, 0.3, 0, 1.7155519, 0)
+transform = Transform3D(0.2572716, -0.10035783, 0, 0.09132563, 0.282716, 0, 0, 0, 0.20999998, 0, 1.7155519, 0)
 material_override = SubResource("StandardMaterial3D_2btma")
-mesh = SubResource("BoxMesh_78ya6")
+mesh = SubResource("PlaneMesh_k5qol")
 
 [node name="birb" type="MeshInstance3D" parent="." unique_id=1128409814]
-transform = Transform3D(0.9844478, -0.17567652, 0, 0.1756765, 0.98444796, 0, 0, 0, 1, 1.9384203, 0.8824489, 0.05146885)
+transform = Transform3D(0.6937066, -0.18493518, 0, 0.12379319, 1.0363312, 0, 0, 0, 0.40000004, 1.9384203, 0.8824489, 0.05146885)
 material_override = SubResource("StandardMaterial3D_8yipd")
-mesh = SubResource("BoxMesh_i2xd6")
+mesh = SubResource("PlaneMesh_3cgjq")
 
 [node name="flashlight" type="SpotLight3D" parent="." unique_id=309112136]
 transform = Transform3D(0.84327054, 0, 0.5374893, 0, 1, 0, -0.5374893, 0, 0.84327054, 0, 0.457033, 1.2372115)

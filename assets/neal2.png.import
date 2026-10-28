@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0aurwggs0qb5"
-path.s3tc="res://.godot/imported/eagle.jpg-7835dc12cdcbf3a58a79eb7192d75a7c.s3tc.ctex"
+uid="uid://d02ew0qxf7tbm"
+path.s3tc="res://.godot/imported/neal2.png-ea96344666baea2b6ac80b2aa74eb850.s3tc.ctex"
+path.etc2="res://.godot/imported/neal2.png-ea96344666baea2b6ac80b2aa74eb850.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/eagle.jpg"
-dest_files=["res://.godot/imported/eagle.jpg-7835dc12cdcbf3a58a79eb7192d75a7c.s3tc.ctex"]
+source_file="res://assets/neal2.png"
+dest_files=["res://.godot/imported/neal2.png-ea96344666baea2b6ac80b2aa74eb850.s3tc.ctex", "res://.godot/imported/neal2.png-ea96344666baea2b6ac80b2aa74eb850.etc2.ctex"]
 
 [params]
 

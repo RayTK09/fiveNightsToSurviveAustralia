@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjutqor1ogmbb"
 path.s3tc="res://.godot/imported/T_IK_PaintedSteel_Yellow_BC.png-5292b268798e708ce3779c4fc0cd3f8c.s3tc.ctex"
+path.etc2="res://.godot/imported/T_IK_PaintedSteel_Yellow_BC.png-5292b268798e708ce3779c4fc0cd3f8c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/IndustrialCatwalk_FreeSample/Textures/T_IK_PaintedSteel_Yellow_BC.png"
-dest_files=["res://.godot/imported/T_IK_PaintedSteel_Yellow_BC.png-5292b268798e708ce3779c4fc0cd3f8c.s3tc.ctex"]
+dest_files=["res://.godot/imported/T_IK_PaintedSteel_Yellow_BC.png-5292b268798e708ce3779c4fc0cd3f8c.s3tc.ctex", "res://.godot/imported/T_IK_PaintedSteel_Yellow_BC.png-5292b268798e708ce3779c4fc0cd3f8c.etc2.ctex"]
 
 [params]
 

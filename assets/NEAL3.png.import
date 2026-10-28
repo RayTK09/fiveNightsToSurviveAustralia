@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmo0dlthanqo7"
-path.s3tc="res://.godot/imported/CaneToad.jpg-6993b169dbe7b3d5ac41c3c657f0af2d.s3tc.ctex"
+uid="uid://c60grgobohwax"
+path.s3tc="res://.godot/imported/NEAL3.png-be1c76d544131691b7b53749afc6b3db.s3tc.ctex"
+path.etc2="res://.godot/imported/NEAL3.png-be1c76d544131691b7b53749afc6b3db.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/CaneToad.jpg"
-dest_files=["res://.godot/imported/CaneToad.jpg-6993b169dbe7b3d5ac41c3c657f0af2d.s3tc.ctex"]
+source_file="res://assets/NEAL3.png"
+dest_files=["res://.godot/imported/NEAL3.png-be1c76d544131691b7b53749afc6b3db.s3tc.ctex", "res://.godot/imported/NEAL3.png-be1c76d544131691b7b53749afc6b3db.etc2.ctex"]
 
 [params]
 

@@ -1,7 +1,8 @@
+class_name office
 extends Node3D
 
-@onready var player = $Camera3D
-@onready var aniPlayer = $AnimationPlayer
+@onready var player : Camera3D = $Camera3D
+@onready var aniPlayer : AnimationPlayer = $AnimationPlayer
 @onready var camUi = $Control/CamUI
 @onready var alarmButton = $Control/CamUI/Alarm
 @onready var coneTimer = $coneTimer
@@ -40,7 +41,6 @@ var doorCanClose : bool = false
 var isDoorClosed : bool = false
 var latch : bool = false
 var canPressButton : bool = false
-
 #which was the last used camera?
 var whichCam : int = 1
 
@@ -67,10 +67,11 @@ func _ready() -> void:
 	coneActive = load("res://sprites/coneActive.png")
 
 func _input(event: InputEvent) -> void:
-	if (Input.is_action_just_pressed("OpenCams") and !isInCams and isPowerOn):
+	#omg I fixed the bug
+	if (Input.is_action_just_pressed("OpenCams") and !isInCams and isPowerOn and !aniPlayer.is_playing()):
 		isInCams = true
 		aniPlayer.play("flipCamera")
-	elif (Input.is_action_just_pressed("OpenCams") and isInCams):
+	elif (Input.is_action_just_pressed("OpenCams") and isInCams and !aniPlayer.is_playing()):
 		isInCams = false
 		aniPlayer.play("flipCamDown")
 		player.current = true
@@ -86,7 +87,7 @@ func _input(event: InputEvent) -> void:
 	else:
 		$flashlight.visible = false
 	#door window closing
-	if (Input.is_action_pressed("mouse") and doorCanClose):
+	if (Input.is_action_pressed("mouse") and doorCanClose and !isDoorClosed):
 		$door2.play("door close")
 		isDoorClosed = true
 	elif (Input.is_action_just_released("mouse") and doorCanClose):
@@ -114,7 +115,7 @@ func _process(delta: float) -> void:
 			player.rotation_degrees = Vector3(0, 30, 0)
 		elif (player.rotation_degrees < Vector3(0, -30, 0)):
 			player.rotation_degrees = Vector3(0, -30, 0)
-			
+
 	if (nealInOffice):
 		$enemyPlayer.play("nealEnter")
 	else:
@@ -136,113 +137,97 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "flipCamera"):
 		player.current = false
 		camUi.visible = true
-		match whichCam:
+		changeCam()
+
+#A better way of handling camera switching
+func changeCam() -> void:
+	match whichCam:
 			1:
 				outside.cam4Active = true
 				outside.cam3Active = false
 				inside.cam2Active = false
 				inside.cam1Active = false
 				power.camActive = false
+				cam1.texture_normal = cam1Active
+				cam2.texture_normal = cam2Normal
+				cam3.texture_normal = cam3Normal
+				cam4.texture_normal = cam4Normal
+				cam5.texture_normal = cam5Normal
 			2:
 				outside.cam4Active = false
 				outside.cam3Active = true
 				inside.cam2Active = false
 				inside.cam1Active = false
 				power.camActive = false
+				cam1.texture_normal = cam1Normal
+				cam2.texture_normal = cam2Active
+				cam3.texture_normal = cam3Normal
+				cam4.texture_normal = cam4Normal
+				cam5.texture_normal = cam5Normal
 			3:
-				outside.cam4Active = false
-				outside.cam3Active = false
-				inside.cam2Active = true
-				inside.cam1Active = false
-				power.camActive = false
-			4:
 				outside.cam4Active = false
 				outside.cam3Active = false
 				inside.cam2Active = false
 				inside.cam1Active = true
 				power.camActive = false
+				cam1.texture_normal = cam1Normal
+				cam2.texture_normal = cam2Normal
+				cam3.texture_normal = cam3Active
+				cam4.texture_normal = cam4Normal
+				cam5.texture_normal = cam5Normal
+			4:
+				outside.cam4Active = false
+				outside.cam3Active = false
+				inside.cam2Active = true
+				inside.cam1Active = false
+				power.camActive = false
+				cam1.texture_normal = cam1Normal
+				cam2.texture_normal = cam2Normal
+				cam3.texture_normal = cam3Normal
+				cam4.texture_normal = cam4Active
+				cam5.texture_normal = cam5Normal
 			5:
 				outside.cam4Active = false
 				outside.cam3Active = false
 				inside.cam2Active = false
 				inside.cam1Active = false
 				power.camActive = true
+				cam1.texture_normal = cam1Normal
+				cam2.texture_normal = cam2Normal
+				cam3.texture_normal = cam3Normal
+				cam4.texture_normal = cam4Normal
+				cam5.texture_normal = cam5Active
 
 
 #on second thought I have no idea why I did this the way I did
 func _on_cam_1_pressed() -> void:
-	outside.cam4Active = true
-	outside.cam3Active = false
-	inside.cam2Active = false
-	inside.cam1Active = false
-	power.camActive = false
-	cam1.texture_normal = cam1Active
-	cam2.texture_normal = cam2Normal
-	cam3.texture_normal = cam3Normal
-	cam4.texture_normal = cam4Normal
-	cam5.texture_normal = cam5Normal
-	audio.play()
 	whichCam = 1
+	changeCam()
+	audio.play()
 
 
 func _on_cam_2_pressed() -> void:
-	outside.cam4Active = false
-	outside.cam3Active = true
-	inside.cam2Active = false
-	inside.cam1Active = false
-	power.camActive = false
-	cam1.texture_normal = cam1Normal
-	cam2.texture_normal = cam2Active
-	cam3.texture_normal = cam3Normal
-	cam4.texture_normal = cam4Normal
-	cam5.texture_normal = cam5Normal
-	audio.play()
 	whichCam = 2
+	changeCam()
+	audio.play()
 
 
 func _on_cam_3_pressed() -> void:
-	outside.cam4Active = false
-	outside.cam3Active = false
-	inside.cam2Active = false
-	inside.cam1Active = true
-	power.camActive = false
-	cam1.texture_normal = cam1Normal
-	cam2.texture_normal = cam2Normal
-	cam3.texture_normal = cam3Active
-	cam4.texture_normal = cam4Normal
-	cam5.texture_normal = cam5Normal
-	audio.play()
 	whichCam = 3
+	changeCam()
+	audio.play()
 
 
 func _on_cam_4_pressed() -> void:
-	outside.cam4Active = false
-	outside.cam3Active = false
-	inside.cam2Active = true
-	inside.cam1Active = false
-	power.camActive = false
-	cam1.texture_normal = cam1Normal
-	cam2.texture_normal = cam2Normal
-	cam3.texture_normal = cam3Normal
-	cam4.texture_normal = cam4Active
-	cam5.texture_normal = cam5Normal
-	audio.play()
 	whichCam = 4
+	changeCam()
+	audio.play()
 
 
 func _on_cam_5_pressed() -> void:
-	outside.cam4Active = false
-	outside.cam3Active = false
-	inside.cam2Active = false
-	inside.cam1Active = false
-	power.camActive = true
-	cam1.texture_normal = cam1Normal
-	cam2.texture_normal = cam2Normal
-	cam3.texture_normal = cam3Normal
-	cam4.texture_normal = cam4Normal
-	cam5.texture_normal = cam5Active
-	audio.play()
 	whichCam = 5
+	changeCam()
+	audio.play()
 
 
 func _on_alarm_button_down() -> void:

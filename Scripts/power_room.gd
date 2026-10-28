@@ -1,3 +1,4 @@
+class_name powerRoom
 extends Node3D
 
 @onready var warningLight = $OmniLight3D

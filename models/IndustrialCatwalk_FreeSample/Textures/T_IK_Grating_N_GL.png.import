@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bl50nvwphqq7a"
 path.s3tc="res://.godot/imported/T_IK_Grating_N_GL.png-811619b194d0ba30f792dc538fcd1edd.s3tc.ctex"
+path.etc2="res://.godot/imported/T_IK_Grating_N_GL.png-811619b194d0ba30f792dc538fcd1edd.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/IndustrialCatwalk_FreeSample/Textures/T_IK_Grating_N_GL.png"
-dest_files=["res://.godot/imported/T_IK_Grating_N_GL.png-811619b194d0ba30f792dc538fcd1edd.s3tc.ctex"]
+dest_files=["res://.godot/imported/T_IK_Grating_N_GL.png-811619b194d0ba30f792dc538fcd1edd.s3tc.ctex", "res://.godot/imported/T_IK_Grating_N_GL.png-811619b194d0ba30f792dc538fcd1edd.etc2.ctex"]
 
 [params]
 
