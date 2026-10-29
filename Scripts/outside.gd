@@ -19,13 +19,6 @@ extends Node3D
 var startTimer : bool = false
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	alarmLight1.spot_attenuation = 3
-	alarmLight2.spot_attenuation = 3
-	alarmLight3.spot_attenuation = 3
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (cam3Active):
@@ -44,7 +37,7 @@ func _process(delta: float) -> void:
 	if (alarmActiveOutside):
 		$AnimationPlayer.play("blinkingLights")
 	elif (!alarmActiveOutside):
-		$AnimationPlayer.stop()
+		$AnimationPlayer.play("RESET")
 	#print(alarmActiveOutside)
 	if (isNealCam4):
 		$nealCam4.visible = true

@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 	if (alarmActiveInside):
 		$AnimationPlayer.play("blinkingLight")
 	elif (!alarmActiveInside):
-		$AnimationPlayer.stop()
+		$AnimationPlayer.play("RESET")
 		
 	if (isNealCam2):
 		$nealCam2.visible = true

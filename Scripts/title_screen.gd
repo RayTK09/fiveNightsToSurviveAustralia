@@ -21,6 +21,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_button_2_pressed() -> void:
+	globals.saveGame()
 	get_tree().quit()
 
 
@@ -30,3 +31,7 @@ func _on_button_mouse_entered() -> void:
 
 func _on_button_mouse_exited() -> void:
 	$Control/night.visible = false
+
+
+func _on_button_3_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/custom_night.tscn")

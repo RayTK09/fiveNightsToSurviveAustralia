@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://doj8bmjlruw2n"]
+
+[node name="customNight" type="Control" unique_id=914244284]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="nealDecrease" type="Button" parent="." unique_id=716878780]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="nealIncrease" type="Button" parent="." unique_id=1187221799]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="toadDecrease" type="Button" parent="." unique_id=542958988]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="toadIncrease" type="Button" parent="." unique_id=1944792189]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="eagleDecrease" type="Button" parent="." unique_id=1058276471]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="eagleIncrease" type="Button" parent="." unique_id=1363016509]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="kangarooDecrease" type="Button" parent="." unique_id=35452976]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="kangarooIncrease" type="Button" parent="." unique_id=1319198296]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

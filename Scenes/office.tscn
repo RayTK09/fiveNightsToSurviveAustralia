@@ -612,7 +612,7 @@ material_override = SubResource("StandardMaterial3D_2uc8b")
 mesh = SubResource("PlaneMesh_uh4qc")
 
 [node name="toad" type="MeshInstance3D" parent="." unique_id=254239497]
-transform = Transform3D(0.2572716, -0.10035783, 0, 0.09132563, 0.282716, 0, 0, 0, 0.20999998, 0, 1.7155519, 0)
+transform = Transform3D(0.2572716, -0.10035783, 0, 0.09132565, 0.282716, 0, 0, 0, 0.20999998, 0, 1.7155519, 0)
 material_override = SubResource("StandardMaterial3D_2btma")
 mesh = SubResource("PlaneMesh_k5qol")
 

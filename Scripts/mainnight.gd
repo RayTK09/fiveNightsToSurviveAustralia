@@ -247,6 +247,7 @@ func _on_night_end_timeout() -> void:
 			globals.currentNight += 1
 		deathMessage.text = "6 AM"
 		$Control.visible = true
+		globals.saveGame()
 		$youDed.start()
 
 

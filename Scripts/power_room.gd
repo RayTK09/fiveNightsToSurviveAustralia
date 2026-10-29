@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	if (warningOn):
 		$AnimationPlayer.play("blinkingLight")
 	elif (!warningOn):
-		$AnimationPlayer.stop()
+		$AnimationPlayer.play("RESET")
 	#kangaroos
 	if (kangarooInRoom):
 		$kangarooCam4.visible = true
