@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://d10ppcxkha224" path="res://assets/406493__anthousai__hit-metallic-deep-hollow-thunk.wav" id="7_7vaj3"]
 [ext_resource type="AudioStream" uid="uid://cslgq42prjjfl" path="res://assets/583615__johnnie_holiday__eagle.mp3" id="8_7vaj3"]
 [ext_resource type="AudioStream" uid="uid://yn5o46nyd7hp" path="res://assets/15316__pagancow__metal_push-door-open3.mp3" id="9_8tb1k"]
+[ext_resource type="AudioStream" uid="uid://clcjcgeqcp868" path="res://assets/ambiance.mp3" id="10_ato11"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wiscd"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -128,6 +129,11 @@ volume_db = -5.0
 [node name="toadAlert" type="AudioStreamPlayer" parent="." unique_id=483596751]
 stream = ExtResource("9_8tb1k")
 volume_db = -5.0
+
+[node name="ambiance" type="AudioStreamPlayer" parent="." unique_id=1945103923]
+stream = ExtResource("10_ato11")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="timeout" from="nealTimer" to="." method="_on_neal_timer_timeout"]
 [connection signal="timeout" from="toadTimer" to="." method="_on_toad_timer_timeout"]

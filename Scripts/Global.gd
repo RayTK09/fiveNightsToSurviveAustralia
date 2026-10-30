@@ -1,4 +1,4 @@
-class_name globals
+class_name global
 extends Node
 
 
@@ -6,6 +6,12 @@ extends Node
 @export var nightFiveComplete : bool = false
 @export var nightSixComplete : bool = false
 @export var fourTwenty : bool = false
+
+@export var isCustomNight : bool = false
+@export var nealAi : int
+@export var toadAi : int
+@export var eagleAi : int
+@export var kangarooAi : int
 
 
 func _ready() -> void:

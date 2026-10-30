@@ -71,9 +71,11 @@ func _input(event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("OpenCams") and !isInCams and isPowerOn and !aniPlayer.is_playing()):
 		isInCams = true
 		aniPlayer.play("flipCamera")
+		$camFlipUp.play()
 	elif (Input.is_action_just_pressed("OpenCams") and isInCams and !aniPlayer.is_playing()):
 		isInCams = false
 		aniPlayer.play("flipCamDown")
+		$camFlipDown.play()
 		player.current = true
 		camUi.visible = false
 		outside.cam4Active = false

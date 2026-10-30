@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cpwqmm5qss140" path="res://assets/eagle.png" id="19_2uc8b"]
 [ext_resource type="AudioStream" uid="uid://cu4kjtbsba2dm" path="res://assets/emilianodleon-button-ui-sound-effect-395762.mp3" id="20_uc7l7"]
 [ext_resource type="AudioStream" uid="uid://d10ppcxkha224" path="res://assets/406493__anthousai__hit-metallic-deep-hollow-thunk.wav" id="21_oqaoe"]
+[ext_resource type="AudioStream" uid="uid://dc87riaimcb2b" path="res://assets/613885__iainmccurdy__canon550d-mirror-flip.wav" id="22_2uc8b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
 size = Vector3(0.45828247, 0.38787842, 0.041137695)
@@ -656,6 +657,15 @@ stream = ExtResource("20_uc7l7")
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1803136786]
 stream = ExtResource("21_oqaoe")
 volume_db = -15.0
+
+[node name="camFlipUp" type="AudioStreamPlayer" parent="." unique_id=784525173]
+stream = ExtResource("22_2uc8b")
+volume_db = -10.0
+
+[node name="camFlipDown" type="AudioStreamPlayer" parent="." unique_id=1472554681]
+stream = ExtResource("22_2uc8b")
+volume_db = -10.0
+pitch_scale = 0.8
 
 [connection signal="mouse_entered" from="table/button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="table/button" to="." method="_on_button_mouse_exited"]

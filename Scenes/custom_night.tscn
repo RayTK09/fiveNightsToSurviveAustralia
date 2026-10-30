@@ -1,5 +1,24 @@
 [gd_scene format=3 uid="uid://doj8bmjlruw2n"]
 
+[ext_resource type="Script" uid="uid://qoerfchgjdqh" path="res://Scripts/custom_night.gd" id="1_5up1y"]
+[ext_resource type="Texture2D" uid="uid://dcwi3kef142sv" path="res://assets/NEAL.png" id="2_kkipx"]
+[ext_resource type="Texture2D" uid="uid://dkropg3ue8tva" path="res://assets/CaneToad.png" id="3_hmuen"]
+[ext_resource type="Texture2D" uid="uid://cpwqmm5qss140" path="res://assets/eagle.png" id="4_4plp2"]
+[ext_resource type="Texture2D" uid="uid://bro2403sk4b4b" path="res://assets/KANGAROO.png" id="5_4u4ed"]
+
+[sub_resource type="Theme" id="Theme_78ya6"]
+default_font_size = 100
+
+[sub_resource type="Theme" id="Theme_nilot"]
+default_font_size = 100
+
+[sub_resource type="Theme" id="Theme_i2xd6"]
+default_font_size = 100
+/font_sizes/fontsize = 100
+
+[sub_resource type="Theme" id="Theme_xpfex"]
+default_font_size = 100
+
 [node name="customNight" type="Control" unique_id=914244284]
 layout_mode = 3
 anchors_preset = 15
@@ -7,43 +26,171 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5up1y")
 
-[node name="nealDecrease" type="Button" parent="." unique_id=716878780]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=414962131]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
 
-[node name="nealIncrease" type="Button" parent="." unique_id=1187221799]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1097387796]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 487.0
+offset_top = 60.0
+offset_right = 914.0
+offset_bottom = 940.0
+theme_override_constants/separation = 100
 
-[node name="toadDecrease" type="Button" parent="." unique_id=542958988]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="neal" type="HBoxContainer" parent="VBoxContainer" unique_id=2130714956]
+layout_mode = 2
+theme = SubResource("Theme_78ya6")
+theme_override_constants/separation = 120
 
-[node name="toadIncrease" type="Button" parent="." unique_id=1944792189]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="nealDecrease" type="Button" parent="VBoxContainer/neal" unique_id=716878780]
+layout_mode = 2
+text = "<"
 
-[node name="eagleDecrease" type="Button" parent="." unique_id=1058276471]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="nealAI" type="Label" parent="VBoxContainer/neal" unique_id=271854342]
+layout_mode = 2
+text = "0"
 
-[node name="eagleIncrease" type="Button" parent="." unique_id=1363016509]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="nealIncrease" type="Button" parent="VBoxContainer/neal" unique_id=1187221799]
+layout_mode = 2
+text = ">"
 
-[node name="kangarooDecrease" type="Button" parent="." unique_id=35452976]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="toad" type="HBoxContainer" parent="VBoxContainer" unique_id=1702634603]
+layout_mode = 2
+theme = SubResource("Theme_nilot")
+theme_override_constants/separation = 120
 
-[node name="kangarooIncrease" type="Button" parent="." unique_id=1319198296]
+[node name="toadDecrease" type="Button" parent="VBoxContainer/toad" unique_id=542958988]
+layout_mode = 2
+text = "<"
+
+[node name="toadAI" type="Label" parent="VBoxContainer/toad" unique_id=1988002551]
+layout_mode = 2
+text = "0"
+
+[node name="toadIncrease" type="Button" parent="VBoxContainer/toad" unique_id=1944792189]
+layout_mode = 2
+text = ">"
+
+[node name="eagle" type="HBoxContainer" parent="VBoxContainer" unique_id=417407080]
+layout_mode = 2
+theme = SubResource("Theme_i2xd6")
+theme_override_constants/separation = 120
+
+[node name="eagleDecrease" type="Button" parent="VBoxContainer/eagle" unique_id=1058276471]
+layout_mode = 2
+text = "<"
+
+[node name="eagleAI" type="Label" parent="VBoxContainer/eagle" unique_id=1667556273]
+layout_mode = 2
+text = "0"
+
+[node name="eagleIncrease" type="Button" parent="VBoxContainer/eagle" unique_id=1363016509]
+layout_mode = 2
+text = ">"
+
+[node name="kangaroo" type="HBoxContainer" parent="VBoxContainer" unique_id=398358009]
+layout_mode = 2
+theme = SubResource("Theme_xpfex")
+theme_override_constants/separation = 120
+
+[node name="kangarooDecrease" type="Button" parent="VBoxContainer/kangaroo" unique_id=35452976]
+layout_mode = 2
+text = "<"
+
+[node name="kangarooAI" type="Label" parent="VBoxContainer/kangaroo" unique_id=134629932]
+layout_mode = 2
+text = "0"
+
+[node name="kangarooIncrease" type="Button" parent="VBoxContainer/kangaroo" unique_id=1319198296]
+layout_mode = 2
+text = ">"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1087608213]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = -113.0
+offset_top = 30.0
+offset_right = 1039.0
+offset_bottom = 1292.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = -100
+
+[node name="nealPic" type="TextureRect" parent="VBoxContainer2" unique_id=1807410078]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.4, 1)
+texture = ExtResource("2_kkipx")
+
+[node name="toadPic" type="TextureRect" parent="VBoxContainer2" unique_id=797359612]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.4, 0.4)
+offset_transform_visual_only = false
+texture = ExtResource("3_hmuen")
+
+[node name="eaglePic" type="TextureRect" parent="VBoxContainer2" unique_id=1094576674]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -200)
+offset_transform_scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_4plp2")
+
+[node name="kangarooPic" type="TextureRect" parent="VBoxContainer2" unique_id=344846909]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -130)
+offset_transform_scale = Vector2(0.6, 1.2)
+texture = ExtResource("5_4u4ed")
+
+[node name="Button" type="Button" parent="." unique_id=2124147307]
+layout_mode = 0
+offset_left = 1650.0
+offset_top = 30.0
+offset_right = 1889.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 70
+text = "Back"
+
+[node name="start" type="Button" parent="." unique_id=238486782]
+layout_mode = 0
+offset_left = 1650.0
+offset_top = 893.0
+offset_right = 1893.0
+offset_bottom = 1038.0
+theme_override_font_sizes/font_size = 70
+text = "Start"
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=561889772]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="currentNight" type="Label" parent="." unique_id=521955387]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 440.0
+offset_right = 1015.0
+offset_bottom = 577.0
+theme_override_font_sizes/font_size = 100
+text = "Night"
+
+[node name="Timer" type="Timer" parent="." unique_id=2052156949]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="pressed" from="VBoxContainer/neal/nealDecrease" to="." method="_on_neal_decrease_pressed"]
+[connection signal="pressed" from="VBoxContainer/neal/nealIncrease" to="." method="_on_neal_increase_pressed"]
+[connection signal="pressed" from="VBoxContainer/toad/toadDecrease" to="." method="_on_toad_decrease_pressed"]
+[connection signal="pressed" from="VBoxContainer/toad/toadIncrease" to="." method="_on_toad_increase_pressed"]
+[connection signal="pressed" from="VBoxContainer/eagle/eagleDecrease" to="." method="_on_eagle_decrease_pressed"]
+[connection signal="pressed" from="VBoxContainer/eagle/eagleIncrease" to="." method="_on_eagle_increase_pressed"]
+[connection signal="pressed" from="VBoxContainer/kangaroo/kangarooDecrease" to="." method="_on_kangaroo_decrease_pressed"]
+[connection signal="pressed" from="VBoxContainer/kangaroo/kangarooIncrease" to="." method="_on_kangaroo_increase_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

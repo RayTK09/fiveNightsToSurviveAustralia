@@ -5,6 +5,11 @@ extends Node3D
 func _ready() -> void:
 	$Control/night.text = "Night " + str(globals.currentNight)
 
+func _input(event: InputEvent) -> void:
+	if (Input.is_action_just_pressed("delete save data")):
+		var saveFile = FileAccess.open("user://save.json", FileAccess.WRITE)
+		saveFile.store_line(JSON.stringify(""))
+		$Control/del.text = "Save file deleted!"
 
 func _on_button_pressed() -> void:
 	$Control/Button.visible = false
@@ -13,6 +18,7 @@ func _on_button_pressed() -> void:
 	$Control/ColorRect.visible = true
 	$Control/currentNight.visible = true
 	$Control/currentNight.text = "Night " +  str(globals.currentNight)
+	$nightStart.play()
 	$Control/Timer.start()
 
 

@@ -14,7 +14,7 @@ extends Node3D
 @export var outside : outside
 @export var powerRoom : powerRoom
 @export var kangarooActive : bool = false
-@onready var globals : Global = get_node("/root/Global")
+@onready var globals : global = get_node("/root/Global")
 @onready var nightEnd : Timer = $nightEnd
 
 #timers for moving
@@ -40,6 +40,57 @@ var time : int = 12
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$nightEnd.start()
+	if (globals.isCustomNight):
+		nealAI = globals.nealAi
+		caneToadAI = globals.toadAi
+		evilAssEagleAI = globals.eagleAi
+		kangarooMafiaAI = globals.kangarooAi
+		nealTime.start()
+		toadTime.start()
+		eagleTime.start()
+		kangarooTime.start()
+	else:
+		checkNight()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if (office.coneDeterantSystem and office.nealInOffice):
+		nealDeath.stop()
+		nealProgress = 0
+		nealTime.start()
+	if (office.caneToadInOffice):
+		toadDeath.stop()
+		toadProgress = 0
+		toadTime.start()
+	match nealProgress:
+		0:
+			outside.isNealCam4 = false
+			outside.isNealCam3 = false
+			inside.isNealCam2 = false
+			office.nealInOffice = false
+		1:
+			outside.isNealCam4 = false
+			outside.isNealCam3 = true
+			inside.isNealCam2 = false
+			office.nealInOffice = false
+		2:
+			outside.isNealCam4 = true
+			outside.isNealCam3 = false
+			inside.isNealCam2 = false
+			office.nealInOffice = false
+		3:
+			outside.isNealCam4 = false
+			outside.isNealCam3 = false
+			inside.isNealCam2 = true
+			office.nealInOffice = false
+		4:
+			outside.isNealCam4 = false
+			outside.isNealCam3 = false
+			inside.isNealCam2 = false
+			office.nealInOffice = true
+
+
+func checkNight():
 	match globals.currentNight:
 		1:
 			nealAI = 5
@@ -81,43 +132,6 @@ func _ready() -> void:
 			eagleTime.start()
 			kangarooTime.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if (office.coneDeterantSystem and office.nealInOffice):
-		nealDeath.stop()
-		nealProgress = 0
-		nealTime.start()
-	if (office.caneToadInOffice):
-		toadDeath.stop()
-		toadProgress = 0
-		toadTime.start()
-	match nealProgress:
-		0:
-			outside.isNealCam4 = false
-			outside.isNealCam3 = false
-			inside.isNealCam2 = false
-			office.nealInOffice = false
-		1:
-			outside.isNealCam4 = false
-			outside.isNealCam3 = true
-			inside.isNealCam2 = false
-			office.nealInOffice = false
-		2:
-			outside.isNealCam4 = true
-			outside.isNealCam3 = false
-			inside.isNealCam2 = false
-			office.nealInOffice = false
-		3:
-			outside.isNealCam4 = false
-			outside.isNealCam3 = false
-			inside.isNealCam2 = true
-			office.nealInOffice = false
-		4:
-			outside.isNealCam4 = false
-			outside.isNealCam3 = false
-			inside.isNealCam2 = false
-			office.nealInOffice = true
-
 
 func _on_neal_timer_timeout() -> void:
 	var moveNum : int = randi_range(1, 20)
@@ -127,6 +141,7 @@ func _on_neal_timer_timeout() -> void:
 	elif (moveNum <= nealAI):
 		nealProgress += 1
 		#print("moved!")
+
 
 func _on_toad_timer_timeout() -> void:
 	var moveNum : int = randi_range(1, 20)
