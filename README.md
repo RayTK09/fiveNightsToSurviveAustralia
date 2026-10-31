@@ -23,3 +23,8 @@ powerDown SFX - https://freesound.org/people/Skylar1146/sounds/395378/<br>
 metalHit SFX - https://freesound.org/people/Anthousai/sounds/406493/<br>
 EAGLE SFX - https://freesound.org/people/Johnnie_Holiday/sounds/583615/
 camButton SFX - https://pixabay.com/sound-effects/film-special-effects-button-ui-sound-effect-395762/<br>
+Ambiance SFX - https://freesound.org/people/JustinBW/sounds/78538/<br>
+woosh SFX - https://freesound.org/people/florianreichelt/sounds/683101/<br>
+main menu SFX - https://freesound.org/people/luminousfridge/sounds/496193/<br>
+cam flip SFX - https://freesound.org/people/iainmccurdy/sounds/613885/<br>
+button SFX - https://pixabay.com/sound-effects/film-special-effects-button-ui-sound-effect-395762/
