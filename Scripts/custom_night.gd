@@ -1,10 +1,10 @@
 extends Control
 
 @onready var globals : global = get_node("/root/Global")
-@onready var nealLabelAi : Label = $VBoxContainer/neal/nealAI
-@onready var toadLabelAi : Label = $VBoxContainer/toad/toadAI
-@onready var eagleLabelAi : Label = $VBoxContainer/eagle/eagleAI
-@onready var kangarooLabelAi : Label = $VBoxContainer/kangaroo/kangarooAI
+@onready var nealLabelAi : Label = $VBoxContainer3/nealAI
+@onready var toadLabelAi : Label = $VBoxContainer3/toadAI
+@onready var eagleLabelAi : Label = $VBoxContainer3/eagleAI
+@onready var kangarooLabelAi : Label = $VBoxContainer3/kangarooAI
 
 var nealAi : int = 0
 var toadAi : int = 0
@@ -16,6 +16,23 @@ func _process(delta: float) -> void:
 	globals.toadAi = toadAi
 	globals.eagleAi = eagleAi
 	globals.kangarooAi = kangarooAi
+	
+	if (int(nealLabelAi.text) >= 10):
+		nealLabelAi.offset_transform_position = Vector2(-34, 0)
+	else:
+		nealLabelAi.offset_transform_position = Vector2(0, 0)
+	if (int(toadLabelAi.text) >= 10):
+		toadLabelAi.offset_transform_position = Vector2(-34, 0)
+	else:
+		toadLabelAi.offset_transform_position = Vector2(0, 0)
+	if (int(eagleLabelAi.text) >= 10):
+		eagleLabelAi.offset_transform_position = Vector2(-34, 0)
+	else:
+		eagleLabelAi.offset_transform_position = Vector2(0, 0)
+	if (int(kangarooLabelAi.text) >= 10):
+		kangarooLabelAi.offset_transform_position = Vector2(-34, 0)
+	else:
+		kangarooLabelAi.offset_transform_position = Vector2(0, 0)
 
 
 func _on_neal_decrease_pressed() -> void:
@@ -81,7 +98,9 @@ func _on_button_pressed() -> void:
 func _on_start_pressed() -> void:
 	globals.isCustomNight = true
 	$ColorRect2.visible = true
-	$currentNight.text = "Night Six"
+	$ColorRect2/currentNight.text = "Night Six"
+	$nightStart.play()
+	$mainmenu.stop()
 	$Timer.start()
 
 

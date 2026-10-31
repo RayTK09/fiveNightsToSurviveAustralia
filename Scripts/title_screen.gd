@@ -9,6 +9,7 @@ func _input(event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("delete save data")):
 		var saveFile = FileAccess.open("user://save.json", FileAccess.WRITE)
 		saveFile.store_line(JSON.stringify(""))
+		$Control/del.offset_transform_position = Vector2(435, 0)
 		$Control/del.text = "Save file deleted!"
 
 func _on_button_pressed() -> void:
@@ -19,6 +20,8 @@ func _on_button_pressed() -> void:
 	$Control/currentNight.visible = true
 	$Control/currentNight.text = "Night " +  str(globals.currentNight)
 	$nightStart.play()
+	$mainmenu.stop()
+	$Control/del.text = ""
 	$Control/Timer.start()
 
 

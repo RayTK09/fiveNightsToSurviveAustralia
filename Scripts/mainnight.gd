@@ -29,13 +29,14 @@ extends Node3D
 #except for these guys they work differently
 @onready var kangarooDeath : Timer = $kangarooDeath
 @onready var deathMessage : Label = $Control/Label
+@onready var charMovedTimer : Timer = $charMove
 
 var nealProgress : int = 0
 var toadProgress : int = 0
 var eagleProgress : int = 0
 var dead : bool = false
-var toadActive : bool = false
 var time : int = 12
+var hasCharacterMoved : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -88,6 +89,29 @@ func _process(delta: float) -> void:
 			outside.isNealCam3 = false
 			inside.isNealCam2 = false
 			office.nealInOffice = true
+			
+	if (hasCharacterMoved and office.isInCams):
+		hasCharacterMoved = false
+		match nealProgress:
+			1:
+				if (office.whichCam == 1):
+					$"character moved".visible = true
+					charMovedTimer.start()
+			2:
+				if (office.whichCam == 2 or office.whichCam == 1):
+					$"character moved".visible = true
+					charMovedTimer.start()
+			3:
+				if (office.whichCam == 3 or office.whichCam == 2):
+					$"character moved".visible = true
+					charMovedTimer.start()
+			4:
+				if (office.whichCam == 3):
+					$"character moved".visible = true
+					charMovedTimer.start()
+	
+	if (charMovedTimer.is_stopped()):
+		$"character moved".visible = false
 
 
 func checkNight():
@@ -140,6 +164,7 @@ func _on_neal_timer_timeout() -> void:
 		nealDeath.start()
 	elif (moveNum <= nealAI):
 		nealProgress += 1
+		hasCharacterMoved = true
 		#print("moved!")
 
 
@@ -150,7 +175,6 @@ func _on_toad_timer_timeout() -> void:
 		toadDeath.start()
 		office.caneToadInOffice = true
 		office.latch = true
-		toadActive = true
 		$toadAlert.play()
 	elif (moveNum <= caneToadAI):
 		toadProgress += 1

@@ -4,6 +4,7 @@
 [ext_resource type="Material" path="res://assets/Concrete032_1K-JPG/Concrete032_1K-JPG.tres" id="1_p3fck"]
 [ext_resource type="Material" uid="uid://bcmvnwd4s5yli" path="res://assets/CorrugatedSteel007C_1K-JPG/CorrugatedSteel007C_1K-JPG.tres" id="2_4gxqj"]
 [ext_resource type="PackedScene" uid="uid://dogdbtxvr2lir" path="res://models/electrical_panel/scene.gltf" id="4_twnyg"]
+[ext_resource type="AudioStream" uid="uid://i8hlncd5b87p" path="res://assets/sounds/mainMenuMusic.ogg" id="5_55kwv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4gxqj"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -160,6 +161,7 @@ offset_left = 1231.0
 offset_top = 1038.0
 offset_right = 1920.0
 offset_bottom = 1080.0
+offset_transform_enabled = true
 text = "press DEL or CTRL+0 key to delete your save file"
 label_settings = SubResource("LabelSettings_natlx")
 
@@ -169,6 +171,12 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.8
 [node name="nightStart" type="AudioStreamPlayer" parent="." unique_id=1029830741]
 stream = SubResource("AudioStreamWAV_twnyg")
 volume_db = -10.0
+
+[node name="mainmenu" type="AudioStreamPlayer" parent="." unique_id=2004982201]
+stream = ExtResource("5_55kwv")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="mouse_entered" from="Control/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Control/Button" to="." method="_on_button_mouse_exited"]

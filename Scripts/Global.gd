@@ -35,6 +35,8 @@ func loadData():
 	var saveFile := FileAccess.open("user://save.json", FileAccess.READ)
 	var json := JSON.new()
 	json.parse(saveFile.get_line())
+	if (json.get_data() == ""):
+		return
 	var saveData := json.get_data() as Dictionary
 	
 	currentNight = saveData.Night

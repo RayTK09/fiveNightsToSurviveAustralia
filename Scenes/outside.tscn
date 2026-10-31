@@ -6,9 +6,10 @@
 [ext_resource type="Material" uid="uid://bcmvnwd4s5yli" path="res://assets/CorrugatedSteel007C_1K-JPG/CorrugatedSteel007C_1K-JPG.tres" id="4_mf7ev"]
 [ext_resource type="PackedScene" uid="uid://d2sncpke1iul1" path="res://models/chainlinkFence.tscn" id="5_8c3xh"]
 [ext_resource type="Texture2D" uid="uid://ctaoikyiwmfnj" path="res://assets/neal1.png" id="5_uh4qc"]
-[ext_resource type="AudioStream" uid="uid://dkfihw3hspesp" path="res://assets/574586__outlawsoftware__alarm-loop-4-v1.wav" id="6_mf7ev"]
-[ext_resource type="Texture2D" uid="uid://djhe1l5mwkstt" path="res://assets/kangaroo.jpg" id="6_wh1al"]
+[ext_resource type="Texture2D" uid="uid://bro2403sk4b4b" path="res://assets/KANGAROO.png" id="6_56t50"]
+[ext_resource type="AudioStream" uid="uid://dkfihw3hspesp" path="res://assets/sounds/alarm(DO NOT PLAY ITS SO LOUD).wav" id="6_mf7ev"]
 [ext_resource type="Texture2D" uid="uid://d02ew0qxf7tbm" path="res://assets/neal2.png" id="7_uh4qc"]
+[ext_resource type="Texture2D" uid="uid://btj8wsivo3o1g" path="res://assets/KangarooPowerRoom.png" id="8_g3nrk"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pyvco"]
 material = ExtResource("2_hhqqv")
@@ -28,11 +29,11 @@ albedo_texture = ExtResource("5_uh4qc")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uh4qc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3nrk"]
-albedo_texture = ExtResource("6_wh1al")
-uv1_scale = Vector3(3.1, 2, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omx0w"]
+transparency = 1
+albedo_texture = ExtResource("6_56t50")
 
-[sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ato11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56t50"]
 transparency = 1
@@ -41,9 +42,11 @@ uv1_scale = Vector3(-1, 1, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mqpsb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omx0w"]
-albedo_texture = ExtResource("6_wh1al")
-uv1_scale = Vector3(3.1, 2, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqpsb"]
+transparency = 1
+albedo_texture = ExtResource("8_g3nrk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4r6b"]
 
 [sub_resource type="Animation" id="Animation_hhqqv"]
 length = 0.001
@@ -245,10 +248,10 @@ material_override = SubResource("StandardMaterial3D_y6wel")
 mesh = SubResource("PlaneMesh_uh4qc")
 
 [node name="kangarooCam3" type="MeshInstance3D" parent="." unique_id=1239373221]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 5.8405957, 1, -24.870283)
+transform = Transform3D(-1, 1.7484555e-07, -3.821371e-15, 0, -8.742278e-08, -1, -8.742278e-08, -2, 4.371139e-08, 5.497112, 1, -24.357916)
 visible = false
-material_override = SubResource("StandardMaterial3D_g3nrk")
-mesh = SubResource("BoxMesh_2qw5g")
+material_override = SubResource("StandardMaterial3D_omx0w")
+mesh = SubResource("PlaneMesh_ato11")
 
 [node name="nealCam4" type="MeshInstance3D" parent="." unique_id=1414540076]
 transform = Transform3D(0.5071067, -0.44640705, -0.18006219, 0, 0.16916035, -0.9503532, 0.5071067, 0.44640705, 0.18006219, -1.0599298, 0.89285326, -11.892739)
@@ -257,10 +260,10 @@ material_override = SubResource("StandardMaterial3D_56t50")
 mesh = SubResource("PlaneMesh_mqpsb")
 
 [node name="kangarooCam4" type="MeshInstance3D" parent="." unique_id=1977879315]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -6.0966396, 1, -10.671224)
+transform = Transform3D(0.9541721, -0.59851676, 1.30809985e-08, 0, -8.742278e-08, -1, 0.29925838, 1.9083441, -4.1708187e-08, -6.462396, 0.8, -11.51123)
 visible = false
-material_override = SubResource("StandardMaterial3D_omx0w")
-mesh = SubResource("BoxMesh_2qw5g")
+material_override = SubResource("StandardMaterial3D_mqpsb")
+mesh = SubResource("PlaneMesh_g4r6b")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1623168547]
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dkfihw3hspesp"
+path="res://.godot/imported/alarm(DO NOT PLAY ITS SO LOUD).wav-d6ecc2b8e1dbbd0cd96b50748e2ef1df.sample"
+
+[deps]
+
+source_file="res://assets/sounds/alarm(DO NOT PLAY ITS SO LOUD).wav"
+dest_files=["res://.godot/imported/alarm(DO NOT PLAY ITS SO LOUD).wav-d6ecc2b8e1dbbd0cd96b50748e2ef1df.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

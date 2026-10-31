@@ -19,9 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://bmirl5oqmb08j" path="res://assets/NEALDOOR.png" id="17_oqaoe"]
 [ext_resource type="Texture2D" uid="uid://dkropg3ue8tva" path="res://assets/CaneToad.png" id="18_oqaoe"]
 [ext_resource type="Texture2D" uid="uid://cpwqmm5qss140" path="res://assets/eagle.png" id="19_2uc8b"]
-[ext_resource type="AudioStream" uid="uid://cu4kjtbsba2dm" path="res://assets/emilianodleon-button-ui-sound-effect-395762.mp3" id="20_uc7l7"]
-[ext_resource type="AudioStream" uid="uid://d10ppcxkha224" path="res://assets/406493__anthousai__hit-metallic-deep-hollow-thunk.wav" id="21_oqaoe"]
-[ext_resource type="AudioStream" uid="uid://dc87riaimcb2b" path="res://assets/613885__iainmccurdy__canon550d-mirror-flip.wav" id="22_2uc8b"]
+[ext_resource type="AudioStream" uid="uid://cu4kjtbsba2dm" path="res://assets/sounds/buttonCam.mp3" id="20_uc7l7"]
+[ext_resource type="AudioStream" uid="uid://yn5o46nyd7hp" path="res://assets/sounds/metalHit.mp3" id="21_2uc8b"]
+[ext_resource type="AudioStream" uid="uid://dc87riaimcb2b" path="res://assets/sounds/camFlip.wav" id="22_2uc8b"]
+[ext_resource type="AudioStream" uid="uid://7ynmwnhlektq" path="res://assets/sounds/woosh.mp3" id="23_2btma"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
 size = Vector3(0.45828247, 0.38787842, 0.041137695)
@@ -254,6 +255,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0.34110227)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("woosh:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_lsk72"]
 resource_name = "toadDrop"
@@ -333,6 +346,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(1.5707964, 0, 0), Vector3(1.5707964, 0, 0.3403392)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("woosh:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.03333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ari0y"]
 _data = {
@@ -376,6 +401,43 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_uc7l7"),
 &"door close": SubResource("Animation_oqaoe")
+}
+
+[sub_resource type="Animation" id="Animation_2uc8b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("table/button/MeshInstance3D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.115409344, -0.028964162, 0.08321035)]
+}
+
+[sub_resource type="Animation" id="Animation_2btma"]
+resource_name = "buttonPressed"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("table/button/MeshInstance3D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.115409344, -0.028964162, 0.08321035), Vector3(0.115409344, -0.04805033, 0.08321035), Vector3(0.115, -0.029, 0.083)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8yipd"]
+_data = {
+&"RESET": SubResource("Animation_2uc8b"),
+&"buttonPressed": SubResource("Animation_2btma")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_78ya6"]
@@ -641,6 +703,9 @@ libraries/ = SubResource("AnimationLibrary_ari0y")
 [node name="door2" type="AnimationPlayer" parent="." unique_id=201651953]
 libraries/ = SubResource("AnimationLibrary_2uc8b")
 
+[node name="buttonPressed" type="AnimationPlayer" parent="." unique_id=177841990]
+libraries/ = SubResource("AnimationLibrary_8yipd")
+
 [node name="door" type="Area3D" parent="." unique_id=1648855001]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door" unique_id=1988377034]
@@ -655,7 +720,7 @@ mesh = SubResource("BoxMesh_xpfex")
 stream = ExtResource("20_uc7l7")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1803136786]
-stream = ExtResource("21_oqaoe")
+stream = ExtResource("21_2uc8b")
 volume_db = -15.0
 
 [node name="camFlipUp" type="AudioStreamPlayer" parent="." unique_id=784525173]
@@ -666,6 +731,9 @@ volume_db = -10.0
 stream = ExtResource("22_2uc8b")
 volume_db = -10.0
 pitch_scale = 0.8
+
+[node name="woosh" type="AudioStreamPlayer" parent="." unique_id=2145596498]
+stream = ExtResource("23_2btma")
 
 [connection signal="mouse_entered" from="table/button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="table/button" to="." method="_on_button_mouse_exited"]

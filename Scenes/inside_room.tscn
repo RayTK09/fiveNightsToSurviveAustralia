@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://b51u82ktb31le" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Catwalk_200.gltf" id="3_d3shc"]
 [ext_resource type="PackedScene" uid="uid://bej4g4mgcphbu" path="res://models/IndustrialCatwalk_FreeSample/glTF/SM_IK_Railing_200.gltf" id="4_sgii2"]
 [ext_resource type="PackedScene" uid="uid://d2sncpke1iul1" path="res://models/chainlinkFence.tscn" id="7_rhee5"]
-[ext_resource type="AudioStream" uid="uid://dkfihw3hspesp" path="res://assets/574586__outlawsoftware__alarm-loop-4-v1.wav" id="8_8cxj4"]
+[ext_resource type="AudioStream" uid="uid://dkfihw3hspesp" path="res://assets/sounds/alarm(DO NOT PLAY ITS SO LOUD).wav" id="8_8cxj4"]
 [ext_resource type="Texture2D" uid="uid://c60grgobohwax" path="res://assets/NEAL3.png" id="8_k5qol"]
-[ext_resource type="Texture2D" uid="uid://djhe1l5mwkstt" path="res://assets/kangaroo.jpg" id="9_k5qol"]
+[ext_resource type="Texture2D" uid="uid://btj8wsivo3o1g" path="res://assets/KangarooPowerRoom.png" id="9_3cgjq"]
+[ext_resource type="Texture2D" uid="uid://bro2403sk4b4b" path="res://assets/KANGAROO.png" id="10_h8gc3"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
 
@@ -20,15 +21,19 @@ uv1_scale = Vector3(-1, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ypnyb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cgjq"]
-albedo_texture = ExtResource("9_k5qol")
-uv1_scale = Vector3(3.1, 2, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cxkc"]
+transparency = 1
+albedo_texture = ExtResource("9_3cgjq")
+uv1_scale = Vector3(-1, 1, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ep0fk"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_d6brm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8gc3"]
-albedo_texture = ExtResource("9_k5qol")
-uv1_scale = Vector3(3.1, 2, 1)
+transparency = 1
+albedo_texture = ExtResource("10_h8gc3")
+uv1_scale = Vector3(-1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1sgea"]
 
 [sub_resource type="Animation" id="Animation_ep0fk"]
 length = 0.001
@@ -145,10 +150,10 @@ surface_material_override/0 = ExtResource("3_8cxj4")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.071711, 0, -4.0817366)
 
 [node name="Container_LOD_0" parent="Containers" unique_id=1457151334 instance=ExtResource("1_unlwq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.056016, 0, 15.999999)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.756016, 0, 15.999999)
 
 [node name="Container_LOD_1" parent="Containers" unique_id=2108886451 instance=ExtResource("1_unlwq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.056015, 0, 13.38623)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.756015, 0, 13.38623)
 
 [node name="Container_LOD_2" parent="Containers" unique_id=51044206 instance=ExtResource("1_unlwq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16853285, 0, 10.645564)
@@ -361,16 +366,16 @@ material_override = SubResource("StandardMaterial3D_pulyq")
 mesh = SubResource("PlaneMesh_ypnyb")
 
 [node name="kangarooCam2" type="MeshInstance3D" parent="." unique_id=2131223254]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 2.6102505, 1, -7.804773)
+transform = Transform3D(-0.987269, 0.9999998, -2.6226829e-08, 1.2873834e-22, -8.742277e-08, -1.2, -0.56999993, -1.7320509, 4.5426212e-08, 2.1102505, 1, -7.304773)
 visible = false
-material_override = SubResource("StandardMaterial3D_3cgjq")
-mesh = SubResource("BoxMesh_ep0fk")
+material_override = SubResource("StandardMaterial3D_0cxkc")
+mesh = SubResource("PlaneMesh_d6brm")
 
 [node name="kangarooCam1" type="MeshInstance3D" parent="." unique_id=868798821]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -2.4206195, 1, 7.5928397)
+transform = Transform3D(-0.2588191, -1.9318517, -3.5762792e-08, 7.713411e-09, 5.7573676e-08, -1.2, 0.9659259, -0.5176382, -7.993606e-15, -1.6581707, 1.0589358, 7.537831)
 visible = false
 material_override = SubResource("StandardMaterial3D_h8gc3")
-mesh = SubResource("BoxMesh_ep0fk")
+mesh = SubResource("PlaneMesh_1sgea")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1948276491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.043553, 0)

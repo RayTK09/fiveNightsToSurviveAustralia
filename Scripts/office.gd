@@ -99,6 +99,7 @@ func _input(event: InputEvent) -> void:
 	if (Input.is_action_pressed('mouse') and caneToadInOffice):
 		#print("grabbed")
 		caneToadInOffice = false
+		$buttonPressed.play("buttonPressed")
 		$toadPlayer.play("toadGrabbed")
 
 

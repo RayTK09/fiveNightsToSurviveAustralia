@@ -3,17 +3,17 @@
 [ext_resource type="Script" uid="uid://dg111ot7m8s5" path="res://Scripts/power_room.gd" id="1_cu0sn"]
 [ext_resource type="Material" path="res://assets/Concrete032_1K-JPG/Concrete032_1K-JPG.tres" id="2_jhpx3"]
 [ext_resource type="Material" uid="uid://bcmvnwd4s5yli" path="res://assets/CorrugatedSteel007C_1K-JPG/CorrugatedSteel007C_1K-JPG.tres" id="3_aihr4"]
-[ext_resource type="AudioStream" uid="uid://dkfihw3hspesp" path="res://assets/574586__outlawsoftware__alarm-loop-4-v1.wav" id="4_aihr4"]
-[ext_resource type="Texture2D" uid="uid://djhe1l5mwkstt" path="res://assets/kangaroo.jpg" id="4_ypnyb"]
+[ext_resource type="AudioStream" uid="uid://dkfihw3hspesp" path="res://assets/sounds/alarm(DO NOT PLAY ITS SO LOUD).wav" id="4_aihr4"]
+[ext_resource type="Texture2D" uid="uid://btj8wsivo3o1g" path="res://assets/KangarooPowerRoom.png" id="4_ypnyb"]
 [ext_resource type="PackedScene" uid="uid://dogdbtxvr2lir" path="res://models/electrical_panel/scene.gltf" id="5_33y5g"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2qw5g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjivb"]
+transparency = 1
 albedo_texture = ExtResource("4_ypnyb")
-uv1_scale = Vector3(3.1, 2, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_jhpx3"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_kkipx"]
 
 [sub_resource type="Animation" id="Animation_ep0fk"]
 length = 0.001
@@ -115,7 +115,6 @@ fov = 33.85828
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1495590981]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.9902929, 3.446212, 1.4896064)
 spot_range = 4.114645
-spot_attenuation = 2.48
 spot_angle = 35.52347
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=164983463]
@@ -125,10 +124,10 @@ light_energy = 0.0
 omni_attenuation = 3.0
 
 [node name="kangarooCam4" type="MeshInstance3D" parent="." unique_id=7634334]
-transform = Transform3D(0.76934284, 0, 0, 0, 2, 0, 0, 0, 1, -0.97152615, 1, 1.2697778)
+transform = Transform3D(-1.0386128, 0, -1.1802075e-07, 9.0798416e-08, -8.742278e-08, -1.35, -3.968925e-15, -2, 5.9010375e-08, -0.19265655, 1.0028208, 1.7057456)
 visible = false
 material_override = SubResource("StandardMaterial3D_mjivb")
-mesh = SubResource("BoxMesh_jhpx3")
+mesh = SubResource("PlaneMesh_kkipx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1794982704]
 libraries/ = SubResource("AnimationLibrary_aihr4")
