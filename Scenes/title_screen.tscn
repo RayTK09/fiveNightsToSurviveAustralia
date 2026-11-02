@@ -186,6 +186,15 @@ offset_transform_enabled = true
 text = "press DEL or CTRL+0 key to delete your save file"
 label_settings = SubResource("LabelSettings_natlx")
 
+[node name="tutorial _)" type="Label" parent="Control" unique_id=1494453545]
+layout_mode = 0
+offset_left = 892.0
+offset_right = 1920.0
+offset_bottom = 42.0
+offset_transform_enabled = true
+text = "Ctrl for flashlight while in your office, space to open the camera system"
+label_settings = SubResource("LabelSettings_natlx")
+
 [node name="Sketchfab_Scene" parent="." unique_id=1190545317 instance=ExtResource("4_twnyg")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.88047, 1.6538976, 2.2134657)
 
