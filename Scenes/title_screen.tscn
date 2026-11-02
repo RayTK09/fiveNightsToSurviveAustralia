@@ -5,6 +5,8 @@
 [ext_resource type="Material" uid="uid://bcmvnwd4s5yli" path="res://assets/CorrugatedSteel007C_1K-JPG/CorrugatedSteel007C_1K-JPG.tres" id="2_4gxqj"]
 [ext_resource type="PackedScene" uid="uid://dogdbtxvr2lir" path="res://models/electrical_panel/scene.gltf" id="4_twnyg"]
 [ext_resource type="AudioStream" uid="uid://i8hlncd5b87p" path="res://assets/sounds/mainMenuMusic.ogg" id="5_55kwv"]
+[ext_resource type="Texture2D" uid="uid://x78l22jm53e2" path="res://assets/Star.png" id="6_6vd4x"]
+[ext_resource type="Texture2D" uid="uid://cx03c5g848rkc" path="res://assets/fishTrophy.png" id="7_n82rj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4gxqj"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -27,6 +29,9 @@ font_size = 100
 
 [sub_resource type="LabelSettings" id="LabelSettings_78ya6"]
 font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_nilot"]
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_natlx"]
 font_size = 30
@@ -97,15 +102,6 @@ offset_bottom = 453.0
 theme_override_font_sizes/font_size = 75
 text = "Play"
 
-[node name="Button3" type="Button" parent="Control" unique_id=1307203924]
-layout_mode = 0
-offset_left = 104.0
-offset_top = 602.0
-offset_right = 263.0
-offset_bottom = 713.0
-theme_override_font_sizes/font_size = 75
-text = "Custom Night"
-
 [node name="Button2" type="Button" parent="Control" unique_id=1942148537]
 layout_mode = 0
 offset_left = 104.0
@@ -114,6 +110,16 @@ offset_right = 269.0
 offset_bottom = 880.0
 theme_override_font_sizes/font_size = 75
 text = "Quit"
+
+[node name="Button3" type="Button" parent="Control" unique_id=1307203924]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 602.0
+offset_right = 609.0
+offset_bottom = 713.0
+theme_override_font_sizes/font_size = 75
+disabled = true
+text = "Custom Night"
 
 [node name="Label" type="Label" parent="Control" unique_id=1602384932]
 layout_mode = 0
@@ -151,8 +157,23 @@ offset_bottom = 577.0
 theme_override_font_sizes/font_size = 100
 text = "Night"
 
+[node name="tip" type="Label" parent="Control" unique_id=604314465]
+visible = false
+custom_maximum_size = Vector2(400, -1)
+layout_mode = 0
+offset_left = 750.0
+offset_top = 602.0
+offset_right = 1058.0
+offset_bottom = 644.0
+pivot_offset = Vector2(132.5, 0)
+theme_override_font_sizes/font_size = 100
+text = "Tip: Neal loves cones!"
+label_settings = SubResource("LabelSettings_nilot")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Timer" type="Timer" parent="Control" unique_id=1727932312]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="del" type="Label" parent="Control" unique_id=545081123]
@@ -178,9 +199,27 @@ volume_db = -5.0
 autoplay = true
 parameters/looping = true
 
+[node name="Night5Star" type="Sprite2D" parent="." unique_id=1273227257]
+visible = false
+position = Vector2(180.80923, 306.43518)
+scale = Vector2(0.6137407, 0.6137407)
+texture = ExtResource("6_6vd4x")
+
+[node name="Night6Star" type="Sprite2D" parent="." unique_id=302253184]
+visible = false
+position = Vector2(396, 306.00003)
+scale = Vector2(0.6137407, 0.6137407)
+texture = ExtResource("6_6vd4x")
+
+[node name="FISH" type="Sprite2D" parent="." unique_id=518504133]
+visible = false
+position = Vector2(714, 314.00003)
+scale = Vector2(0.6137407, 0.6137407)
+texture = ExtResource("7_n82rj")
+
 [connection signal="mouse_entered" from="Control/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Control/Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Control/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Control/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="timeout" from="Control/Timer" to="." method="_on_timer_timeout"]

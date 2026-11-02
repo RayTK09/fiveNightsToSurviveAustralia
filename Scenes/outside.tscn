@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c76w28d8ib1qe" path="res://Scripts/outside.gd" id="1_hne82"]
 [ext_resource type="Material" path="res://assets/Concrete032_1K-JPG/Concrete032_1K-JPG.tres" id="2_hhqqv"]
 [ext_resource type="PackedScene" uid="uid://cdgfwutm3kssy" path="res://models/container_lod_0.tscn" id="2_n6vtj"]
+[ext_resource type="PackedScene" uid="uid://bg16ff3jb0iwm" path="res://models/container_lod_1.tscn" id="4_g3nrk"]
 [ext_resource type="Material" uid="uid://bcmvnwd4s5yli" path="res://assets/CorrugatedSteel007C_1K-JPG/CorrugatedSteel007C_1K-JPG.tres" id="4_mf7ev"]
 [ext_resource type="PackedScene" uid="uid://d2sncpke1iul1" path="res://models/chainlinkFence.tscn" id="5_8c3xh"]
 [ext_resource type="Texture2D" uid="uid://ctaoikyiwmfnj" path="res://assets/neal1.png" id="5_uh4qc"]
@@ -168,9 +169,6 @@ mesh = SubResource("PlaneMesh_pyvco")
 [node name="containers2" type="Node3D" parent="." unique_id=1958516397]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.015763, 0, -43.528328)
 
-[node name="Container_LOD_4" parent="containers2" unique_id=1457151334 instance=ExtResource("2_n6vtj")]
-transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 5.1192307, 0, -22.391716)
-
 [node name="Container_LOD_5" parent="containers2" unique_id=1962568577 instance=ExtResource("2_n6vtj")]
 transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 2.5054612, 0, -22.391716)
 
@@ -241,25 +239,25 @@ surface_material_override/0 = ExtResource("4_mf7ev")
 transform = Transform3D(3.057097e-15, -4.371139e-08, -19.186455, -1.6, -4.371139e-08, 0, -6.993822e-08, 0.99999994, -8.3866655e-07, 4.0374403, 0.2695086, -38.614998)
 mesh = SubResource("PlaneMesh_2qw5g")
 
-[node name="nealCam3" type="MeshInstance3D" parent="." unique_id=351265694]
+[node name="nealCam1" type="MeshInstance3D" parent="." unique_id=351265694]
 transform = Transform3D(-0.780371, 0.8313795, 0.47580516, -0.5032256, 0.50858474, -0.7628033, -1.2206999, -0.7411465, 0.010287359, 1.9699414, 0.5, -24.870283)
 visible = false
 material_override = SubResource("StandardMaterial3D_y6wel")
 mesh = SubResource("PlaneMesh_uh4qc")
 
-[node name="kangarooCam3" type="MeshInstance3D" parent="." unique_id=1239373221]
-transform = Transform3D(-1, 1.7484555e-07, -3.821371e-15, 0, -8.742278e-08, -1, -8.742278e-08, -2, 4.371139e-08, 5.497112, 1, -24.357916)
+[node name="kangarooCam1" type="MeshInstance3D" parent="." unique_id=1239373221]
+transform = Transform3D(-1, 1.7484555e-07, -3.821371e-15, 0, -8.742278e-08, -1, -8.742278e-08, -2, 4.371139e-08, 7.943727, 1, -24.357916)
 visible = false
 material_override = SubResource("StandardMaterial3D_omx0w")
 mesh = SubResource("PlaneMesh_ato11")
 
-[node name="nealCam4" type="MeshInstance3D" parent="." unique_id=1414540076]
+[node name="nealCam2" type="MeshInstance3D" parent="." unique_id=1414540076]
 transform = Transform3D(0.5071067, -0.44640705, -0.18006219, 0, 0.16916035, -0.9503532, 0.5071067, 0.44640705, 0.18006219, -1.0599298, 0.89285326, -11.892739)
 visible = false
 material_override = SubResource("StandardMaterial3D_56t50")
 mesh = SubResource("PlaneMesh_mqpsb")
 
-[node name="kangarooCam4" type="MeshInstance3D" parent="." unique_id=1977879315]
+[node name="kangarooCam2" type="MeshInstance3D" parent="." unique_id=1977879315]
 transform = Transform3D(0.9541721, -0.59851676, 1.30809985e-08, 0, -8.742278e-08, -1, 0.29925838, 1.9083441, -4.1708187e-08, -6.462396, 0.8, -11.51123)
 visible = false
 material_override = SubResource("StandardMaterial3D_mqpsb")
@@ -348,5 +346,18 @@ wait_time = 1.5
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1470997222]
 stream = ExtResource("6_mf7ev")
 volume_db = -20.0
+
+[node name="LEGS" type="Node3D" parent="." unique_id=95577108]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.015763, 0, -43.528328)
+visible = false
+
+[node name="Container_LOD_1" parent="LEGS" unique_id=1494963746 instance=ExtResource("4_g3nrk")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 5.1099825, 0, -22.364738)
+
+[node name="hideOld" type="Node3D" parent="." unique_id=1166167977]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.015763, 0, -43.528328)
+
+[node name="Container_LOD_4" parent="hideOld" unique_id=1457151334 instance=ExtResource("2_n6vtj")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 5.1192307, 0, -22.391716)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

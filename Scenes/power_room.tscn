@@ -12,6 +12,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjivb"]
 transparency = 1
 albedo_texture = ExtResource("4_ypnyb")
+uv1_scale = Vector3(-1, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kkipx"]
 
@@ -124,7 +125,7 @@ light_energy = 0.0
 omni_attenuation = 3.0
 
 [node name="kangarooCam4" type="MeshInstance3D" parent="." unique_id=7634334]
-transform = Transform3D(-1.0386128, 0, -1.1802075e-07, 9.0798416e-08, -8.742278e-08, -1.35, -3.968925e-15, -2, 5.9010375e-08, -0.19265655, 1.0028208, 1.7057456)
+transform = Transform3D(-0.90080523, 0.9955166, -1.3173417e-07, 9.0798416e-08, -8.7422784e-08, -1.35, -0.5169782, -1.7346315, -7.565184e-09, -1.4357139, 1.0028208, 1.7057456)
 visible = false
 material_override = SubResource("StandardMaterial3D_mjivb")
 mesh = SubResource("PlaneMesh_kkipx")

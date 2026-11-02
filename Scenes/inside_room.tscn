@@ -359,19 +359,19 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 
 [node name="Sketchfab_Scene15" parent="Node3D2" unique_id=1378111460 instance=ExtResource("7_rhee5")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, -37.360176)
 
-[node name="nealCam2" type="MeshInstance3D" parent="." unique_id=1917129987]
+[node name="nealCam3" type="MeshInstance3D" parent="." unique_id=1917129987]
 transform = Transform3D(-0.335695, 0.9659258, 0, 5.4762975e-08, 1.1313343e-08, -1, -1.2528309, -0.25881904, -4.3711392e-08, -1.743827, 0.5, -7.306829)
 visible = false
 material_override = SubResource("StandardMaterial3D_pulyq")
 mesh = SubResource("PlaneMesh_ypnyb")
 
-[node name="kangarooCam2" type="MeshInstance3D" parent="." unique_id=2131223254]
+[node name="kangarooCam3" type="MeshInstance3D" parent="." unique_id=2131223254]
 transform = Transform3D(-0.987269, 0.9999998, -2.6226829e-08, 1.2873834e-22, -8.742277e-08, -1.2, -0.56999993, -1.7320509, 4.5426212e-08, 2.1102505, 1, -7.304773)
 visible = false
 material_override = SubResource("StandardMaterial3D_0cxkc")
 mesh = SubResource("PlaneMesh_d6brm")
 
-[node name="kangarooCam1" type="MeshInstance3D" parent="." unique_id=868798821]
+[node name="kangarooCam4" type="MeshInstance3D" parent="." unique_id=868798821]
 transform = Transform3D(-0.2588191, -1.9318517, -3.5762792e-08, 7.713411e-09, 5.7573676e-08, -1.2, 0.9659259, -0.5176382, -7.993606e-15, -1.6581707, 1.0589358, 7.537831)
 visible = false
 material_override = SubResource("StandardMaterial3D_h8gc3")

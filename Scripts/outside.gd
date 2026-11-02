@@ -1,58 +1,61 @@
 class_name outside
 extends Node3D
 
-@onready var cam3Light = $Camera3D/SpotLight3D
-@onready var cam4Light = $Camera3D2/SpotLight3D
+@onready var cam1Light = $Camera3D/SpotLight3D
+@onready var cam2Light = $Camera3D2/SpotLight3D
 @onready var alarmLight1 = $SpotLight3D
 @onready var alarmLight2 = $SpotLight3D2
 @onready var alarmLight3 = $SpotLight3D3
+@onready var legsContainer := $LEGS
+@onready var normalContainer := $hideOld
+@onready var globals : global = get_node("/root/Global")
 
-@export var cam3Active : bool = false
-@export var cam4Active : bool = false
-@export var isNealCam3 : bool = false
-@export var isNealCam4 : bool = false
-@export var isKangarooCam3 : bool = false
-@export var isKangarooCam4 : bool = false
+@export var cam1Active : bool = false
+@export var cam2Active : bool = false
+@export var isNealCam1 : bool = false
+@export var isNealCam2 : bool = false
+@export var isKangarooCam1 : bool = false
+@export var isKangarooCam2 : bool = false
 @export var alarmActiveOutside : bool = false
-@export var main : Node3D
+@export var main : mainScene
 
 var startTimer : bool = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if (cam3Active):
-		cam4Light.light_energy = 1
-		$Camera3D2.current = true
-	else:
-		cam4Light.light_energy = 0
-		$Camera3D2.current = false
-	if (cam4Active):
-		cam3Light.light_energy = 1
+	if (cam1Active):
+		cam1Light.light_energy = 1
 		$Camera3D.current = true
 	else:
-		cam3Light.light_energy = 0
+		cam1Light.light_energy = 0
 		$Camera3D.current = false
+	if (cam2Active):
+		cam2Light.light_energy = 1
+		$Camera3D2.current = true
+	else:
+		cam2Light.light_energy = 0
+		$Camera3D2.current = false
 		
 	if (alarmActiveOutside):
 		$AnimationPlayer.play("blinkingLights")
 	elif (!alarmActiveOutside):
 		$AnimationPlayer.play("RESET")
 	#print(alarmActiveOutside)
-	if (isNealCam4):
-		$nealCam4.visible = true
-		$nealCam3.visible = false
-	elif (isNealCam3):
-		$nealCam4.visible = false
-		$nealCam3.visible = true
+	if (isNealCam1):
+		$nealCam2.visible = false
+		$nealCam1.visible = true
+	elif (isNealCam2):
+		$nealCam2.visible = true
+		$nealCam1.visible = false
 	else:
-		$nealCam4.visible = false
-		$nealCam3.visible = false
+		$nealCam2.visible = false
+		$nealCam1.visible = false
 	#kangaroos
-	if (isKangarooCam3):
-		$kangarooCam3.visible = true
-	elif (isKangarooCam4):
-		$kangarooCam4.visible = true
+	if (isKangarooCam1):
+		$kangarooCam1.visible = true
+	elif (isKangarooCam2):
+		$kangarooCam2.visible = true
 	
 	if (alarmActiveOutside):
 		if startTimer:
@@ -63,17 +66,24 @@ func _process(delta: float) -> void:
 		$Timer.stop()
 		$AudioStreamPlayer.stop()
 		main.kangarooDeath.paused = false
+	
+	#check for whether the night is secret and change the container to the right one
+	if (globals.isLegsNight):
+		legsContainer.visible = true
+		normalContainer.visible = false
 
 func _on_timer_timeout() -> void:
-	if (isKangarooCam3 and cam4Active):
+	if (isKangarooCam1 and cam1Active):
 		#print("deactivated")
-		isKangarooCam3 = false
+		isKangarooCam1 = false
 		main.kangarooActive = false
-		$kangarooCam3.visible = false
+		main.hasCharacterMoved = true
+		$kangarooCam1.visible = false
 		main.kangarooDeath.stop()
-	elif (isKangarooCam4 and cam3Active):
+	elif (isKangarooCam2 and cam2Active):
 		#print("deactivated")
-		isKangarooCam4 = false
+		isKangarooCam2 = false
 		main.kangarooActive = false
-		$kangarooCam4.visible = false
+		main.hasCharacterMoved = true
+		$kangarooCam2.visible = false
 		main.kangarooDeath.stop()

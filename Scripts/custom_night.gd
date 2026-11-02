@@ -1,10 +1,10 @@
 extends Control
 
 @onready var globals : global = get_node("/root/Global")
-@onready var nealLabelAi : Label = $VBoxContainer3/nealAI
-@onready var toadLabelAi : Label = $VBoxContainer3/toadAI
-@onready var eagleLabelAi : Label = $VBoxContainer3/eagleAI
-@onready var kangarooLabelAi : Label = $VBoxContainer3/kangarooAI
+@onready var nealLabelAi : Label = $nealAI
+@onready var toadLabelAi : Label = $toadAI
+@onready var eagleLabelAi : Label = $eagleAI
+@onready var kangarooLabelAi : Label = $kangarooAI
 
 var nealAi : int = 0
 var toadAi : int = 0
@@ -18,19 +18,19 @@ func _process(delta: float) -> void:
 	globals.kangarooAi = kangarooAi
 	
 	if (int(nealLabelAi.text) >= 10):
-		nealLabelAi.offset_transform_position = Vector2(-34, 0)
+		nealLabelAi.offset_transform_position = Vector2(-40, 0)
 	else:
 		nealLabelAi.offset_transform_position = Vector2(0, 0)
 	if (int(toadLabelAi.text) >= 10):
-		toadLabelAi.offset_transform_position = Vector2(-34, 0)
+		toadLabelAi.offset_transform_position = Vector2(-40, 0)
 	else:
 		toadLabelAi.offset_transform_position = Vector2(0, 0)
 	if (int(eagleLabelAi.text) >= 10):
-		eagleLabelAi.offset_transform_position = Vector2(-34, 0)
+		eagleLabelAi.offset_transform_position = Vector2(-40, 0)
 	else:
 		eagleLabelAi.offset_transform_position = Vector2(0, 0)
 	if (int(kangarooLabelAi.text) >= 10):
-		kangarooLabelAi.offset_transform_position = Vector2(-34, 0)
+		kangarooLabelAi.offset_transform_position = Vector2(-40, 0)
 	else:
 		kangarooLabelAi.offset_transform_position = Vector2(0, 0)
 
@@ -96,12 +96,21 @@ func _on_button_pressed() -> void:
 
 
 func _on_start_pressed() -> void:
-	globals.isCustomNight = true
-	$ColorRect2.visible = true
-	$ColorRect2/currentNight.text = "Night Six"
-	$nightStart.play()
-	$mainmenu.stop()
-	$Timer.start()
+	if(nealAi == 1 and toadAi == 7 and eagleAi == 9 and kangarooAi == 5):
+		globals.isLegsNight = true
+		$ColorRect2.visible = true
+		$ColorRect2/currentNight.text = "He's here."
+		$nightStart.play()
+		$mainmenu.stop()
+		$Timer.start()
+		$tip.visible = true
+	else:
+		globals.isCustomNight = true
+		$ColorRect2.visible = true
+		$ColorRect2/currentNight.text = "Night Six"
+		$nightStart.play()
+		$mainmenu.stop()
+		$Timer.start()
 
 
 func _on_timer_timeout() -> void:

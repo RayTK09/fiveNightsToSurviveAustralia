@@ -6,7 +6,10 @@ extends Node3D
 @onready var camUi = $Control/CamUI
 @onready var alarmButton = $Control/CamUI/Alarm
 @onready var coneTimer = $coneTimer
-@onready var audio = $AudioStreamPlayer
+@onready var audio = $buttonBeep
+@onready var deathMessage = $deathControl/Label
+@onready var tip = $deathControl/Tip
+@onready var deathPlayer : AnimationPlayer = $death
 
 @export var cam1 : TextureButton
 @export var cam2 : TextureButton
@@ -40,9 +43,12 @@ var coneActive
 var doorCanClose : bool = false
 var isDoorClosed : bool = false
 var latch : bool = false
+var latchTwo : bool = false
 var canPressButton : bool = false
 #which was the last used camera?
 var whichCam : int = 1
+var isDead : bool = false
+var buttonPressed : bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -65,6 +71,7 @@ func _ready() -> void:
 	#Omg I hate my naming schemes
 	cone = load("res://sprites/cone.png")
 	coneActive = load("res://sprites/coneActive.png")
+	$deathControl.visible = false
 
 func _input(event: InputEvent) -> void:
 	#omg I fixed the bug
@@ -73,16 +80,7 @@ func _input(event: InputEvent) -> void:
 		aniPlayer.play("flipCamera")
 		$camFlipUp.play()
 	elif (Input.is_action_just_pressed("OpenCams") and isInCams and !aniPlayer.is_playing()):
-		isInCams = false
-		aniPlayer.play("flipCamDown")
-		$camFlipDown.play()
-		player.current = true
-		camUi.visible = false
-		outside.cam4Active = false
-		outside.cam3Active = false
-		inside.cam2Active = false
-		inside.cam1Active = false
-		power.camActive = false
+		flipCamsDown()
 	#flashlight
 	if (Input.is_action_pressed("flashlightOn")):
 		$flashlight.visible = true
@@ -96,9 +94,10 @@ func _input(event: InputEvent) -> void:
 		$door2.play_backwards("door close")
 		isDoorClosed = false
 	
-	if (Input.is_action_pressed('mouse') and caneToadInOffice):
+	if (Input.is_action_pressed('mouse') and caneToadInOffice and canPressButton):
 		#print("grabbed")
 		caneToadInOffice = false
+		buttonPressed = true
 		$buttonPressed.play("buttonPressed")
 		$toadPlayer.play("toadGrabbed")
 
@@ -124,7 +123,7 @@ func _process(delta: float) -> void:
 	else:
 		$enemyPlayer.stop()
 		$neal.position = Vector3(-1.306, 0.203, 0.613)
-		$AudioStreamPlayer2.stop()
+		$nealEnter.stop()
 	
 	if ($Control/CamUI/cone.disabled):
 		coneDeterantSystem = false
@@ -134,6 +133,11 @@ func _process(delta: float) -> void:
 		$toadPlayer.play("toadDrop")
 		
 	$Control/CamUI/Label.text = str(main.time) + " AM"
+	
+	if (!isPowerOn and latchTwo and isInCams or isDead and latchTwo and isInCams):
+		latchTwo = false
+		isInCams = false
+		flipCamsDown()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -146,10 +150,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func changeCam() -> void:
 	match whichCam:
 			1:
-				outside.cam4Active = true
-				outside.cam3Active = false
-				inside.cam2Active = false
-				inside.cam1Active = false
+				outside.cam1Active = true
+				outside.cam2Active = false
+				inside.cam3Active = false
+				inside.cam4Active = false
 				power.camActive = false
 				cam1.texture_normal = cam1Active
 				cam2.texture_normal = cam2Normal
@@ -157,10 +161,10 @@ func changeCam() -> void:
 				cam4.texture_normal = cam4Normal
 				cam5.texture_normal = cam5Normal
 			2:
-				outside.cam4Active = false
-				outside.cam3Active = true
-				inside.cam2Active = false
-				inside.cam1Active = false
+				outside.cam1Active = false
+				outside.cam2Active = true
+				inside.cam3Active = false
+				inside.cam4Active = false
 				power.camActive = false
 				cam1.texture_normal = cam1Normal
 				cam2.texture_normal = cam2Active
@@ -168,10 +172,10 @@ func changeCam() -> void:
 				cam4.texture_normal = cam4Normal
 				cam5.texture_normal = cam5Normal
 			3:
-				outside.cam4Active = false
-				outside.cam3Active = false
-				inside.cam2Active = false
-				inside.cam1Active = true
+				outside.cam1Active = false
+				outside.cam2Active = false
+				inside.cam3Active = true
+				inside.cam4Active = false
 				power.camActive = false
 				cam1.texture_normal = cam1Normal
 				cam2.texture_normal = cam2Normal
@@ -179,10 +183,10 @@ func changeCam() -> void:
 				cam4.texture_normal = cam4Normal
 				cam5.texture_normal = cam5Normal
 			4:
-				outside.cam4Active = false
-				outside.cam3Active = false
-				inside.cam2Active = true
-				inside.cam1Active = false
+				outside.cam1Active = false
+				outside.cam2Active = false
+				inside.cam3Active = false
+				inside.cam4Active = true
 				power.camActive = false
 				cam1.texture_normal = cam1Normal
 				cam2.texture_normal = cam2Normal
@@ -190,10 +194,10 @@ func changeCam() -> void:
 				cam4.texture_normal = cam4Active
 				cam5.texture_normal = cam5Normal
 			5:
-				outside.cam4Active = false
-				outside.cam3Active = false
-				inside.cam2Active = false
-				inside.cam1Active = false
+				outside.cam1Active = false
+				outside.cam2Active = false
+				inside.cam3Active = false
+				inside.cam4Active = false
 				power.camActive = true
 				cam1.texture_normal = cam1Normal
 				cam2.texture_normal = cam2Normal
@@ -202,7 +206,19 @@ func changeCam() -> void:
 				cam5.texture_normal = cam5Active
 
 
-#on second thought I have no idea why I did this the way I did
+func flipCamsDown() -> void:
+	isInCams = false
+	aniPlayer.play("flipCamDown")
+	$camFlipDown.play()
+	player.current = true
+	camUi.visible = false
+	outside.cam1Active = false
+	outside.cam2Active = false
+	inside.cam3Active = false
+	inside.cam4Active = false
+	power.camActive = false
+
+
 func _on_cam_1_pressed() -> void:
 	whichCam = 1
 	changeCam()
@@ -234,10 +250,10 @@ func _on_cam_5_pressed() -> void:
 
 
 func _on_alarm_button_down() -> void:
-	if (outside.cam3Active or outside.cam4Active):
+	if (outside.cam1Active or outside.cam2Active):
 		outside.alarmActiveOutside = true
 		outside.startTimer = true
-	if (inside.cam2Active or inside.cam1Active):
+	if (inside.cam3Active or inside.cam4Active):
 		inside.alarmActiveInside = true
 		inside.startTimer = true
 	if (power.camActive):

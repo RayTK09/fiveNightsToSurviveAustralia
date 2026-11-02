@@ -20,9 +20,13 @@
 [ext_resource type="Texture2D" uid="uid://dkropg3ue8tva" path="res://assets/CaneToad.png" id="18_oqaoe"]
 [ext_resource type="Texture2D" uid="uid://cpwqmm5qss140" path="res://assets/eagle.png" id="19_2uc8b"]
 [ext_resource type="AudioStream" uid="uid://cu4kjtbsba2dm" path="res://assets/sounds/buttonCam.mp3" id="20_uc7l7"]
-[ext_resource type="AudioStream" uid="uid://yn5o46nyd7hp" path="res://assets/sounds/metalHit.mp3" id="21_2uc8b"]
+[ext_resource type="AudioStream" uid="uid://bdm7rn3kaitya" path="res://assets/sounds/toadOpen.mp3" id="21_8yipd"]
 [ext_resource type="AudioStream" uid="uid://dc87riaimcb2b" path="res://assets/sounds/camFlip.wav" id="22_2uc8b"]
 [ext_resource type="AudioStream" uid="uid://7ynmwnhlektq" path="res://assets/sounds/woosh.mp3" id="23_2btma"]
+[ext_resource type="AudioStream" uid="uid://bytaoudqxadrh" path="res://assets/sounds/metalHit.wav" id="24_vjyg3"]
+[ext_resource type="Texture2D" uid="uid://c8wu6eycuyk6n" path="res://assets/nealJumpscare.png" id="25_vjyg3"]
+[ext_resource type="AudioStream" uid="uid://bcpi3m5bk4rpv" path="res://assets/sounds/DeathScream.mp3" id="26_ss1ob"]
+[ext_resource type="AudioStream" uid="uid://dyy8exmq6xq43" path="res://assets/sounds/Slash.ogg" id="27_yhc3t"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2qw5g"]
 size = Vector3(0.45828247, 0.38787842, 0.041137695)
@@ -160,20 +164,20 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2:playing")
+tracks/1/enabled = false
+tracks/1/path = NodePath("nealEnter:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_oaeid"]
 resource_name = "nealEnter"
-length = 20.0
+length = 40.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -189,7 +193,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer2:playing")
+tracks/1/path = NodePath("nealEnter:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -267,10 +271,22 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = false
+tracks/5/path = NodePath("toadDrop:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_lsk72"]
 resource_name = "toadDrop"
-length = 20.0
+length = 40.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -294,6 +310,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1.5707964, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("toadDrop:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ari0y"]
@@ -440,13 +468,382 @@ _data = {
 &"buttonPressed": SubResource("Animation_2btma")
 }
 
+[sub_resource type="Animation" id="Animation_yhc3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.06845172, 0.3260769, -0.03713107)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("deathControl/ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("deathControl/ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("deathControl/Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("deathControl/Tip:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite3D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("deathControl:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = false
+tracks/7/path = NodePath("deathScream:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = false
+tracks/8/path = NodePath("slash:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ite3u"]
+resource_name = "eagleKill"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("deathControl/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.26666668, 0.4666667),
+"transitions": PackedFloat32Array(1, 5.4641457),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("deathControl/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1133333, 2.0166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("deathControl/Tip:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.1133333, 2.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("deathControl:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("slash:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("deathControl/ColorRect:color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.55, 1.15, 2.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sdpas"]
+resource_name = "nealKill"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.16666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.06845172, 0.3260769, -0.03713107), Vector3(0.06845172, 0.3260769, 0.6161399)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("deathControl/ColorRect:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.56666666, 1.1333333, 1.9999999),
+"transitions": PackedFloat32Array(1, 1, 7.209997),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("deathControl/ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.26666668, 0.4666667),
+"transitions": PackedFloat32Array(1, 5.4641457),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("deathControl/Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.1133333, 2.0166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("deathControl/Tip:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.1133333, 2.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite3D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("deathControl:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("deathScream:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1fy8r"]
+resource_name = "toadKill"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("deathControl/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.26666668, 0.4666667),
+"transitions": PackedFloat32Array(1, 5.4641457),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("deathControl/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1133333, 2.0166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("deathControl/Tip:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.1133333, 2.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("deathControl:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("deathControl/ColorRect:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.55, 1.15, 2.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1.000009, 0, 0, 1), Color(1.000009, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_drf25"]
+_data = {
+&"RESET": SubResource("Animation_yhc3t"),
+&"eagleKill": SubResource("Animation_ite3u"),
+&"nealKill": SubResource("Animation_sdpas"),
+&"toadKill": SubResource("Animation_1fy8r")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_78ya6"]
 size = Vector3(0.14648438, 0.83251953, 0.94140625)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xpfex"]
 size = Vector3(0.027832031, 0.8399658, 1.2379761)
 
+[sub_resource type="BoxMesh" id="BoxMesh_78ya6"]
+size = Vector3(0.17480469, 0.62353516, 0.041259766)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kwql6"]
+font_size = 150
+
+[sub_resource type="LabelSettings" id="LabelSettings_hwh3d"]
+font_size = 70
+
 [node name="OFFICE" type="Node3D" unique_id=1742765653]
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0, 0)
 script = ExtResource("1_a0wae")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2060791822]
@@ -461,12 +858,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18659872, -0.75924116)
 transform = Transform3D(1.4521585, 0, 0, 0, 1, 0, 0, 0, 1, 0.001449585, -0.1987032, 0.0014608204)
 mesh = SubResource("BoxMesh_2qw5g")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=641099784]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.3455267, 0.6550656)
-light_energy = 8.0
-spot_attenuation = 7.86
-spot_angle = 54.179035
-spot_angle_attenuation = 4.7568197
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=376198249]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.3438973, 0.6465255)
+spot_angle = 52.1947
 
 [node name="catwalks" type="Node3D" parent="." unique_id=1383276632]
 
@@ -517,7 +911,7 @@ mesh = SubResource("PlaneMesh_2qw5g")
 surface_material_override/0 = ExtResource("4_q644x")
 
 [node name="ceiling" type="MeshInstance3D" parent="walls" unique_id=261437439]
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 1.4555131, 0)
+transform = Transform3D(-0.99999994, 8.742278e-08, 0, -8.742278e-08, -0.99999994, 0, 0, 0, 0.99999994, 0.00080727396, 1.4555131, -0.0010238943)
 mesh = SubResource("PlaneMesh_2qw5g")
 
 [node name="wall" type="MeshInstance3D" parent="walls" unique_id=1055448907]
@@ -688,8 +1082,8 @@ mesh = SubResource("PlaneMesh_3cgjq")
 transform = Transform3D(0.84327054, 0, 0.5374893, 0, 1, 0, -0.5374893, 0, 0.84327054, 0, 0.457033, 1.2372115)
 visible = false
 shadow_enabled = true
-spot_range = 2.9042506
-spot_angle = 12.576308
+spot_range = 7.4815593
+spot_angle = 16.668036
 
 [node name="coneTimer" type="Timer" parent="." unique_id=939982524]
 wait_time = 15.0
@@ -706,6 +1100,9 @@ libraries/ = SubResource("AnimationLibrary_2uc8b")
 [node name="buttonPressed" type="AnimationPlayer" parent="." unique_id=177841990]
 libraries/ = SubResource("AnimationLibrary_8yipd")
 
+[node name="death" type="AnimationPlayer" parent="." unique_id=181442269]
+libraries/ = SubResource("AnimationLibrary_drf25")
+
 [node name="door" type="Area3D" parent="." unique_id=1648855001]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door" unique_id=1988377034]
@@ -716,11 +1113,15 @@ shape = SubResource("BoxShape3D_78ya6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0167536, 0.76392436, 1.0928528)
 mesh = SubResource("BoxMesh_xpfex")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1205740064]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="door/door" unique_id=1606591670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075406194, 0.04753214, -0.5905343)
+mesh = SubResource("BoxMesh_78ya6")
+
+[node name="buttonBeep" type="AudioStreamPlayer" parent="." unique_id=1205740064]
 stream = ExtResource("20_uc7l7")
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1803136786]
-stream = ExtResource("21_2uc8b")
+[node name="toadDrop" type="AudioStreamPlayer" parent="." unique_id=1803136786]
+stream = ExtResource("21_8yipd")
 volume_db = -15.0
 
 [node name="camFlipUp" type="AudioStreamPlayer" parent="." unique_id=784525173]
@@ -734,6 +1135,66 @@ pitch_scale = 0.8
 
 [node name="woosh" type="AudioStreamPlayer" parent="." unique_id=2145596498]
 stream = ExtResource("23_2btma")
+
+[node name="nealEnter" type="AudioStreamPlayer" parent="." unique_id=360867406]
+stream = ExtResource("24_vjyg3")
+volume_db = -10.0
+
+[node name="deathControl" type="Control" parent="." unique_id=447061733]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="deathControl" unique_id=1187200114]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="deathControl" unique_id=242979812]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 816.0
+offset_top = 405.99997
+offset_right = 1446.0
+offset_bottom = 611.0
+scale = Vector2(0.46045327, 0.46045327)
+text = "You died."
+label_settings = SubResource("LabelSettings_kwql6")
+horizontal_alignment = 1
+
+[node name="Tip" type="Label" parent="deathControl" unique_id=631053554]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(-1000, 0)
+custom_maximum_size = Vector2(1000, -1)
+layout_mode = 0
+offset_left = 509.0
+offset_top = 499.99994
+offset_right = 1339.0
+offset_bottom = 705.0
+scale = Vector2(0.46045327, 0.46045327)
+pivot_offset = Vector2(415, 0)
+text = "Neal loves cones"
+label_settings = SubResource("LabelSettings_hwh3d")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1548104190]
+transform = Transform3D(0.17225736, 0, 0, 0, 0.17225736, 0, 0, 0, 1, 0.06845172, 0.3260769, -0.03713107)
+visible = false
+texture = ExtResource("25_vjyg3")
+
+[node name="deathScream" type="AudioStreamPlayer" parent="." unique_id=1088687996]
+stream = ExtResource("26_ss1ob")
+volume_db = -10.0
+pitch_scale = 0.8
+
+[node name="slash" type="AudioStreamPlayer" parent="." unique_id=1193338163]
+stream = ExtResource("27_yhc3t")
+volume_db = -5.0
 
 [connection signal="mouse_entered" from="table/button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="table/button" to="." method="_on_button_mouse_exited"]

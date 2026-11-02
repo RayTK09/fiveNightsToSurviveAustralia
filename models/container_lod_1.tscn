@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bg16ff3jb0iwm"]
+
+[ext_resource type="PackedScene" uid="uid://dcbc0pf6esq2s" path="res://models/cargo-container/source/Container_LOD_1.fbx" id="1_c0yh0"]
+[ext_resource type="Texture2D" uid="uid://djf7dh7yogqbi" path="res://models/cargo-container/textures/Container_basecolor.jpeg" id="2_mwgo0"]
+[ext_resource type="Texture2D" uid="uid://w3xb0fi531bn" path="res://models/cargo-container/textures/Container_metallic.jpeg" id="3_vjk04"]
+[ext_resource type="Texture2D" uid="uid://ccoxbvxs45u0i" path="res://models/cargo-container/textures/Container_normal.jpeg" id="4_k1vcj"]
+[ext_resource type="Texture2D" uid="uid://doqnwhdjes7f2" path="res://models/cargo-container/textures/Container_roughness.jpeg" id="5_g15mc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tujh"]
+albedo_texture = ExtResource("2_mwgo0")
+metallic = 1.0
+metallic_texture = ExtResource("3_vjk04")
+roughness_texture = ExtResource("5_g15mc")
+normal_enabled = true
+normal_texture = ExtResource("4_k1vcj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edq1h"]
+albedo_texture = ExtResource("2_mwgo0")
+metallic = 1.0
+metallic_texture = ExtResource("3_vjk04")
+roughness_texture = ExtResource("5_g15mc")
+normal_enabled = true
+normal_texture = ExtResource("4_k1vcj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8q1r"]
+albedo_texture = ExtResource("2_mwgo0")
+
+[node name="Container_LOD_1" unique_id=1494963746 instance=ExtResource("1_c0yh0")]
+
+[node name="Container" parent="." index="0" unique_id=1008443729]
+material_override = SubResource("StandardMaterial3D_7tujh")
+
+[node name="ContainerDoor" parent="." index="1" unique_id=1386515570]
+transform = Transform3D(-0.50000006, 0.8660254, 0, 0, 0, 1, 0.8660254, 0.50000006, 0, -2.97601, 1.2826571, -1.1710757)
+material_override = SubResource("StandardMaterial3D_edq1h")
+
+[node name="ContainerDoor2" parent="." index="2" unique_id=822571977]
+transform = Transform3D(-0.25881904, -0.9659258, 0, 0, 0, 1, -0.9659258, 0.25881904, 0, -2.9760113, 1.2826575, 1.1710757)
+material_override = SubResource("StandardMaterial3D_v8q1r")

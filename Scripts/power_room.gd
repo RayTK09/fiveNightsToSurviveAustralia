@@ -6,7 +6,7 @@ extends Node3D
 @export var warningOn : bool = false
 @export var camActive : bool = false
 @export var kangarooInRoom : bool = false
-@export var main : Node3D
+@export var main : mainScene
 
 var canActivateAlarm : bool = false
 var startTimer : bool = false
@@ -49,5 +49,6 @@ func _on_timer_timeout() -> void:
 		#print("deactivated")
 		main.kangarooActive = false
 		kangarooInRoom = false
+		main.hasCharacterMoved = true
 		$kangarooCam4.visible = false
 		main.kangarooDeath.stop()
